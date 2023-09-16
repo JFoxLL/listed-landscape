@@ -1,0 +1,2 @@
+class Lic < ApplicationRecord
+end

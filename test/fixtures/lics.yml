@@ -1,0 +1,37 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ticker: MyString
+  name: MyString
+  market_cap: 1
+  listing_year: 1
+  listing_date: 2023-09-16
+  yrs_operating: 1
+  investment_focus: MyString
+  portfolio_bias: MyString
+  benchmark: MyString
+  management_structure: MyString
+  investment_manager: MyString
+  management_fee: MyString
+  calculated_mer: 9.99
+  performance_fee: MyString
+  objective: MyText
+  logo_filename: MyString
+
+two:
+  ticker: MyString
+  name: MyString
+  market_cap: 1
+  listing_year: 1
+  listing_date: 2023-09-16
+  yrs_operating: 1
+  investment_focus: MyString
+  portfolio_bias: MyString
+  benchmark: MyString
+  management_structure: MyString
+  investment_manager: MyString
+  management_fee: MyString
+  calculated_mer: 9.99
+  performance_fee: MyString
+  objective: MyText
+  logo_filename: MyString
