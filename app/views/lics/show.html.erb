@@ -1,1 +1,61 @@
+<!-- Lic logo  -->
+<%= image_tag "lic_logos/#{@lic.logo_filename}.png", alt: "#{@lic.name} Logo", class: "lic-logo" %>
+
+
+<!-- LIC Name as the h1 -->
 <h1><%= @lic.name %></h1>
+
+
+<!-- LIC details table -->
+<table style="width: 100%; border-collapse: collapse; margin-bottom: 40px;">
+  <tbody>
+    <tr style="border: 1px solid lightgrey;">
+      <td style="border: 1px solid lightgrey; width: 30%;">Name:</td>
+      <td style="border: 1px solid lightgrey;"><%= @lic.name %></td>
+    </tr>
+    <tr style="border: 1px solid lightgrey;">
+      <td style="border: 1px solid lightgrey;">ASX Ticker:</td>
+      <td style="border: 1px solid lightgrey;"><%= @lic.ticker %></td>
+    </tr>
+    <tr style="border: 1px solid lightgrey;">
+      <td style="border: 1px solid lightgrey;">Inception Year:</td>
+      <td style="border: 1px solid lightgrey;"><%= @lic.listing_year %> (<%= @lic.yrs_operating %> years operating)</td>
+    </tr>
+    <tr style="border: 1px solid lightgrey;">
+      <td style="border: 1px solid lightgrey;">Size:</td>
+      <td style="border: 1px solid lightgrey;"><%= format_market_cap(@lic.market_cap) %></td>
+    </tr>
+    <tr style="border: 1px solid lightgrey;">
+      <td style="border: 1px solid lightgrey;">Investment Focus:</td>
+      <td style="border: 1px solid lightgrey;"><%= @lic.investment_focus %></td>
+    </tr>
+    <tr style="border: 1px solid lightgrey;">
+      <td style="border: 1px solid lightgrey;">Portfolio Bias:</td>
+      <td style="border: 1px solid lightgrey;"><%= @lic.portfolio_bias %></td>
+    </tr>
+    <tr style="border: 1px solid lightgrey;">
+      <td style="border: 1px solid lightgrey;">Benchmark:</td>
+      <td style="border: 1px solid lightgrey;"><%= @lic.benchmark %></td>
+    </tr>
+    <tr style="border: 1px solid lightgrey;">
+      <td style="border: 1px solid lightgrey;">Management Structure:</td>
+      <td style="border: 1px solid lightgrey;"><%= @lic.management_structure %></td>
+    </tr>
+    <tr style="border: 1px solid lightgrey;">
+      <td style="border: 1px solid lightgrey;">Calculated Cost (excl. Perf. Fees):</td>
+      <td style="border: 1px solid lightgrey;"><%= sprintf("%.2f", @lic.calculated_mer) %>% (FY23)</td>
+    </tr>
+    <tr style="border: 1px solid lightgrey;">
+      <td style="border: 1px solid lightgrey;">Management Fee Structure:</td>
+      <td style="border: 1px solid lightgrey;"><%= @lic.management_fee %></td>
+    </tr>
+    <tr style="border: 1px solid lightgrey;">
+      <td style="border: 1px solid lightgrey;">Performance Fee Structure:</td>
+      <td style="border: 1px solid lightgrey;"><%= @lic.performance_fee %></td>
+    </tr>
+    <tr style="border: 1px solid lightgrey;">
+      <td style="border: 1px solid lightgrey;">Objective:</td>
+      <td style="border: 1px solid lightgrey;"><%= @lic.objective %></td>
+    </tr>
+  </tbody>
+</table>
