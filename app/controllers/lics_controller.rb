@@ -5,7 +5,7 @@ class LicsController < ApplicationController
     end
 
     def show
-        @lic = Lic.find(params[:id])        
+        @lic = Lic.find_by!(slug: params[:id])        
     end
 
 end
