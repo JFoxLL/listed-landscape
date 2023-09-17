@@ -15,7 +15,7 @@
   <tbody>
     <% @lics.each do |lic| %>
       <tr style="border: 1px solid lightgrey;">
-        <td style="border: 1px solid lightgrey;"><%= link_to lic.name, listed_invested_company_path(lic), style: "text-decoration: none; color: inherit;" %></td>
+        <td style="border: 1px solid lightgrey;"><%= link_to lic.name, listed_investment_company_path(lic), style: "text-decoration: none; color: inherit;" %></td>
         <td style="border: 1px solid lightgrey;"><%= lic.ticker %></td>
         <td style="border: 1px solid lightgrey;"><%= format_market_cap(lic.market_cap) %></td>
         <td style="border: 1px solid lightgrey;"><%= lic.listing_year %></td>
