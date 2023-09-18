@@ -36,7 +36,7 @@
       <td style="border: 1px solid lightgrey;"><%= @lic.listing_year %> (<%= @lic.yrs_operating %> years operating)</td>
     </tr>
     <tr style="border: 1px solid lightgrey;">
-      <td style="border: 1px solid lightgrey;">Size:</td>
+      <td style="border: 1px solid lightgrey;">Size (Market Cap):</td>
       <td style="border: 1px solid lightgrey;"><%= format_market_cap(@lic.market_cap) %></td>
     </tr>
     <tr style="border: 1px solid lightgrey;">
@@ -56,8 +56,8 @@
       <td style="border: 1px solid lightgrey;"><%= @lic.management_structure %></td>
     </tr>
     <tr style="border: 1px solid lightgrey;">
-      <td style="border: 1px solid lightgrey;">Calculated Cost (excl. Perf. Fees):</td>
-      <td style="border: 1px solid lightgrey;"><%= sprintf("%.2f", @lic.calculated_mer) %>% (FY23)</td>
+      <td style="border: 1px solid lightgrey;">Investment Manager:</td>
+      <td style="border: 1px solid lightgrey;"><%= @lic.investment_manager %></td>
     </tr>
     <tr style="border: 1px solid lightgrey;">
       <td style="border: 1px solid lightgrey;">Management Fee Structure:</td>
@@ -66,6 +66,10 @@
     <tr style="border: 1px solid lightgrey;">
       <td style="border: 1px solid lightgrey;">Performance Fee Structure:</td>
       <td style="border: 1px solid lightgrey;"><%= @lic.performance_fee %></td>
+    </tr>
+    <tr style="border: 1px solid lightgrey;">
+      <td style="border: 1px solid lightgrey;">LL Calculated Cost (excl. Perf. Fees):</td>
+      <td style="border: 1px solid lightgrey;"><%= sprintf("%.2f", @lic.calculated_mer) %>% (FY23)</td>
     </tr>
     <tr style="border: 1px solid lightgrey;">
       <td style="border: 1px solid lightgrey;">Objective:</td>
