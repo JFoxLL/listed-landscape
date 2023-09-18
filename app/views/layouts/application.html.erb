@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <html lang="en">
-
-    <title>Listed Landscape</title>
-    <meta name="description" content="Exploring Listed Investment Companies (LICs) based in Australia.">
-    <meta name="keywords" content="Listed Landscape, Listed Investment Companies, LICs">
+    
+    <title><%= (yield(:title).presence || "Listed Landscape | Exploring Aussie LICs").strip %></title>
+    <meta name="description" content="<%= (yield(:description).presence || "[#{Time.now.strftime('%b %Y')} Updated!] Exploring Listed Investment Companies (LICs) based in Australia. Performance, Portfolio Holdings, Dividend History, Profit Reserves, Fees ..").strip %>">
+    <meta name="keywords" content="<%= (yield(:keywords).presence || 'Listed Landscape, Listed Investment Companies, LICs').strip %>">
     <link rel="icon" type="image/png" sizes="48x48" href="/listed_landscape_favicon_48x48px.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/listed_landscape_app_touch_icon_180x180px.png">
 
@@ -16,12 +16,45 @@
     <meta property="og:image" content="/listed_landscape_preview_1200x630px.png">
     <meta property="og:url" content="https://listedlandscape.com">
 
+    <!-- JSON-LD Org Markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Listed Landscape",
+        "legalName": "Listed Landscape Pty Ltd",
+        "url": "https://listedlandscape.com",
+        "logo": "/listed_landscape_header_logo_400x50px.png",
+        "foundingDate": "2023",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "John Fox"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Gold Coast",
+          "addressCountry": "Australia"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "email": "support@listedlandscape.com"
+        },
+        "sameAs": [
+          "https://twitter.com/listedlandscape"
+        ]
+      }
+    </script>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
+
 
   <body style="display: flex; flex-direction: column; min-height: 100vh;">
     <div style="flex: 1;">
@@ -33,4 +66,5 @@
     <%= render "layouts/footer"%>
   </body>
   
+
 </html>
