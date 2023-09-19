@@ -1,26 +1,34 @@
+<!-- Dedicated stylesheet for the LICs Index table -->
+<%= stylesheet_link_tag 'lics_index_table' %>
+
+<!-- Header -->
 <h1>Listed Investment Companies in Australia</h1>
 <p>The table below shows the top 30 Listed Investment Companies (by size) listed on the ASX.</p>
 
-<table style="width: 100%; border-collapse: collapse; margin-bottom: 40px;">
+
+<!-- LICs Index Table -->
+<table class="lics-index-table">
   <thead>
-    <tr style="border: 1px solid lightgrey;">
-      <th style="border: 1px solid lightgrey;">Name</th>
-      <th style="border: 1px solid lightgrey;">Ticker</th>
-      <th style="border: 1px solid lightgrey;">Size</th>
-      <th style="border: 1px solid lightgrey;">Started</th>
-      <th style="border: 1px solid lightgrey;">Focus</th>
-      <th style="border: 1px solid lightgrey;">Cost</th>
+    <tr>
+      <th>Name</th>
+      <th>Ticker</th>
+      <th>Size</th>
+      <th>Started</th>
+      <th>Focus</th>
+      <th>Cost</th>
     </tr>
   </thead>
   <tbody>
     <% @lics.each do |lic| %>
-      <tr style="border: 1px solid lightgrey;">
-        <td style="border: 1px solid lightgrey;"><%= link_to lic.name, listed_investment_company_path(lic), style: "text-decoration: none; color: inherit;" %></td>
-        <td style="border: 1px solid lightgrey;"><%= lic.ticker %></td>
-        <td style="border: 1px solid lightgrey;"><%= format_market_cap(lic.market_cap) %></td>
-        <td style="border: 1px solid lightgrey;"><%= lic.listing_year %></td>
-        <td style="border: 1px solid lightgrey;"><%= lic.investment_focus %></td>
-        <td style="border: 1px solid lightgrey;"><%= sprintf("%.2f", lic.calculated_mer) %>%</td>
+      <tr>
+        <td class="lics-index-table-hover-effect">
+          <%= link_to lic.name, listed_investment_company_path(lic), class: "lics-index-table-link" %>
+        </td>
+        <td><%= lic.ticker %></td>
+        <td><%= format_market_cap(lic.market_cap) %></td>
+        <td><%= lic.listing_year %></td>
+        <td><%= lic.investment_focus %></td>
+        <td><%= sprintf("%.2f", lic.calculated_mer) %>%</td>
       </tr>
     <% end %>
   </tbody>
