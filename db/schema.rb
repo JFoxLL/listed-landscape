@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_17_225307) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_20_005533) do
   create_table "lics", force: :cascade do |t|
     t.string "ticker"
     t.string "name"
@@ -31,6 +31,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_17_225307) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+  end
+
+  create_table "number_shareholders", force: :cascade do |t|
+    t.string "lic_ticker"
+    t.string "lic_name"
+    t.integer "year"
+    t.integer "number_shareholders"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "lic_id"
   end
 
 end

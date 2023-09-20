@@ -1,4 +1,5 @@
 class Lic < ApplicationRecord
+    has_many :number_shareholders
 
     before_save :set_slug
 
