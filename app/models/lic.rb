@@ -7,15 +7,11 @@ class Lic < ApplicationRecord
         slug
     end
 
-    def graph_number_shareholders
+    def chart_number_shareholders
         data = NumberShareholder.where(lic_id: id).order(year: :asc).pluck(:year, :number_shareholders)
-        
+        start_year = [data.length - 10, 0].max
         chart_data = [['Year', 'Number of Shareholders']]
-        
-        data.each do |entry|
-            chart_data << [entry[0].to_s, entry[1]]
-        end
-        
+        chart_data = data[start_year..-1].map { |entry| [entry[0].to_s, entry[1]] }
         chart_data
     end
 
