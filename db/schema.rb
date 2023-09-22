@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_20_005533) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_22_220352) do
   create_table "lics", force: :cascade do |t|
     t.string "ticker"
     t.string "name"
@@ -43,4 +43,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_20_005533) do
     t.integer "lic_id"
   end
 
+  create_table "size_net_assets", force: :cascade do |t|
+    t.string "lic_ticker"
+    t.string "lic_name"
+    t.integer "year"
+    t.integer "size_net_assets"
+    t.integer "lic_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lic_id"], name: "index_size_net_assets_on_lic_id"
+  end
+
+  add_foreign_key "size_net_assets", "lics"
 end
