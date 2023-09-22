@@ -24,11 +24,11 @@
         <td class="lics-index-table-hover-effect">
           <%= link_to lic.name, listed_investment_company_path(lic), class: "lics-index-table-link" %>
         </td>
-        <td><%= lic.ticker %></td>
-        <td><%= format_market_cap(lic.market_cap) %></td>
-        <td><%= lic.listing_year %></td>
+        <td class="center"><%= lic.ticker %></td>
+        <td class="center"><%= format_market_cap(lic.market_cap) %></td>
+        <td class="center"><%= lic.listing_year %></td>
         <td><%= lic.investment_focus %></td>
-        <td><%= sprintf("%.2f", lic.calculated_mer) %>%</td>
+        <td class="center"><%= sprintf("%.2f", lic.calculated_mer) %>%</td>
       </tr>
     <% end %>
   </tbody>
