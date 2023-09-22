@@ -9,6 +9,10 @@
 .lics-index-table th, .lics-index-table td {
     border: 1px solid lightgrey;
 }
+
+.lics-index-table td.center {
+    text-align: center;
+}
   
 .lics-index-table-link {
     text-decoration: none;
