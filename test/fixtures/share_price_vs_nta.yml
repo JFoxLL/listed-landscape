@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lic_ticker: MyString
+  lic_name: MyString
+  month_year: 2023-09-23
+  share_price: 9.99
+  pre_tax_nta: 9.99
+  post_tax_nta: 9.99
+  sp_vs_pre_tax_nta: 9.99
+  sp_vs_post_tax_nta: 9.99
+  lic: one
+
+two:
+  lic_ticker: MyString
+  lic_name: MyString
+  month_year: 2023-09-23
+  share_price: 9.99
+  pre_tax_nta: 9.99
+  post_tax_nta: 9.99
+  sp_vs_pre_tax_nta: 9.99
+  sp_vs_post_tax_nta: 9.99
+  lic: two
