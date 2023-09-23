@@ -29,7 +29,7 @@ class Lic < ApplicationRecord
         data = SharePriceVsNta.where(lic_id: id).order(month_year: :asc).pluck(:month_year, :sp_vs_pre_tax_nta)
         start_month = [data.length - 120, 0].max
         chart_data = [['Month', 'Share Price vs Pre-Tax NTA']]
-        chart_data += data[start_month..-1].map { |entry| [entry[0].strftime('%b %Y'), entry[1]] }
+        chart_data = data[start_month..-1].map { |entry| [entry[0].strftime('%b %Y'), entry[1]] }
         chart_data
     end
 
