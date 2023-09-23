@@ -41,6 +41,34 @@ class Lic < ApplicationRecord
         chart_data
     end
 
+    def share_price_vs_pre_tax_nta_average_10yrs
+        data = SharePriceVsNta.where(lic_id: id)
+                              .order(month_year: :desc)
+                              .limit(120)
+                              .pluck(:sp_vs_pre_tax_nta)
+        if data.present?
+            total_discount = data.compact.reduce(0, :+)
+            average = total_discount / data.length
+            return average
+        else
+            return nil
+        end
+    end
+
+    def share_price_vs_post_tax_nta_average_10yrs
+        data = SharePriceVsNta.where(lic_id: id)
+                              .order(month_year: :desc)
+                              .limit(120)
+                              .pluck(:sp_vs_post_tax_nta)
+        if data.present?
+            total_discount = data.compact.reduce(0, :+)
+            average = total_discount / data.length
+            return average
+        else
+            return nil
+        end
+    end
+
 
     private
 
