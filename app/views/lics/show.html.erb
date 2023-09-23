@@ -98,24 +98,25 @@
 </section>
 
 
-<!-- Key Personnel -->
+<!-- Key Personnel
 <section>
   <h2>Key Personnel</h2>
-
 </section>
-
+ -->
 
 <!-- Share Price vs NTA -->
 <section>
   <h2>Share Price vs NTA</h2>
 
     <h3>Share Price vs Pre-Tax NTA</h3>
-    <%= column_chart @lic.chart_share_price_vs_pre_tax_nta %>
+    <%= column_chart @lic.chart_share_price_vs_pre_tax_nta, library: { 
+      yAxis: { plotLines: [ { color: '#005454', width: 2, value: @lic.share_price_vs_pre_tax_nta_average_10yrs, dashStyle: 'Dash' } ] } 
+    } %>
 
     <h3>Share Price vs Post-Tax NTA</h3>
-    <%= column_chart @lic.chart_share_price_vs_post_tax_nta %>
-
-
+    <%= column_chart @lic.chart_share_price_vs_post_tax_nta, library: { 
+      yAxis: { plotLines: [ { color: '#005454', width: 2, value: @lic.share_price_vs_post_tax_nta_average_10yrs, dashStyle: 'Dash' } ] } 
+    } %>
 </section>
 
 
