@@ -1,7 +1,7 @@
 class Lic < ApplicationRecord
     has_many :number_shareholders
     has_many :size_net_assets
-    has_many :share_price_vs_nta
+    has_many :share_price_vs_nta, class_name: 'SharePriceVsNta'
 
     before_save :set_slug
 
