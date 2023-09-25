@@ -1,5 +1,6 @@
 /* Styling specifcally for the LICs show action view template */
 
+/* Lic Logo sizing */
 .lic-logo {
     max-height: 140px;
     max-width: 210px;
@@ -7,3 +8,5 @@
     display: block;
     padding-top: 20px;
 }
+
+  
