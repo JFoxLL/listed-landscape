@@ -109,6 +109,12 @@
   <h2>Share Price vs NTA</h2>
 
     <h3>Share Price vs Pre-Tax NTA</h3>
+    <p>
+      Latest month (<%= @lic.share_price_vs_nta_latest_month %>): <%= @lic.share_price_vs_pre_tax_nta_latest_value.round(1).to_s %>% | 
+      Last 12 months: <%= @lic.share_price_vs_pre_tax_nta_average_1yr.round(1).to_s %>% | 
+      Last 3 years: <%= @lic.share_price_vs_pre_tax_nta_average_3yrs.round(1).to_s %>% |
+      Last 10 years: <%= @lic.share_price_vs_pre_tax_nta_average_10yrs.round(1).to_s %>%
+    </p>
     <%= column_chart @lic.chart_share_price_vs_pre_tax_nta, height: "400px", suffix: "%", colors: ["#d4541b"], library: {
       chart: {
         marginRight: 100
@@ -118,37 +124,43 @@
           color: '#005454', 
           width: 2, 
           value: @lic.share_price_vs_pre_tax_nta_average_10yrs,
-          dashStyle: 'Dash',
+          dashStyle: 'solid',
           label: {
             text: "10yr Avg: #{@lic.share_price_vs_pre_tax_nta_average_10yrs.round(1).to_s}%",
             align: 'right',
             y: 0,
             x: 100
           }
-        }
+        },
       ] }
     } %>
 
     <h3>Share Price vs Post-Tax NTA</h3>
+    <p>
+      Latest month (<%= @lic.share_price_vs_nta_latest_month %>): <%= @lic.share_price_vs_post_tax_nta_latest_value.round(1).to_s %>% | 
+      Last 12 months: <%= @lic.share_price_vs_post_tax_nta_average_1yr.round(1).to_s %>% |
+      Last 3 years: <%= @lic.share_price_vs_post_tax_nta_average_3yrs.round(1).to_s %>% |
+      Last 10 years: <%= @lic.share_price_vs_post_tax_nta_average_10yrs.round(1).to_s %>%
+    </p>
     <%= column_chart @lic.chart_share_price_vs_post_tax_nta, height: "400px", suffix: "%", colors: ["#d4541b"], library: {
       chart: {
         marginRight: 100
       },
-    yAxis: { plotLines: [ 
-      { 
-        color: '#005454', 
-        width: 2, 
-        value: @lic.share_price_vs_post_tax_nta_average_10yrs,
-        dashStyle: 'Dash',
-        label: {
-          text: "10yr Avg: #{@lic.share_price_vs_post_tax_nta_average_10yrs.round(1).to_s}%",
-          align: 'right',
-          y: 0,
-          x: 100
-        }
-      }
-    ] }
-  } %>
+      yAxis: { plotLines: [ 
+        { 
+          color: '#005454', 
+          width: 2, 
+          value: @lic.share_price_vs_post_tax_nta_average_10yrs,
+          dashStyle: 'solid',
+          label: {
+            text: "10yr Avg: #{@lic.share_price_vs_post_tax_nta_average_10yrs.round(1).to_s}%",
+            align: 'right',
+            y: 0,
+            x: 100
+          }
+        },
+      ] }
+    } %>
 </section>
 
 
