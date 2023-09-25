@@ -10,12 +10,17 @@
 <table class="lics-index-table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Ticker</th>
-      <th>Size</th>
-      <th>Started</th>
-      <th>Focus</th>
-      <th>Cost</th>
+      <% {
+        'name' => 'Name',
+        'ticker' => 'Ticker',
+        'market_cap' => 'Size',
+        'listing_year' => 'Listed',
+        'investment_focus' => 'Investment Focus',
+        'calculated_mer' => 'Cost'
+      }.each do |db_column, display_name| %>
+        <% sort_order = (params[:sort_by] == db_column && params[:sort_order] == 'asc') ? 'desc' : 'asc' %>
+        <th><%= link_to display_name, listed_investment_companies_path(sort_by: db_column, sort_order: sort_order) %></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -28,7 +33,7 @@
         <td class="center"><%= format_market_cap(lic.market_cap) %></td>
         <td class="center"><%= lic.listing_year %></td>
         <td><%= lic.investment_focus %></td>
-        <td class="center"><%= sprintf("%.2f", lic.calculated_mer) %>%</td>
+        <td class="center"><%= sprintf("%.2f", lic.calculated_mer) %> %</td>
       </tr>
     <% end %>
   </tbody>

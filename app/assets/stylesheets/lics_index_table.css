@@ -10,19 +10,24 @@
     border: 1px solid lightgrey;
 }
 
+.lics-index-table th a, .lics-index-table-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.lics-index-table thead th a {
+    color: black;
+    font-weight: bold;
+}
+
+.lics-index-table thead th a:hover, .lics-index-table-hover-effect:hover .lics-index-table-link {
+    text-decoration: underline;
+}
+
 .lics-index-table td.center {
     text-align: center;
 }
   
-.lics-index-table-link {
-    text-decoration: none;
-    color: inherit;
-}
-  
 .lics-index-table-hover-effect:hover {
     background-color: #f0f0f0;
-}
-
-.lics-index-table-hover-effect:hover .lics-index-table-link {
-    text-decoration: underline;
 }
