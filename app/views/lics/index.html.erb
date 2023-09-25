@@ -5,8 +5,14 @@
 <h1>Listed Investment Companies in Australia</h1>
 <p>The table below shows the top 30 Listed Investment Companies (by size) listed on the ASX.</p>
 
-
 <!-- LICs Index Table -->
+<%= form_tag listed_investment_companies_path, method: :get do %>
+  <%= hidden_field_tag :sort_by, params[:sort_by] %>
+  <%= hidden_field_tag :sort_order, params[:sort_order] %>
+  <%= select_tag :investment_focus, options_for_select(@investment_focus_options, params[:investment_focus]), prompt: 'All' %>
+  <%= submit_tag 'Filter', name: nil %>
+<% end %>
+
 <table class="lics-index-table">
   <thead>
     <tr>
@@ -18,8 +24,7 @@
         'investment_focus' => 'Investment Focus',
         'calculated_mer' => 'Cost'
       }.each do |db_column, display_name| %>
-        <% sort_order = (params[:sort_by] == db_column && params[:sort_order] == 'asc') ? 'desc' : 'asc' %>
-        <th><%= link_to display_name, listed_investment_companies_path(sort_by: db_column, sort_order: sort_order) %></th>
+        <th><%= sortable(db_column, display_name, @sort_column, @sort_direction) %></th>
       <% end %>
     </tr>
   </thead>
@@ -38,3 +43,4 @@
     <% end %>
   </tbody>
 </table>
+
