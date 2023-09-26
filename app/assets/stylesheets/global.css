@@ -1,2 +1,32 @@
 /* App global styling */
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    }
+
+.flex-container > div {
+    flex: 1;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+  
+body {
+    background-color: #f3eee8;
+    font-family: 'Georgia', serif;
+}
+
+h1, h2, h3 {
+    color: #005454;
+}
+
+p {
+    color: #585858;
+}
+
   

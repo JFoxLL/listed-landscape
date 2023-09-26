@@ -55,16 +55,13 @@
     <%= javascript_importmap_tags %>
   </head>
 
-
-  <body style="display: flex; flex-direction: column; min-height: 100vh;">
-    <div style="flex: 1;">
+  <body>
+    <div class="flex-container">
       <%= render "layouts/header" %>
-      <div>
+      <div class="container">
         <%= yield %>
       </div>
     </div>
-    <%= render "layouts/footer"%>
+    <%= render "layouts/footer" %>
   </body>
-  
-
 </html>
