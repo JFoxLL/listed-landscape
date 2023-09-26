@@ -87,6 +87,36 @@
 <!-- Separator -->
 <%= render partial: 'show_page_separator' %>
 
+<!-- Key Personnel  -->
+<section>
+  <h2>Key Personnel</h2>
+
+    <h3>Board Members</h3>
+      <ul>
+        <% @lic.key_people_directors.each do |person| %>
+          <li>
+            <%= person.kp_name %> - 
+            <%= person.kp_role_title %> -
+            <%= person.kp_year_joined %>
+          </li>
+        <% end %>
+      </ul>
+
+    <h3>Investment Managers</h3>
+      <ul>
+        <% @lic.key_people_investment_managers.each do |person| %>
+          <li>
+            <%= person.kp_name %> - 
+            <%= person.kp_role_title %> -
+            <%= person.kp_year_joined %>
+          </li>
+        <% end %>
+      </ul>
+</section>
+
+<!-- Separator -->
+<%= render partial: 'show_page_separator' %>
+
 <!-- Shareholders & Portfolio Size -->
 <section>
   <h2>Shareholders & Portfolio Size</h2>
@@ -96,17 +126,7 @@
 
     <h3>Size (Net Assets)</h3>
     <%= column_chart @lic.chart_size_net_assets, height: "400px", prefix: "$", thousands: ",", colors: ["#d4541b"] %>
-
 </section>
-
-<!-- Separator -->
-<%= render partial: 'show_page_separator' %>
-
-<!-- Key Personnel
-<section>
-  <h2>Key Personnel</h2>
-</section>
- -->
 
 <!-- Separator -->
 <%= render partial: 'show_page_separator' %>
