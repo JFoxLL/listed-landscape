@@ -26,6 +26,17 @@ class Lic < ApplicationRecord
         chart_data
     end
 
+    def key_people_directors
+        directors = key_people.where(kp_role_director: 'Yes').where.not(kp_role_chairman: 'Yes')
+        chairman = key_people.where(kp_role_chairman: 'Yes')
+        [chairman, directors.order(:kp_year_joined)].flatten
+    end
+    
+    def key_people_investment_managers
+        investment_managers = key_people.where(kp_role_investmentmanager: 'Yes')
+        investment_managers.sort_by(&:kp_year_joined)
+    end
+
     def chart_share_price_vs_pre_tax_nta
         data = SharePriceVsNta.where(lic_id: id).order(month_year: :asc).pluck(:month_year, :sp_vs_pre_tax_nta)
         start_month = [data.length - 120, 0].max
