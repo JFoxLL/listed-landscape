@@ -1,0 +1,37 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lic_ticker: MyString
+  lic_name: MyString
+  year_updated: 1
+  kp_name: MyString
+  kp_year_joined: 1
+  kp_role_chairman: MyString
+  kp_role_director: MyString
+  kp_role_investmentmanager: MyString
+  kp_role_title: MyString
+  kp_bio: MyText
+  kp_shares_owned: 1
+  share_price_eoy: 9.99
+  kp_share_value: 9.99
+  kp_image_saved: MyString
+  kp_image_file_name: MyString
+  lic: one
+
+two:
+  lic_ticker: MyString
+  lic_name: MyString
+  year_updated: 1
+  kp_name: MyString
+  kp_year_joined: 1
+  kp_role_chairman: MyString
+  kp_role_director: MyString
+  kp_role_investmentmanager: MyString
+  kp_role_title: MyString
+  kp_bio: MyText
+  kp_shares_owned: 1
+  share_price_eoy: 9.99
+  kp_share_value: 9.99
+  kp_image_saved: MyString
+  kp_image_file_name: MyString
+  lic: two
