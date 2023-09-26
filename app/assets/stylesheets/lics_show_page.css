@@ -9,4 +9,89 @@
     padding-top: 20px;
 }
 
+
+/* Key People */
+.key-people {
+    background-color: white;
+    padding: 24px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.key-people-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    list-style-type: none;
+}
+
+.key-person {
+    width: calc(50% - 10px);
+    max-width: 600px;
+    box-sizing: border-box;
+}
+
+.key-person-top, .key-person-bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.key-person-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
+    border: 3px solid #005454;
+}
+
+.key-person-info {
+    flex: 1;
+    text-align: left;
+    margin-left: 20px;
+}
+
+.key-person-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #005454;
+    margin-bottom: 2px;
+}
+
+.key-person-role {
+    font-size: 18px;
+    margin-top: 2px;
+    margin-bottom: 20px;
+}
+
+.key-person-details {
+    font-size: 16px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.key-person-footnote {
+    font-size: 12px;
+    font-style: italic;
+    color: #777;
+    margin-top: 3px;
+}
+
+.key-person-bottom {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.key-person-bio {
+    margin-top: 10px;
+}
+  
+
+  
+  
   
