@@ -90,28 +90,69 @@
 <!-- Key Personnel  -->
 <section>
   <h2>Key Personnel</h2>
-
-    <h3>Board Members</h3>
-      <ul>
-        <% @lic.key_people_directors.each do |person| %>
-          <li>
-            <%= person.kp_name %> - 
-            <%= person.kp_role_title %> -
-            <%= person.kp_year_joined %>
+    
+    <h3 >Board Members</h3>
+    <section class="key-people">
+      <div class="container">
+        <ul class="key-people-list">
+          <% @lic.key_people_directors.each do |person| %>
+          <li class="key-person">
+            <div class="key-person-top">
+              <% if person.kp_image_saved == 'Yes' %>
+                <img class="key-person-image" src="<%= asset_path "kp_profile_images/#{person.kp_image_file_name}" %>" alt="<%= person.kp_name %>">
+              <% else %>
+                <img class="key-person-image" src="<%= asset_path "kp_profile_images/kp_image_placeholder" %>" alt="<%= person.kp_name %>">
+              <% end %>
+              <div class="key-person-info">
+                <h3 class="key-person-name"><%= person.kp_name %></h3>
+                <p class="key-person-role"><%= person.kp_role_title %></p>
+                <p class="key-person-details">Joined <%= @lic.ticker %>: <%= person.kp_year_joined %></p>
+                <p class="key-person-details">Shares Owned: <%= format_shares_owned(person.kp_shares_owned) %></p>
+                <p class="key-person-details">Share Value: <%= format_share_value(person.kp_share_value) %></p>
+                <p class="key-person-footnote">*Share data from <%= person.year_updated %> Annual Report</p>
+              </div>
+            </div>
+            <div class="key-person-bottom">
+              <p class="key-person-bio"><%= person.kp_bio.gsub("\n", "<br>").html_safe %></p>
+            </div>
           </li>
-        <% end %>
-      </ul>
+          <% end %>
+        </ul>
+      </div>
+    </section>
 
-    <h3>Investment Managers</h3>
-      <ul>
-        <% @lic.key_people_investment_managers.each do |person| %>
-          <li>
-            <%= person.kp_name %> - 
-            <%= person.kp_role_title %> -
-            <%= person.kp_year_joined %>
-          </li>
-        <% end %>
-      </ul>
+    <h3>Investment Management</h3>
+      <section class="key-people">
+        <div class="container">
+          <ul class="key-people-list">
+            <% @lic.key_people_investment_managers.each do |person| %>
+            <li class="key-person">
+              <div class="key-person-top">
+                <% if person.kp_image_saved == 'Yes' %>
+                  <img class="key-person-image" src="<%= asset_path "kp_profile_images/#{person.kp_image_file_name}" %>" alt="<%= person.kp_name %>">
+                <% else %>
+                  <img class="key-person-image" src="<%= asset_path "kp_profile_images/kp_image_placeholder" %>" alt="<%= person.kp_name %>">
+                <% end %>
+                <div class="key-person-info">
+                  <h3 class="key-person-name"><%= person.kp_name %></h3>
+                  <p class="key-person-role"><%= person.kp_role_title %></p>
+                  <p class="key-person-details">Joined <%= @lic.ticker %>: <%= person.kp_year_joined %></p>
+                  
+                  <% unless person.kp_shares_owned.nil? %>
+                    <p class="key-person-details">Shares Owned: <%= format_shares_owned(person.kp_shares_owned) %></p>
+                    <p class="key-person-details">Share Value: <%= format_share_value(person.kp_share_value) %></p>
+                    <p class="key-person-footnote">*Share data from <%= person.year_updated %> Annual Report</p>
+                  <% end %>
+                </div>
+              </div>
+              <div class="key-person-bottom">
+                <p class="key-person-bio"><%= person.kp_bio.gsub("\n", "<br>").html_safe %></p>
+              </div>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      </section>
 </section>
 
 <!-- Separator -->
