@@ -15,12 +15,17 @@
 <% end %>
 
 
-<!-- Lic logo  -->
-<%= image_tag "lic_logos/#{@lic.logo_filename}.png", alt: "#{@lic.name} Logo", class: "lic-logo" %>
-
-
-<!-- Page Heading -->
-<h1><%= @lic.name %></h1>
+<!-- Page Header -->
+<div class="page-header">
+  <div class="page-header-content">
+    <div class="page-header-logo">
+      <%= image_tag "lic_logos/#{@lic.logo_filename}.png", alt: "#{@lic.name} Logo", class: "page-logo" %>
+    </div>
+    <div class="page-header-info">
+      <span class="page-header-lic-name"><%= @lic.name %> (<%= @lic.ticker %>)</span>
+    </div>
+  </div>
+</div>
 
 
 <!-- Overview -->

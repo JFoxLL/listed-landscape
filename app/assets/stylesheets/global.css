@@ -30,7 +30,7 @@ html, body {
 
 /* Background color and font family for body */
 body {
-    background-color: #f3eee8;
+    background-color: #fcfaf9;
     font-family: 'Georgia', serif;
 }
 
@@ -47,13 +47,13 @@ p {
 
 /* Header Styling */
 .header {
-    background-color: #f3eee8;
+    background-color: #fcfaf9;
     border-bottom: 1px solid #ccdcdc;
 }
 
 .header-container {
     position: relative;
-    height: 50px;
+    height: 70px;
 }
 
 .logo {
@@ -71,9 +71,8 @@ p {
 }
 
 .menu-link {
-    color: blue;
+    color: #585858;
     text-decoration: underline;
-    font-weight: bold;
 }
 
 
@@ -89,11 +88,11 @@ p {
   
 .footer-container {
     text-align: center;
-    color: lightgrey;
+    color: #fcfaf9;
 }
   
 .footer-link {
-    color: lightgrey;
+    color: #fcfaf9;
     text-decoration: none;
 }
   
