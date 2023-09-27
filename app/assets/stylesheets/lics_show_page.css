@@ -1,5 +1,6 @@
-/* Styling specifcally for the LICs show action view template */
+/* Styling for the LIC show action view template */
 
+/* Page Styling */
 .page-header {
     margin-left: calc(-50vw + 50%);
     margin-right: calc(-50vw + 50%);
@@ -9,7 +10,7 @@
 }
 
 .page-header-content {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
     height: 100%;
     display: flex;
@@ -45,19 +46,48 @@
     color: #fcfaf9;
     font-size: 48px;
 }  
+
+
+
+/* Overview */
+.overview-section {
+    background-color: #f3eee8;
+    padding: 20px;
+    border-radius: 20px;
+  }
   
+table {
+    width: 100%;
+}
+
+.label {
+    width: 40%;
+    padding: 5px 10px;
+    font-size: 20px;
+    font-weight: bold;
+    font-weight: 400;
+    color: #005454;
+    vertical-align: top;
+}
+
+.value {
+    padding: 5px 10px;
+    font-size: 20px;
+    color: #585858;
+}
+  
+
 
 /* Key People */
 .key-people {
     background-color: #f3eee8;
-    padding: 32px 0;
+    padding: 20px 10px 20px 10px;
     border-radius: 20px;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 0 20px;
 }
 
 .key-people-list {
@@ -70,7 +100,7 @@
 
 .key-person {
     width: calc(50% - 12px);
-    max-width: 600px;
+    max-width: 500px;
     box-sizing: border-box;
     padding: 16px;
     border: 1px solid #005454;
@@ -84,8 +114,8 @@
 }
 
 .key-person-image {
-    width: 200px;
-    height: 200px;
+    width: 175px;
+    height: 175 px;
     object-fit: cover;
     border: 3px solid #005454;
     border-radius: 20px;
@@ -131,8 +161,3 @@
 .key-person-bio {
     margin-top: 12px;
 }
-  
-
-  
-  
-  
