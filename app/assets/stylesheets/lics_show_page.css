@@ -52,6 +52,7 @@
 /* Overview */
 .overview-section {
     background-color: #f3eee8;
+    border: 1px solid #005454;
     padding: 20px;
     border-radius: 20px;
   }
@@ -80,7 +81,7 @@ table {
 
 /* Key People */
 .key-people {
-    background-color: #f3eee8;
+    background-color: #fcfaf9;
     padding: 10px 0px;
     border-radius: 20px;
 }
@@ -106,6 +107,7 @@ table {
     max-width: 500px;
     box-sizing: border-box;
     padding: 16px;
+    background-color: #f3eee8;
     border: 1px solid #005454;
     border-radius: 20px;
 }
@@ -162,4 +164,16 @@ table {
 .key-person-bio {
     margin-top: 20px;
     margin-bottom: 4px;
+}
+
+
+/* Charts */
+.chart-number-shareholders,
+.chart-size-net-assets,
+.chart-share-price-vs-pre-tax-nta,
+.chart-share-price-vs-post-tax-nta {
+    background-color: #f3eee8;
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid #005454;
 }

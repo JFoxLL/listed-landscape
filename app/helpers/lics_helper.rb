@@ -32,4 +32,29 @@ module LicsHelper
     end
   end
 
+  def common_chart_styling
+    {
+      height: "400px", 
+      colors: ["#d4541b"], 
+      library: {
+        chart: {backgroundColor: '#f3eee8'},
+        xAxis: {
+          labels: {
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          },
+          gridLineColor: '#A9A9A9',
+          lineColor: '#005454'
+        },
+        yAxis: {
+          labels: {
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          },
+          gridLineColor: '#A9A9A9'
+        },
+      }
+    }
+end
+
+
+
 end
