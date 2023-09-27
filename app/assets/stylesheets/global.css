@@ -23,7 +23,7 @@ html, body {
 /* Container class for content */
 .container {
     width: 90%;
-    max-width: 1200px;
+    max-width: 1000px;
     margin: auto;
 }
 
@@ -36,8 +36,23 @@ body {
 
 
 /* Global text styles */
+
 h1, h2, h3 {
     color: #005454;
+    font-family: 'Georgia', serif;
+    font-weight: 300;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1.75em;
 }
 
 p {
