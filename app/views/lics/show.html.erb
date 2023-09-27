@@ -79,8 +79,8 @@
           <td class="value"><%= @lic.performance_fee %></td>
         </tr>
         <tr>
-          <td class="label">Calculated Cost (excl. Perf. Fees):</td>
-          <td class="value"><%= sprintf("%.2f", @lic.calculated_mer) %>% (FY23)</td>
+          <td class="label">Calculated Cost (FY23):</td>
+          <td class="value"><%= sprintf("%.2f", @lic.calculated_mer) %>% (excluding Performance Fees)</td>
         </tr>
         <tr>
           <td class="label">Objective:</td>
@@ -94,7 +94,7 @@
 <!-- Separator -->
 <%= render partial: 'show_page_separator' %>
 
-<!-- Key Personnel  -->
+<!-- Key People  -->
 <section>
   <h2>Key Personnel</h2>
     
