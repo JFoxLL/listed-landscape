@@ -22,13 +22,13 @@ module LicsHelper
 
   def format_share_value(value)
     if value < 1000
-      return "~ $#{value.round}"
+      return "$#{value.round}"
     elsif value < 1_000_000
-      return "~ $#{(value.to_f / 1000).round}K"
+      return "$#{(value.to_f / 1000).round}K"
     elsif value < 10_000_000
-      return "~ $#{'%.1f' % (value.to_f / 1_000_000)}M"
+      return "$#{'%.1f' % (value.to_f / 1_000_000)}M"
     else
-      return "~ $#{(value.to_f / 1_000_000).round}M"
+      return "$#{(value.to_f / 1_000_000).round}M"
     end
   end
 
