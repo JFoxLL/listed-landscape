@@ -3,31 +3,84 @@
 .lics-index-table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
     margin-bottom: 40px;
 }
-  
-.lics-index-table th, .lics-index-table td {
+
+
+/* Table Headers */
+.lics-index-table th {
     border: 1px solid lightgrey;
+    padding: 6px;
+    font-family: Georgia, serif;
+    color: #005454;
 }
 
-.lics-index-table th a, .lics-index-table-link {
+.lics-index-table th a {
     text-decoration: none;
     color: inherit;
 }
 
-.lics-index-table thead th a {
-    color: black;
-    font-weight: bold;
+.lics-index-table th a:hover {
+    text-decoration: underline;
 }
 
-.lics-index-table thead th a:hover, .lics-index-table-hover-effect:hover .lics-index-table-link {
-    text-decoration: underline;
+.lics-index-table th:hover {
+    background-color: #f0f0f0;
+}
+
+
+/* Table Values */
+.lics-index-table td {
+    border: 1px solid lightgrey;
+    padding: 6px;
+    font-family: Georgia, serif;
+    color: #585858;
+}
+
+.lics-index-table-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.lics-index-table td:hover{
+    background-color: #f0f0f0;
+} 
+
+.lics-index-table-link:hover {
+    text-decoration: underline;  
 }
 
 .lics-index-table td.center {
     text-align: center;
 }
-  
-.lics-index-table-hover-effect:hover {
-    background-color: #f0f0f0;
+
+
+/* Investment Focus Filter */
+form {
+    margin-top: 20px;
+}
+
+/* investment focus drop down */
+select {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #585858;
+    padding: 5px;
+    border: 1px solid #585858;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #005454;
+    color: #fcfaf9;
+    font-family: Georgia, serif;
+    border-radius: 5px;
+    padding: 8px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #004040;
 }
