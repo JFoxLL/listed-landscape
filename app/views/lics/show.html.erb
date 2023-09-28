@@ -30,7 +30,6 @@
 <!-- Overview -->
 <section>
   <h2>Overview</h2>
-
   <div class="overview-section">
     <table>
       <tbody>
@@ -97,69 +96,30 @@
 <!-- Key People  -->
 <section>
   <h2>Key Personnel</h2>
-    
-    <h3 >Board Members</h3>
-    <div class="key-people">
-      <div class="container">
-        <ul class="key-people-list">
-          <% @lic.key_people_directors.each do |person| %>
-          <li class="key-person">
-            <div class="key-person-top">
-              <% if person.kp_image_saved == 'Yes' %>
-                <img class="key-person-image" src="<%= asset_path "kp_profile_images/#{person.kp_image_file_name}" %>" alt="<%= person.kp_name %>">
-              <% else %>
-                <img class="key-person-image" src="<%= asset_path "kp_profile_images/kp_image_placeholder" %>" alt="<%= person.kp_name %>">
-              <% end %>
-              <div class="key-person-info">
-                <h3 class="key-person-name"><%= person.kp_name %></h3>
-                <p class="key-person-role"><%= person.kp_role_title %></p>
-                <p class="key-person-details">Joined <%= @lic.ticker %>: <%= person.kp_year_joined %></p>
-                <p class="key-person-details">Shares Owned: <%= format_shares_owned(person.kp_shares_owned) %></p>
-                <p class="key-person-details">Share Value: <%= format_share_value(person.kp_share_value) %></p>
-                <p class="key-person-footnote">*Share data from <%= person.year_updated %> Annual Report</p>
-              </div>
-            </div>
-            <div class="key-person-bottom">
-              <p class="key-person-bio"><%= person.kp_bio.gsub("\n", "<br>").html_safe %></p>
-            </div>
-          </li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
 
+  <h3>Board Members</h3>
+  <div class="key-people">
+    <div class="container">
+      <ul class="key-people-list">
+        <% @lic.key_people_directors.each do |person| %>
+          <%= render partial: 'lics/key_people', locals: { person: person, ticker: @lic.ticker } %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <% if @lic.key_people_investment_managers.any? %>
     <h3>Investment Management</h3>
       <div class="key-people">
         <div class="container">
           <ul class="key-people-list">
             <% @lic.key_people_investment_managers.each do |person| %>
-            <li class="key-person">
-              <div class="key-person-top">
-                <% if person.kp_image_saved == 'Yes' %>
-                  <img class="key-person-image" src="<%= asset_path "kp_profile_images/#{person.kp_image_file_name}" %>" alt="<%= person.kp_name %>">
-                <% else %>
-                  <img class="key-person-image" src="<%= asset_path "kp_profile_images/kp_image_placeholder" %>" alt="<%= person.kp_name %>">
-                <% end %>
-                <div class="key-person-info">
-                  <h3 class="key-person-name"><%= person.kp_name %></h3>
-                  <p class="key-person-role"><%= person.kp_role_title %></p>
-                  <p class="key-person-details">Joined <%= @lic.ticker %>: <%= person.kp_year_joined %></p>
-                  
-                  <% unless person.kp_shares_owned.nil? %>
-                    <p class="key-person-details">Shares Owned: <%= format_shares_owned(person.kp_shares_owned) %></p>
-                    <p class="key-person-details">Share Value: <%= format_share_value(person.kp_share_value) %></p>
-                    <p class="key-person-footnote">*Share data from <%= person.year_updated %> Annual Report</p>
-                  <% end %>
-                </div>
-              </div>
-              <div class="key-person-bottom">
-                <p class="key-person-bio"><%= person.kp_bio.gsub("\n", "<br>").html_safe %></p>
-              </div>
-            </li>
+              <%= render partial: 'lics/key_people', locals: { person: person, ticker: @lic.ticker } %>
             <% end %>
           </ul>
         </div>
       </div>
+  <% end %>  
 </section>
 
 <!-- Separator -->
@@ -170,23 +130,23 @@
   <h2>Shareholders & Portfolio Size</h2>
 
     <h3>Number of Shareholders</h3>
-    <div class="chart-number-shareholders">
-      <%= column_chart @lic.chart_number_shareholders, 
-          thousands: ",", 
-          colors: ["#d4541b"], 
-          **common_chart_styling 
-      %> 
-    </div>
+      <div class="chart-number-shareholders">
+        <%= column_chart @lic.chart_number_shareholders, 
+            thousands: ",", 
+            colors: ["#d4541b"], 
+            **common_chart_styling 
+        %> 
+      </div>
 
     <h3>Size (Net Assets)</h3>
-    <div class="chart-size-net-assets">
-      <%= column_chart @lic.chart_size_net_assets, 
-          prefix: "$", 
-          thousands: ",", 
-          colors: ["#d4541b"], 
-          **common_chart_styling 
-      %>
-    </div>
+      <div class="chart-size-net-assets">
+        <%= column_chart @lic.chart_size_net_assets, 
+            prefix: "$", 
+            thousands: ",", 
+            colors: ["#d4541b"], 
+            **common_chart_styling 
+        %>
+      </div>
 </section>
 
 <!-- Separator -->
@@ -195,7 +155,6 @@
 <!-- Share Price vs NTA -->
 <section>
   <h2>Share Price vs NTA</h2>
-
   <div class="chart-share-price-vs-nta-filter">
     <%= form_tag(url_for(action: 'show', id: @lic.slug), method: "get", id: "chart-share-price-vs-nta-filter-options") do %>
       <label for="tax_type" class="chart-share-price-vs-nta-filter-label">NTA Tax Type:</label>
@@ -213,7 +172,6 @@
         **share_price_vs_nta_chart_styling(@selected_time_duration, @selected_tax_type, @lic) 
     %>
   </div>
-
 </section>
 
 <!-- Separator -->

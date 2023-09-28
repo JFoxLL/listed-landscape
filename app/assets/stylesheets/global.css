@@ -63,31 +63,40 @@ p {
 /* Header Styling */
 .header {
     background-color: #fcfaf9;
-    border-bottom: 1px solid #ccdcdc;
+    border-bottom: 1px solid #005454;
 }
 
 .header-container {
-    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     height: 70px;
+    padding: 0 20px;
 }
 
 .logo {
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
+    flex: 1;
+}
+
+.logo a img {
+    max-width: 100%;
+    height: auto;
 }
 
 .menu-items {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
+    margin-right: 10px;
 }
 
 .menu-link {
-    color: #585858;
-    text-decoration: underline;
+    color: #005454;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.menu-link:hover {
+    text-decoration: underline; 
+    color: #004040;
 }
 
 
