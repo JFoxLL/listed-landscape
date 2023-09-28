@@ -187,65 +187,20 @@
 <section>
   <h2>Share Price vs NTA</h2>
 
-    <h3>Share Price vs Pre-Tax NTA</h3>
-    <p>
-      Latest month (<%= @lic.share_price_vs_nta_latest_month %>): <%= @lic.share_price_vs_pre_tax_nta_latest_value.round(1).to_s %>% | 
-      Last 12 months: <%= @lic.share_price_vs_pre_tax_nta_average_1yr.round(1).to_s %>% | 
-      Last 3 years: <%= @lic.share_price_vs_pre_tax_nta_average_3yrs.round(1).to_s %>% |
-      Last 10 years: <%= @lic.share_price_vs_pre_tax_nta_average_10yrs.round(1).to_s %>%
-    </p>
-    <div class="chart-share-price-vs-pre-tax-nta">
-      <%= column_chart @lic.chart_share_price_vs_pre_tax_nta, suffix: "%", colors: ["#d4541b"], **common_chart_styling.deep_merge(library: {
-        chart: {
-          marginRight: 100
-        },
-        yAxis: { plotLines: [ 
-          { 
-            color: '#005454', 
-            width: 2, 
-            value: @lic.share_price_vs_pre_tax_nta_average_10yrs,
-            dashStyle: 'solid',
-            label: {
-              text: "10yr Avg: #{@lic.share_price_vs_pre_tax_nta_average_10yrs.round(1).to_s}%",
-              align: 'right',
-              y: 0,
-              x: 100,
-              style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
-            }
-          },
-        ] }
-      }) %>
-    </div>
+  <div class="chart-share-price-vs-nta-form">
+    <%= form_tag(url_for(action: 'show', id: @lic.slug), method: "get", id: "chart-options-form") do %>
+      <label for="tax_type">NTA Tax Type:</label>
+      <%= select_tag 'tax_type', options_for_select([['Pre Tax', 'pre_tax'], ['Post Tax', 'post_tax']], @selected_tax_type) %>
+      <label for="time_duration">Time Duration:</label>
+      <%= select_tag 'time_duration', options_for_select((1..10).map { |i| [ "#{i} Year#{'s' if i > 1}", i ] }, @selected_time_duration) %>
+      <%= submit_tag "Update Chart", class: "button" %>
+    <% end %>
+  </div>
 
-    <h3>Share Price vs Post-Tax NTA</h3>
-    <p>
-      Latest month (<%= @lic.share_price_vs_nta_latest_month %>): <%= @lic.share_price_vs_post_tax_nta_latest_value.round(1).to_s %>% | 
-      Last 12 months: <%= @lic.share_price_vs_post_tax_nta_average_1yr.round(1).to_s %>% |
-      Last 3 years: <%= @lic.share_price_vs_post_tax_nta_average_3yrs.round(1).to_s %>% |
-      Last 10 years: <%= @lic.share_price_vs_post_tax_nta_average_10yrs.round(1).to_s %>%
-    </p>
-    <div class="chart-share-price-vs-post-tax-nta">
-      <%= column_chart @lic.chart_share_price_vs_post_tax_nta, suffix: "%", colors: ["#d4541b"], **common_chart_styling.deep_merge(library: {
-        chart: {
-          marginRight: 100
-        },
-        yAxis: { plotLines: [ 
-          { 
-            color: '#005454', 
-            width: 2, 
-            value: @lic.share_price_vs_post_tax_nta_average_10yrs,
-            dashStyle: 'solid',
-            label: {
-              text: "10yr Avg: #{@lic.share_price_vs_post_tax_nta_average_10yrs.round(1).to_s}%",
-              align: 'right',
-              y: 0,
-              x: 100,
-              style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
-            }
-          },
-        ] }
-      }) %>
-    </div>
+  <div class="chart-share-price-vs-nta">
+    <%= column_chart @lic.chart_share_price_vs_nta(@selected_time_duration, @selected_tax_type), suffix: "%", **share_price_vs_nta_chart_styling(@selected_time_duration, @selected_tax_type, @lic) %>
+  </div>
+
 </section>
 
 <!-- Separator -->

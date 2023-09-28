@@ -27,10 +27,15 @@ class LicsController < ApplicationController
   
   end
 
-
   def show
     @lic = Lic.find_by!(slug: params[:id])
+
+    @selected_tax_type = params[:tax_type].presence || 'pre_tax'
+    @selected_time_duration = params[:time_duration].presence&.to_i || 10
+
+    @chart_data = @lic.chart_share_price_vs_nta(@selected_time_duration, @selected_tax_type)
   end
+
 
 end
 
