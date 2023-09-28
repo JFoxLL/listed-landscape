@@ -170,10 +170,20 @@ table {
 /* Charts */
 .chart-number-shareholders,
 .chart-size-net-assets,
-.chart-share-price-vs-pre-tax-nta,
-.chart-share-price-vs-post-tax-nta {
+.chart-share-price-vs-nta {
     background-color: #f3eee8;
     padding: 20px;
     border-radius: 20px;
     border: 1px solid #005454;
+}
+
+.chart-share-price-vs-nta-form #chart-options-form {
+    padding-bottom: 10px;
+}
+  
+.chart-share-price-vs-nta-form #chart-options-form label,
+.chart-share-price-vs-nta-form #chart-options-form select,
+.chart-share-price-vs-nta-form #chart-options-form input[type="submit"] {
+    font-family: 'Georgia', serif;
+    color: #585858;
 }

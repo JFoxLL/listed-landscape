@@ -53,8 +53,49 @@ module LicsHelper
         },
       }
     }
-end
+  end
 
+  def share_price_vs_nta_chart_styling(selected_time_duration, selected_tax_type, lic)
+    step_value =  case selected_time_duration.to_i
+                  when 1..2 then 1
+                  when 3..4 then 3
+                  when 5..7 then 6
+                  when 8..10 then 12
+                  else 1
+                  end
 
+    common_chart_styling.deep_merge(library: {
+      yAxis: {
+        softMin: -15,
+        softMax: 15, 
+        plotLines: [ 
+          { 
+            color: '#005454', 
+            width: 2, 
+            value: lic.share_price_vs_nta_average(selected_time_duration, selected_tax_type),
+            dashStyle: 'dash',
+            zIndex: 5,
+            label: {
+              text: "#{selected_time_duration}yr avg: #{lic.share_price_vs_nta_average(selected_time_duration, selected_tax_type).round(1).to_s}%",
+              align: 'left',
+              y: -5,
+              x: 0,
+              style: {color: '#005454', fontSize: '14px', fontFamily: 'Georgia'}
+            }
+          },
+        ] 
+      },
+      xAxis: {
+        type: 'datetime',
+        tickInterval: step_value,
+        labels: {
+          format: '{value:%b-%y}'
+        }
+      },
+      tooltip: {
+        xDateFormat: '%b-%y'
+      }
+    })
+  end
 
 end

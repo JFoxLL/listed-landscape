@@ -37,83 +37,33 @@ class Lic < ApplicationRecord
         investment_managers.sort_by(&:kp_year_joined)
     end
 
-    def chart_share_price_vs_pre_tax_nta
-        data = SharePriceVsNta.where(lic_id: id).order(month_year: :asc).pluck(:month_year, :sp_vs_pre_tax_nta)
-        start_month = [data.length - 120, 0].max
-        chart_data = [['Month', 'Share Price vs Pre-Tax NTA']]
-        chart_data = data[start_month..-1].map { |entry| [entry[0].strftime('%b %Y'), entry[1]] }
-        chart_data
+    def chart_share_price_vs_nta(time_duration_in_years, tax_type)
+        records = fetch_records(time_duration_in_years)
+    
+        chart_data = {}
+    
+        records.each do |record|
+            timestamp = DateTime.parse(record.month_year.to_s).strftime('%s').to_i * 1000
+            if tax_type == 'pre_tax'
+                chart_data[timestamp] = record.sp_vs_pre_tax_nta
+            elsif tax_type == 'post_tax'
+                chart_data[timestamp] = record.sp_vs_post_tax_nta
+            end
+        end
+    
+        return chart_data
     end
 
-    def chart_share_price_vs_post_tax_nta
-        data = SharePriceVsNta.where(lic_id: id).order(month_year: :asc).pluck(:month_year, :sp_vs_post_tax_nta)
-        start_month = [data.length - 120, 0].max
-        chart_data = [['Month', 'Share Price vs Post-Tax NTA']]
-        chart_data = data[start_month..-1].map { |entry| [entry[0].strftime('%b %Y'), entry[1]] }
-        chart_data
-    end
+    def share_price_vs_nta_average(time_duration_in_years, tax_type)
+        records = fetch_records(time_duration_in_years)
 
-    def share_price_vs_pre_tax_nta_average_10yrs
-        data = SharePriceVsNta.where(lic_id: id)
-                              .order(month_year: :desc)
-                              .limit(120)
-                              .pluck(:sp_vs_pre_tax_nta)
-        return average_calculation(data)
-    end
+        sum = 0
+        records.each do |record|
+            sum += tax_type == 'pre_tax' ? record.sp_vs_pre_tax_nta : record.sp_vs_post_tax_nta
+        end
 
-    def share_price_vs_post_tax_nta_average_10yrs
-        data = SharePriceVsNta.where(lic_id: id)
-                              .order(month_year: :desc)
-                              .limit(120)
-                              .pluck(:sp_vs_post_tax_nta)
-        return average_calculation(data)
-    end
-
-    def share_price_vs_pre_tax_nta_average_3yrs
-        data = SharePriceVsNta.where(lic_id: id)
-                              .order(month_year: :desc)
-                              .limit(36)
-                              .pluck(:sp_vs_pre_tax_nta)
-        return average_calculation(data)
-    end
-
-    def share_price_vs_post_tax_nta_average_3yrs
-        data = SharePriceVsNta.where(lic_id: id)
-                              .order(month_year: :desc)
-                              .limit(36)
-                              .pluck(:sp_vs_post_tax_nta)
-        return average_calculation(data)
-    end
-
-    def share_price_vs_pre_tax_nta_average_1yr
-        data = SharePriceVsNta.where(lic_id: id)
-                              .order(month_year: :desc)
-                              .limit(12)
-                              .pluck(:sp_vs_pre_tax_nta)
-        return average_calculation(data)
-    end
-
-    def share_price_vs_post_tax_nta_average_1yr
-        data = SharePriceVsNta.where(lic_id: id)
-                              .order(month_year: :desc)
-                              .limit(12)
-                              .pluck(:sp_vs_post_tax_nta)
-        return average_calculation(data)
-    end
-
-    def share_price_vs_pre_tax_nta_latest_value
-        most_recent_data = SharePriceVsNta.where(lic_id: id).order(month_year: :desc).limit(1).pluck(:sp_vs_pre_tax_nta).first
-        most_recent_data
-    end
-
-    def share_price_vs_post_tax_nta_latest_value
-        most_recent_data = SharePriceVsNta.where(lic_id: id).order(month_year: :desc).limit(1).pluck(:sp_vs_post_tax_nta).first
-        most_recent_data
-    end
-
-    def share_price_vs_nta_latest_month
-        most_recent_entry = SharePriceVsNta.where(lic_id: id).order(month_year: :desc).limit(1).first
-        most_recent_entry&.month_year&.strftime('%b%y')
+        average = sum / records.count
+        return average.round(1)
     end
 
 
@@ -123,14 +73,15 @@ class Lic < ApplicationRecord
         self.slug = "#{ticker}-#{name}".parameterize
     end
 
-    def average_calculation(data)
-        if data.present?
-          total_value = data.compact.reduce(0, :+)
-          average = total_value / data.length
-          return average
-        else
-          return nil
-        end
+    def fetch_records(time_duration_in_years)
+        months = time_duration_in_years * 12
+        start_date = months.months.ago
+        end_date = Date.today
+    
+        records = SharePriceVsNta.where(lic_id: self.id)
+                                  .where(month_year: start_date..end_date)
+    
+        return records
     end
 
 end
