@@ -65,21 +65,24 @@ module LicsHelper
                   end
 
     common_chart_styling.deep_merge(library: {
+      chart: {
+        marginRight: 100
+      },
       yAxis: {
-        softMin: -15,
-        softMax: 15, 
+        softMin: -10,
+        softMax: 10, 
         plotLines: [ 
           { 
             color: '#005454', 
             width: 2, 
             value: lic.share_price_vs_nta_average(selected_time_duration, selected_tax_type),
-            dashStyle: 'dash',
+            dashStyle: 'solid',
             zIndex: 5,
             label: {
               text: "#{selected_time_duration}yr avg: #{lic.share_price_vs_nta_average(selected_time_duration, selected_tax_type).round(1).to_s}%",
-              align: 'left',
-              y: -5,
-              x: 0,
+              align: 'right',
+              y: 4,
+              x: 100,
               style: {color: '#005454', fontSize: '14px', fontFamily: 'Georgia'}
             }
           },
@@ -94,8 +97,10 @@ module LicsHelper
       },
       tooltip: {
         xDateFormat: '%b-%y'
-      }
+      },
     })
   end
+
+  
 
 end
