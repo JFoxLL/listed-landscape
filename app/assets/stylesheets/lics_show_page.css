@@ -50,11 +50,12 @@
 
 
 /* Overview */
-.overview-section {
+.overview {
     background-color: #f3eee8;
     border: 1px solid #005454;
     padding: 20px;
     border-radius: 20px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
   }
   
 table {
@@ -110,6 +111,7 @@ table {
     background-color: #f3eee8;
     border: 1px solid #005454;
     border-radius: 20px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .key-person-top,
@@ -175,6 +177,7 @@ table {
     padding: 20px;
     border-radius: 20px;
     border: 1px solid #005454;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .chart-share-price-vs-nta-filter #chart-share-price-vs-nta-filter-options {

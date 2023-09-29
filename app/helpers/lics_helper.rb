@@ -51,6 +51,18 @@ module LicsHelper
           },
           gridLineColor: '#A9A9A9'
         },
+        # plotOptions: {
+        #   series: {
+        #     dataLabels: {
+        #       enabled: true,
+        #       align: 'center',
+        #       verticalAlign: 'top',
+        #       y: -30,
+        #       zIndex: 5,
+        #       style: {color: '#d4541b', fontSize: '15px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
+        #     }
+        #   }
+        # }
       }
     }
   end
