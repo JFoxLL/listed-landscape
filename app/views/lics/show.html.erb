@@ -34,55 +34,55 @@
     <table>
       <tbody>
         <tr>
-          <td class="label">LIC Name:</td>
+          <td class="label">LIC Name</td>
           <td class="value"><%= @lic.name %></td>
         </tr>
         <tr>
-          <td class="label">ASX Ticker:</td>
+          <td class="label">ASX Ticker</td>
           <td class="value"><%= @lic.ticker %></td>
         </tr>
         <tr>
-          <td class="label">Listing Year:</td>
+          <td class="label">Listing Year</td>
           <td class="value"><%= @lic.listing_year %> (<%= @lic.yrs_operating %> years operating)</td>
         </tr>
         <tr>
-          <td class="label">Size (Market Cap):</td>
+          <td class="label">Size (Market Cap)</td>
           <td class="value"><%= format_market_cap(@lic.market_cap) %></td>
         </tr>
         <tr>
-          <td class="label">Investment Focus:</td>
+          <td class="label">Investment Focus</td>
           <td class="value"><%= @lic.investment_focus %></td>
         </tr>
         <tr>
-          <td class="label">Portfolio Bias:</td>
+          <td class="label">Portfolio Bias</td>
           <td class="value"><%= @lic.portfolio_bias %></td>
         </tr>
         <tr>
-          <td class="label">Benchmark:</td>
+          <td class="label">Benchmark</td>
           <td class="value"><%= @lic.benchmark %></td>
         </tr>
         <tr>
-          <td class="label">Management Structure:</td>
+          <td class="label">Management Structure</td>
           <td class="value"><%= @lic.management_structure %></td>
         </tr>
         <tr>
-          <td class="label">Investment Manager:</td>
+          <td class="label">Investment Manager</td>
           <td class="value"><%= @lic.investment_manager %></td>
         </tr>
         <tr>
-          <td class="label">Management Fee Structure:</td>
+          <td class="label">Management Fee Structure</td>
           <td class="value"><%= @lic.management_fee %></td>
         </tr>
         <tr>
-          <td class="label">Performance Fee Structure:</td>
+          <td class="label">Performance Fee Structure</td>
           <td class="value"><%= @lic.performance_fee %></td>
         </tr>
         <tr>
-          <td class="label">Calculated Cost (FY23):</td>
+          <td class="label">Calculated Cost (FY23)</td>
           <td class="value"><%= sprintf("%.2f", @lic.calculated_mer) %>% (excluding Performance Fees)</td>
         </tr>
         <tr>
-          <td class="label">Objective:</td>
+          <td class="label">Objective</td>
           <td class="value"><%= @lic.objective %></td>
         </tr>
       </tbody>
@@ -98,8 +98,8 @@
   <h2>Key Personnel</h2>
 
   <h3>Board Members</h3>
-  <div class="key-people">
-    <div class="container">
+  <div class="key-people-section">
+    <div class="key-people-container">
       <ul class="key-people-list">
         <% @lic.key_people_directors.each do |person| %>
           <%= render partial: 'lics/key_people', locals: { person: person, ticker: @lic.ticker } %>
@@ -110,8 +110,8 @@
 
   <% if @lic.key_people_investment_managers.any? %>
     <h3>Investment Management</h3>
-      <div class="key-people">
-        <div class="container">
+      <div class="key-people-section">
+        <div class="key-people-container">
           <ul class="key-people-list">
             <% @lic.key_people_investment_managers.each do |person| %>
               <%= render partial: 'lics/key_people', locals: { person: person, ticker: @lic.ticker } %>

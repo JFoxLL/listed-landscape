@@ -52,51 +52,63 @@
 /* Overview */
 .overview {
     background-color: #f3eee8;
-    border: 1px solid #005454;
-    padding: 20px;
+    border: 2px solid #005454;
+    padding: 20px 60px;
     border-radius: 20px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-  }
-  
+}
+
 table {
     width: 100%;
+    border-collapse: collapse;
+}
+
+tr {
+    border-bottom: 1px dotted #007575
 }
 
 .label {
     width: 30%;
-    padding: 5px 10px;
-    font-size: 20px;
-    font-weight: bold;
-    font-weight: 400;
+    padding: 12px 16px;
+    font-size: 18px;
+    font-weight: 500;
     color: #005454;
     vertical-align: top;
 }
 
 .value {
-    padding: 5px 10px;
-    font-size: 20px;
+    padding: 12px 16px;
+    font-size: 18px;
     color: #585858;
+    text-align: left;
 }
-  
+
+tr:last-child {
+    border-bottom: none;
+}
 
 
 /* Key People */
-.key-people {
+.key-people-section {
     background-color: #fcfaf9;
     padding: 10px 0px;
     border-radius: 20px;
 }
 
-.container {
+.key-people-container {
     max-width: 1000px;
     margin: 0 auto;
     padding: 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .key-people-list {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    gap: 24px;
+    gap: 20px;
     justify-content: space-between;
     list-style-type: none;
     margin: 0;
@@ -104,8 +116,8 @@ table {
 }
 
 .key-person {
-    width: calc(50% - 12px);
-    max-width: 500px;
+    flex: 0 0 calc(50% - 10px);
+    max-width: calc(50% - 10px);
     box-sizing: border-box;
     padding: 16px;
     background-color: #f3eee8;
@@ -146,11 +158,11 @@ table {
 .key-person-role {
     font-size: 16px;
     margin-top: 4px;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
 }
 
 .key-person-details {
-    font-size: 14px;
+    font-size: 15px;
     margin-top: 4px;
     margin-bottom: 4px;
 }
