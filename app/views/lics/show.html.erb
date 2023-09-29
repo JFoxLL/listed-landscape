@@ -30,7 +30,7 @@
 <!-- Overview -->
 <section>
   <h2>Overview</h2>
-  <div class="overview-section">
+  <div class="overview">
     <table>
       <tbody>
         <tr>
@@ -132,7 +132,7 @@
     <h3>Number of Shareholders</h3>
     <div class="chart-number-shareholders">
       <%= column_chart @lic.chart_number_shareholders, 
-          suffix: "K", 
+          suffix: "K",
           colors: ["#d4541b"], 
           **common_chart_styling 
       %> 
@@ -141,7 +141,8 @@
     <h3>Size (Net Assets)</h3>
     <div class="chart-size-net-assets">
       <%= column_chart @lic.chart_size_net_assets, 
-          prefix: "$", 
+          prefix: "$",
+          suffix: "M", 
           thousands: ",", 
           colors: ["#d4541b"], 
           **common_chart_styling 
