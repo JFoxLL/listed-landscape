@@ -130,23 +130,23 @@
   <h2>Shareholders & Portfolio Size</h2>
 
     <h3>Number of Shareholders</h3>
-      <div class="chart-number-shareholders">
-        <%= column_chart @lic.chart_number_shareholders, 
-            thousands: ",", 
-            colors: ["#d4541b"], 
-            **common_chart_styling 
-        %> 
-      </div>
+    <div class="chart-number-shareholders">
+      <%= column_chart @lic.chart_number_shareholders, 
+          suffix: "K", 
+          colors: ["#d4541b"], 
+          **common_chart_styling 
+      %> 
+    </div>
 
     <h3>Size (Net Assets)</h3>
-      <div class="chart-size-net-assets">
-        <%= column_chart @lic.chart_size_net_assets, 
-            prefix: "$", 
-            thousands: ",", 
-            colors: ["#d4541b"], 
-            **common_chart_styling 
-        %>
-      </div>
+    <div class="chart-size-net-assets">
+      <%= column_chart @lic.chart_size_net_assets, 
+          prefix: "$", 
+          thousands: ",", 
+          colors: ["#d4541b"], 
+          **common_chart_styling 
+      %>
+    </div>
 </section>
 
 <!-- Separator -->
