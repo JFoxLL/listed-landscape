@@ -1,0 +1,50 @@
+<div id="page-menu">
+  <a href="#overview" class="menu-item">Overview</a>
+  <a href="#key-personnel" class="menu-item">People</a>
+  <a href="#shareholders-size" class="menu-item">Size</a>
+  <a href="#share-price-nta" class="menu-item">Price v NTA</a>
+</div>
+
+
+<!-- Javascript for the page menu -->
+<!-- This code should be moved somewhere more appropriate at somepoint -->
+<script>
+    // Sticky Menu
+    document.addEventListener("turbo:load", function() {
+        const pageMenu = document.getElementById("page-menu");
+        let menuOffset = pageMenu.offsetTop;
+
+        window.addEventListener("scroll", function() {
+            if (window.pageYOffset >= menuOffset) {
+                pageMenu.classList.add("sticky");
+            } else {
+                pageMenu.classList.remove("sticky");
+            }
+        });
+    });
+
+    // Smooth Scrolling
+    document.addEventListener("turbo:load", function() {
+        const menuLinks = document.querySelectorAll("#page-menu a");
+
+        menuLinks.forEach(link => {
+            link.addEventListener("click", function(event) {
+                event.preventDefault();
+
+                // Remove active class from all menu items
+                menuLinks.forEach(l => l.classList.remove("active"));
+
+                // Add active class to clicked menu item
+                this.classList.add("active");
+
+                const targetId = this.getAttribute("href").substring(1); // Remove the '#' from href
+                const targetElement = document.getElementById(targetId);
+
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100, // Offset for the sticky menu
+                    behavior: "smooth"
+                });
+            });
+        });
+    });
+</script>
