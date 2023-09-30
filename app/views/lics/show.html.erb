@@ -27,9 +27,12 @@
   </div>
 </div>
 
+<!-- Hover Menu -->
+<%= render partial: 'lics/show_page_menu' %>
+
 <!-- Overview -->
 <section>
-  <h2>Overview</h2>
+  <h2 id="overview">Overview</h2>
   <div class="overview">
     <table>
       <tbody>
@@ -95,7 +98,7 @@
 
 <!-- Key People  -->
 <section>
-  <h2>Key Personnel</h2>
+  <h2 id="key-personnel">Key Personnel</h2>
 
   <h3>Board Members</h3>
   <div class="key-people-section">
@@ -127,7 +130,7 @@
 
 <!-- Shareholders & Portfolio Size -->
 <section>
-  <h2>Shareholders & Portfolio Size</h2>
+  <h2 id="shareholders-size">Shareholders & Portfolio Size</h2>
 
     <h3>Number of Shareholders</h3>
     <div class="chart-number-shareholders">
@@ -155,7 +158,7 @@
 
 <!-- Share Price vs NTA -->
 <section>
-  <h2>Share Price vs NTA</h2>
+  <h2 id="share-price-nta">Share Price vs NTA</h2>
   <div class="chart-share-price-vs-nta-filter">
     <%= form_tag(url_for(action: 'show', id: @lic.slug), method: "get", id: "chart-share-price-vs-nta-filter-options") do %>
       <label for="tax_type" class="chart-share-price-vs-nta-filter-label">NTA Tax Type:</label>
