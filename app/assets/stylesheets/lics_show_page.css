@@ -10,7 +10,7 @@
 }
 
 .page-header-content {
-    max-width: 1100px;
+    max-width: 1000px;
     margin: 0 auto;
     height: 100%;
     display: flex;
@@ -71,8 +71,7 @@
   }
 
 .menu-item.active {
-    text-decoration: underline;
-    color: #f3eee8;
+    color: #fcfaf9;
 }
 
 .sticky {
