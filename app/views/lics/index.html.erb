@@ -6,43 +6,15 @@
 <p>The table below shows the 30 largest Listed Investment Companies on the ASX.</p>
 
 <!-- LICs Index Table -->
-<%= form_tag listed_investment_companies_path, method: :get, class: "investment-focus-filter" do %>
+<%= form_tag listed_investment_companies_path, method: :get, class: "investment-focus-filter", data: { turbo_frame: "lics_index_table" } do %>
   <%= hidden_field_tag :sort_by, params[:sort_by] %>
   <%= hidden_field_tag :sort_order, params[:sort_order] %>
   <%= select_tag :investment_focus, options_for_select(@investment_focus_options, params[:investment_focus]), prompt: 'All' %>
   <%= submit_tag 'Filter', name: nil %>
 <% end %>
 
-<table class="lics-index-table">
-  <thead>
-    <tr>
-      <% {
-        'name' => 'Name',
-        'ticker' => 'Ticker',
-        'market_cap' => 'Size',
-        'listing_year' => 'Listed',
-        'investment_focus' => 'Investment Focus',
-        'calculated_mer' => 'Cost'
-      }.each do |db_column, display_name| %>
-        <th class="<%= 'sorted' if @sort_column == db_column %>">
-          <%= sortable(db_column, display_name, @sort_column, @sort_direction) %>
-        </th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <% @lics.each do |lic| %>
-      <tr>
-        <td class="lics-index-table-hover-effect">
-          <%= link_to lic.name, listed_investment_company_path(lic), class: "lics-index-table-link" %>
-        </td>
-        <td class="center"><%= lic.ticker %></td>
-        <td class="center"><%= format_market_cap(lic.market_cap) %></td>
-        <td class="center"><%= lic.listing_year %></td>
-        <td><%= lic.investment_focus %></td>
-        <td class="center"><%= sprintf("%.2f", lic.calculated_mer) %> %</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+<%= turbo_frame_tag 'lics_index_table' do %>
+  <%= render partial: 'lics_index_table', locals: { lics: @lics } %>
+<% end %>
 

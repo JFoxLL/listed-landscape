@@ -18,6 +18,13 @@ class LicsController < ApplicationController
     else
       @lics = @lics.order('market_cap' => 'desc')
     end
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update('lics_index_table', partial: 'lics_index_table', locals: { lics: @lics })
+      end
+    end
   end
 
   def show

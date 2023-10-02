@@ -1,0 +1,32 @@
+<table class="lics-index-table">
+  <thead>
+    <tr>
+      <% {
+        'name' => 'Name',
+        'ticker' => 'Ticker',
+        'market_cap' => 'Size',
+        'listing_year' => 'Listed',
+        'investment_focus' => 'Investment Focus',
+        'calculated_mer' => 'Cost'
+      }.each do |db_column, display_name| %>
+        <th class="<%= 'sorted' if @sort_column == db_column %>">
+          <%= sortable(db_column, display_name, @sort_column, @sort_direction) %>
+        </th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% lics.each do |lic| %>
+      <tr>
+        <td class="lics-index-table-hover-effect">
+          <%= link_to lic.name, listed_investment_company_path(lic), class: "lics-index-table-link", data: { turbo_frame: "_top" } %>
+        </td>
+        <td class="center"><%= lic.ticker %></td>
+        <td class="center"><%= format_market_cap(lic.market_cap) %></td>
+        <td class="center"><%= lic.listing_year %></td>
+        <td><%= lic.investment_focus %></td>
+        <td class="center"><%= sprintf("%.2f", lic.calculated_mer) %> %</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -9,7 +9,7 @@ module ApplicationHelper
         link_params = { sort_by: column, sort_order: direction }
         link_params[:investment_focus] = params[:investment_focus] if params[:investment_focus].present?
         
-        link_to title, link_params, class: css_class
+        link_to title, link_params, class: css_class, data: { turbo_frame: "lics_index_table" }
     end
     
 end
