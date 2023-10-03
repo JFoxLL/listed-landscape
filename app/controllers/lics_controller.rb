@@ -34,6 +34,15 @@ class LicsController < ApplicationController
     @selected_time_duration = params[:time_duration].presence&.to_i || 10
 
     @chart_data = @lic.chart_share_price_vs_nta(@selected_time_duration, @selected_tax_type)
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update("chart_share_price_vs_nta") do
+          render partial: "lics/chart_share_price_vs_nta", locals: { lic: @lic, selected_time_duration: @selected_time_duration, selected_tax_type: @selected_tax_type }
+        end
+      end
+    end
   end
   
 end

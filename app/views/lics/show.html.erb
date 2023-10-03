@@ -159,23 +159,11 @@
 <!-- Share Price vs NTA -->
 <section>
   <h2 id="share-price-nta">Share Price vs NTA</h2>
-  <div class="chart-share-price-vs-nta-filter">
-    <%= form_tag(url_for(action: 'show', id: @lic.slug), method: "get", id: "chart-share-price-vs-nta-filter-options") do %>
-      <label for="tax_type" class="chart-share-price-vs-nta-filter-label">NTA Tax Type:</label>
-      <%= select_tag 'tax_type', options_for_select([['Pre Tax', 'pre_tax'], ['Post Tax', 'post_tax']], @selected_tax_type), class: "chart-share-price-vs-nta-filter-select" %>
-      <label for="time_duration" class="chart-share-price-vs-nta-filter-label">Time Duration:</label>
-      <%= select_tag 'time_duration', options_for_select((1..10).map { |i| [ "#{i} Year#{'s' if i > 1}", i ] }, @selected_time_duration), class: "chart-share-price-vs-nta-filter-select" %>
-      <%= submit_tag "Update Chart", class: "button" %>
-    <% end %>
-  </div>
 
-  <div class="chart-share-price-vs-nta">
-    <%= column_chart @lic.chart_share_price_vs_nta(@selected_time_duration, @selected_tax_type), 
-        suffix: "%", 
-        round: 1,
-        **share_price_vs_nta_chart_styling(@selected_time_duration, @selected_tax_type, @lic) 
-    %>
-  </div>
+    <%= turbo_frame_tag "chart_share_price_vs_nta" do %>
+      <%= render partial: "lics/chart_share_price_vs_nta", locals: { lic: @lic, selected_time_duration: @selected_time_duration, selected_tax_type: @selected_tax_type } %>
+  <% end %>
+
 </section>
 
 <!-- Separator -->
