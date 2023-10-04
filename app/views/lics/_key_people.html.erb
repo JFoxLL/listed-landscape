@@ -17,7 +17,17 @@
       <% end %>
     </div>
   </div>
-  <div class="key-person-bottom">
-    <p class="key-person-bio"><%= person.kp_bio.gsub("\n", "<br>").html_safe %></p>
+  <div class="key-person-bottom" data-controller="key-person-bio">
+    <div>
+      <p class="key-person-bio" 
+        data-key-person-bio-target="bio" 
+        data-full-bio="<%= person.kp_bio_cleaned.html_safe %>" 
+        data-truncated-bio="<%= truncate(person.kp_bio_cleaned.html_safe, length: 150, separator: ' ', omission: ' ...') %>">
+        <%= truncate(person.kp_bio_cleaned.html_safe, length: 150, separator: ' ', omission: ' ...') %>
+      </p>
+    </div>
+    <div>
+      <button class="key-person-bio-toggle-button" data-action="key-person-bio#toggle" data-key-person-bio-target="toggleButton">+</button>
+    </div>
   </div>
 </li>
