@@ -18,27 +18,16 @@
     </div>
   </div>
   <div class="key-person-bottom" data-controller="key-person-bio">
-    <p class="key-person-bio" 
-      data-key-person-bio-target="bio" 
-      data-full-bio="<%= person.kp_bio_cleaned.html_safe %>" 
-      data-truncated-bio="<%= truncate(person.kp_bio_cleaned.html_safe, length: 200) %>">
-      <%= truncate(person.kp_bio_cleaned.html_safe, length: 200) %>
-    </p>
-    <button data-action="key-person-bio#toggle" data-key-person-bio-target="toggleButton">Read More</button>
+    <div>
+      <p class="key-person-bio" 
+        data-key-person-bio-target="bio" 
+        data-full-bio="<%= person.kp_bio_cleaned.html_safe %>" 
+        data-truncated-bio="<%= truncate(person.kp_bio_cleaned.html_safe, length: 150, separator: ' ', omission: ' ...') %>">
+        <%= truncate(person.kp_bio_cleaned.html_safe, length: 150, separator: ' ', omission: ' ...') %>
+      </p>
+    </div>
+    <div>
+      <button class="key-person-bio-toggle-button" data-action="key-person-bio#toggle" data-key-person-bio-target="toggleButton">+</button>
+    </div>
   </div>
-
-
 </li>
-
-
-<script>
-  // Javascript to remove <br> tags and replace with line breaks
-  document.addEventListener("DOMContentLoaded", function() {
-    let bios = document.querySelectorAll('.key-person-bio');
-    bios.forEach((bio) => {
-      bio.innerHTML = bio.innerHTML.replace(/&lt;br&gt;/g, '<br>').replace(/<br>/g, '<br>');
-    });
-  });
-</script>
-
-

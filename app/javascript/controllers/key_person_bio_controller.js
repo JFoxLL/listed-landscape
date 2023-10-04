@@ -2,31 +2,33 @@ import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   static targets = ["bio", "toggleButton"];
+
+  // This method runs when the controller is connected to the DOM
+  connect() {
+    this.cleanBrTags();
+  }
+  
+  // New function to clean up the <br> tags
+  cleanBrTags() {
+    this.bioTargets.forEach((bio) => {
+      bio.innerHTML = bio.innerHTML.replace(/&lt;br&gt;/g, '<br>').replace(/<br>/g, '<br>');
+    });
+  }
   
   toggle() {
-    console.log("Entering toggle function");
-
     const fullBio = this.bioTarget.getAttribute("data-full-bio");
-    console.log(`Full Bio: ${fullBio}`);
-
     const truncatedBio = this.bioTarget.getAttribute("data-truncated-bio");
-    console.log(`Truncated Bio: ${truncatedBio}`);
-
     const currentBio = this.bioTarget.innerHTML.trim();
-    console.log(`Current bio content: ${currentBio}`);
 
     if (currentBio === truncatedBio.trim()) {
-      console.log("Switching to full bio");
       this.bioTarget.innerHTML = fullBio;
-      this.toggleButtonTarget.innerHTML = "Show Less";
+      this.toggleButtonTarget.innerHTML = "-";
     } else {
-      console.log("Switching to truncated bio");
       this.bioTarget.innerHTML = truncatedBio;
-      this.toggleButtonTarget.innerHTML = "Read More";
+      this.toggleButtonTarget.innerHTML = "+";
     }
-
-    console.log("Exiting toggle function");
   }
 }
+
 
 
