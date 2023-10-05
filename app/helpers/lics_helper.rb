@@ -64,7 +64,7 @@ module LicsHelper
               verticalAlign: 'top',
               y: -30,
               zIndex: 5,
-              style: {color: '#d4541b', fontSize: '15px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
+              style: {color: '#d4541b', fontSize: '14px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
             }
           }
         }
@@ -106,7 +106,7 @@ module LicsHelper
               verticalAlign: 'top',
               y: -30,
               zIndex: 1000,
-              style: {color: '#d4541b', fontSize: '15px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
+              style: {color: '#d4541b', fontSize: '14px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
             }
           }
         }
