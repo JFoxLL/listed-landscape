@@ -218,18 +218,16 @@ tr:last-child {
 .key-person-bio-toggle-button {
     background: none;
     border: none;
-    color: #005454; /* Dark Green */
+    color: #005454;
     font-size: 17px;
-    text-align: center; /* center align */
+    text-align: right;
     cursor: pointer;
-    width: fit-content; /* Only take the width it needs */
-    margin-top: 20px;  /* Center horizontally, reduce vertical margin */
-    padding: 2px;  /* Remove padding */
-    display: block; /* make it block level */
+    width: fit-content;
+    margin-top: 20px;
+    padding: 2px;
+    display: block;
 }
   
-
-
 
 /* Charts */
 .chart-number-shareholders,
