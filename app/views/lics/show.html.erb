@@ -134,22 +134,12 @@
 
     <h3>Number of Shareholders</h3>
     <div class="chart-number-shareholders">
-      <%= column_chart @lic.chart_number_shareholders, 
-          suffix: "K",
-          colors: ["#d4541b"], 
-          **common_chart_styling 
-      %> 
+      <%= column_chart @lic.chart_number_shareholders, **number_shareholders_chart_styling %> 
     </div>
 
     <h3>Size (Net Assets)</h3>
     <div class="chart-size-net-assets">
-      <%= column_chart @lic.chart_size_net_assets, 
-          prefix: "$",
-          suffix: "M", 
-          thousands: ",", 
-          colors: ["#d4541b"], 
-          **common_chart_styling 
-      %>
+      <%= column_chart @lic.chart_size_net_assets, **size_net_asset_chart_styling %>
     </div>
 </section>
 
@@ -163,7 +153,6 @@
     <%= turbo_frame_tag "chart_share_price_vs_nta" do %>
       <%= render partial: "lics/chart_share_price_vs_nta", locals: { lic: @lic, selected_time_duration: @selected_time_duration, selected_tax_type: @selected_tax_type } %>
   <% end %>
-
 </section>
 
 <!-- Separator -->
