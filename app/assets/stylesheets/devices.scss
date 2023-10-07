@@ -1,0 +1,27 @@
+// Mixin for desktop media queries:
+@mixin desktop {
+    @media screen and (min-width: 768px) {
+        @content;
+    }
+}
+  
+// Mixin for mobile media queries:
+@mixin mobile {
+    @media screen and (max-width: 767px) {
+        @content;
+    }
+}
+
+// Hide on mobile devices
+.mobile-hide {
+    @include mobile {
+        display: none;
+    }
+}
+  
+// Hide on desktop devices
+.desktop-hide {
+    @include desktop {
+        display: none;
+    }
+}
