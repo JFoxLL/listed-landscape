@@ -69,5 +69,5 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   # Allow connections from local IP
-  # config.hosts << "192.168.1.191"
+  config.hosts << "192.168.1.191"
 end
