@@ -9,17 +9,17 @@ namespace :db do
     KeyPerson.delete_all
     
     # Read the file into a string
-    original_content = File.read("db/import_data/key_people_231005.csv", encoding: "UTF-8")
+    original_content = File.read("db/import_data/key_people_231017.csv", encoding: "UTF-8")
     
     # Remove invalid UTF-8 characters
     cleaned_content = original_content.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
     
     # Write the cleaned content to a new file
-    File.open("db/import_data/key_people_231005_cleaned.csv", "w:UTF-8") { |file| file.write(cleaned_content) }
+    File.open("db/import_data/key_people_231017.csv", "w:UTF-8") { |file| file.write(cleaned_content) }
     
     # Import new records
     puts "Importing new key people..."
-    CSV.foreach("db/import_data/key_people_231005_cleaned.csv", headers: true) do |row|
+    CSV.foreach("db/import_data/key_people_231017.csv", headers: true) do |row|
       KeyPerson.create!(
         lic_ticker: row['lic_ticker'],
         lic_name: row['lic_name'],
