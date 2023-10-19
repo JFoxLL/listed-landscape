@@ -70,14 +70,24 @@
     background-color: #004A4A;
     text-align: center;
     z-index: 1000;
+    @include mobile {
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
 }
 
 .menu-item {
     display: inline-block;
-    padding: 10px 20px;
     color: #fcfaf9;
     text-decoration: none;
     cursor: pointer;
+    @include desktop {
+        padding: 10px 20px;
+    }
+    @include mobile {
+        padding: 10px 12px;
+    }
 }
 
 .menu-item:hover {
