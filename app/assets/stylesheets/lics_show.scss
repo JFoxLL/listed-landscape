@@ -7,8 +7,13 @@
     margin-left: calc(-50vw + 50%);
     margin-right: calc(-50vw + 50%);
     width: 100vw;
-    height: 220px;
     background-color: #005454;
+    @include desktop {
+        height: 220px;
+    }
+    @include mobile {
+        height: 180px;
+    }
 }
 
 .page-header-content {
@@ -21,12 +26,17 @@
 }
 
 .page-header-logo {
-    flex: 0 0 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 15px;
-    height: 90%;
+    @include desktop {
+        flex: 0 0 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 15px;
+        height: 90%;
+    }
+    @include mobile {
+        flex: 0 0 0%;
+    }
 }
 
 .page-logo {
@@ -35,19 +45,21 @@
     object-fit: contain;
 }
 
-.page-header-info {
-    flex: 0 0 70%;
+.page-header-title {
     color: #fcfaf9;
-    font-size: 36px;
-    text-align: left;
-    display: flex;
-    align-items: center;
+    @include desktop {
+        flex: 0 0 70%;
+        font-size: 48px;
+        text-align: left;
+        display: flex;
+    }
+    @include mobile {
+        flex: 0 0 100%;
+        font-size: 34px;
+        text-align: center;
+        padding: 0;
+    }
 }
-
-.page-header-lic-name {
-    color: #fcfaf9;
-    font-size: 48px;
-}  
 
 
 /* Page Menu */
