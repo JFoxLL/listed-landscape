@@ -16,10 +16,10 @@
 <div class="page-header">
   <div class="page-header-content">
     <div class="page-header-logo">
-      <%= image_tag "lic_logos/#{@lic.logo_filename}.png", alt: "#{@lic.name} Logo", class: "page-logo" %>
+      <%= image_tag "lic_logos/#{@lic.logo_filename}.png", alt: "#{@lic.name} Logo", class: "page-logo mobile-hide" %>
     </div>
-    <div class="page-header-info">
-      <span class="page-header-lic-name"><%= @lic.name %> (<%= @lic.ticker %>)</span>
+    <div class="page-header-title">
+      <%= @lic.name %>
     </div>
   </div>
 </div>
