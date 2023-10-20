@@ -22,8 +22,8 @@
       <p class="key-person-bio" 
         data-key-person-bio-target="bio" 
         data-full-bio="<%= person.kp_bio_cleaned.html_safe %>" 
-        data-truncated-bio="<%= truncate(person.kp_bio_cleaned.html_safe, length: 150, separator: ' ', omission: ' ...') %>">
-        <%= truncate(person.kp_bio_cleaned.html_safe, length: 150, separator: ' ', omission: ' ...') %>
+        data-truncated-bio="<%= truncate(person.kp_bio_cleaned.html_safe, length: 250, separator: ' ', omission: ' ...') %>">
+        <%= truncate(person.kp_bio_cleaned.html_safe, length: 250, separator: ' ', omission: ' ...') %>
       </p>
     </div>
     <div>
