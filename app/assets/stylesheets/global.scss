@@ -139,13 +139,11 @@ p {
 #back-to-top-button {
     display: none;
     position: fixed;
-    bottom: 100px;
     right: 0px;
     z-index: 99;
-    background-color: #f3eee8;
     color: #005454;
+    background-color: #eaeaea;
     font-size: 20px;
-    font-weight: 900;
     border: none;
     outline: none;
     cursor: pointer;
@@ -154,4 +152,12 @@ p {
     border-bottom-right-radius: 0px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
+    @include desktop {
+        bottom: 100px;
+        font-weight: 900;
+    }
+    @include mobile {
+        bottom: 60px;
+        font-weight: 400;
+    }
 }

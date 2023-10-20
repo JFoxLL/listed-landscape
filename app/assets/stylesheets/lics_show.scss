@@ -106,6 +106,20 @@
     z-index: 1001;
 }
 
+/* Section Separator */
+.section-separator {
+    text-align: center;
+    font-style: italic; 
+    color: #888; 
+    padding-top: 100px; 
+    padding-bottom: 70px;
+    @include desktop {
+        font-size: 14px;
+    }
+    @include mobile {
+        font-size: 12px;
+    }
+}
 
 
 /* Overview */
@@ -204,14 +218,20 @@ tr {
 }
 
 .key-person {
-    flex: 0 0 calc(50% - 10px);
-    max-width: calc(50% - 10px);
     box-sizing: border-box;
     padding: 16px;
     background-color: #f3eee8;
     border: 1px solid #005454;
     border-radius: 20px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    @include desktop {
+        flex: 0 0 calc(50% - 10px);
+        max-width: calc(50% - 10px);
+    }
+    @include mobile {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
 }
 
 .key-person-top,
@@ -222,50 +242,97 @@ tr {
 }
 
 .key-person-image {
-    width: 175px;
-    height: 175px;
     object-fit: cover;
     border: 3px solid #005454;
     border-radius: 20px;
+    @include desktop {
+        width: 175px;
+        height: 175px;
+    }
+    @include mobile {
+        width: 100px;
+        height: 100px;
+    }
 }
 
 .key-person-info {
     flex: 1;
     text-align: left;
-    margin-left: 16px;
+    @include desktop {
+        margin-left: 16px;
+    }
+    @include mobile {
+        margin-left: 12px;
+    }
 }
 
 .key-person-name {
-    font-size: 18px;
     font-weight: bold;
     color: #005454;
-    margin-top: 4px;
-    margin-bottom: 4px;
+    @include desktop {
+        margin-top: 4px;
+        margin-bottom: 4px;
+        font-size: 18px;
+    }
+    @include mobile {
+        margin-top: 2px;
+        margin-bottom: 1px;
+        font-size: 16px;
+    }
 }
 
 .key-person-role {
-    font-size: 16px;
-    margin-top: 4px;
-    margin-bottom: 20px;
+    @include desktop {
+        margin-top: 4px;
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
+    @include mobile {
+        margin-top: 1px;
+        margin-bottom: 10px;
+        font-size: 12px;
+    }
 }
 
 .key-person-details {
-    font-size: 15px;
-    margin-top: 4px;
-    margin-bottom: 4px;
+    @include desktop {
+        margin-top: 4px;
+        margin-bottom: 4px;
+        font-size: 15px;
+    }
+    @include mobile {
+        margin-top: 1px;
+        margin-bottom: 1px;
+        font-size: 12px; 
+    }
 }
 
 .key-person-footnote {
-    font-size: 12px;
     font-style: italic;
     color: #777;
-    margin-top: 4px;
-    margin-bottom: 4px;
+    @include desktop {
+        margin-top: 4px;
+        margin-bottom: 4px;
+        font-size: 12px;
+    }
+    @include mobile {
+        margin-top: 1px;
+        margin-bottom: 1px;
+        font-size: 10px;
+    }
 }
 
 .key-person-bio {
-    margin-top: 20px;
-    margin-bottom: 4px;
+    @include desktop {
+        margin-top: 20px;
+        margin-bottom: 4px;
+        font-size: 16px;
+    }
+    @include mobile {
+        margin-top: 10px;
+        margin-bottom: 4px;
+        font-size: 12px;
+    }
 }
 
 .key-person-bio-toggle-button {
