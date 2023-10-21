@@ -61,6 +61,14 @@
     }
 }
 
+.page-header-title h1 {
+    color: inherit;
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
 
 /* Page Menu */
 #page-menu {
@@ -125,7 +133,7 @@
 /* Overview */
 .overview {
     background-color: #f3eee8;
-    border: 2px solid #005454;
+    border: 1px solid #005454;
     border-radius: 20px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
     @include desktop {
@@ -354,10 +362,15 @@ tr {
 .chart-size-net-assets,
 .chart-share-price-vs-nta {
     background-color: #f3eee8;
-    padding: 20px;
     border-radius: 20px;
     border: 1px solid #005454;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    @include desktop {
+        padding: 20px;
+    }
+    @include mobile {
+        padding: 20px 0px 15px 0px;
+    }
 }
 
 .chart-share-price-vs-nta-filter #chart-share-price-vs-nta-filter-options {

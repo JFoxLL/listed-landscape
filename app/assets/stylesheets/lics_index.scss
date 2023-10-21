@@ -7,6 +7,16 @@
     border-collapse: collapse;
     margin-top: 20px;
     margin-bottom: 40px;
+    @include desktop {
+
+
+    }
+    @include mobile {
+        table-layout: fixed;
+        overflow-x: auto;
+        display: block;
+
+    }
 }
 
 
@@ -16,6 +26,9 @@
     padding: 6px;
     font-family: Georgia, serif;
     color: #005454;
+    @include mobile {
+        font-size: 10px
+    }
 }
 
 .lics-index-table th a {
@@ -42,6 +55,9 @@
     padding: 6px;
     font-family: Georgia, serif;
     color: #585858;
+    @include mobile {
+        font-size: 10px
+    }
 }
 
 .lics-index-table-link {
