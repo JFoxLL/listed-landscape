@@ -55,6 +55,35 @@ module LicsHelper
           },
           gridLineColor: '#A9A9A9'
         },
+        responsive: {
+          rules: [{
+            condition: {
+              maxWidth: 767
+            },
+            chartOptions: {
+              tooltip: {
+                enabled: true
+              },
+              xAxis: {
+                labels: {
+                  style: {fontSize: '10px'}
+                }
+              },
+              yAxis: {
+                labels: {
+                  style: {fontSize: '10px'}
+                }
+              },
+              plotOptions: {
+                series: {
+                  dataLabels: {
+                    enabled: false
+                  }
+                }
+              }
+            }
+          }]
+        },
         plotOptions: {
           series: {
             dataLabels: {
@@ -72,7 +101,7 @@ module LicsHelper
     }
   end
 
-  def size_net_asset_chart_styling
+  def size_net_assets_chart_styling
     {
       prefix: "$",
       suffix: "M",
@@ -97,6 +126,35 @@ module LicsHelper
           },
           gridLineColor: '#A9A9A9'
         },
+        responsive: {
+          rules: [{
+            condition: {
+              maxWidth: 767
+            },
+            chartOptions: {
+              tooltip: {
+                enabled: true
+              },
+              xAxis: {
+                labels: {
+                  style: {fontSize: '10px'}
+                }
+              },
+              yAxis: {
+                labels: {
+                  style: {fontSize: '10px'}
+                }
+              },
+              plotOptions: {
+                series: {
+                  dataLabels: {
+                    enabled: false
+                  }
+                }
+              }
+            }
+          }]
+        },
         plotOptions: {
           series: {
             dataLabels: {
@@ -114,7 +172,6 @@ module LicsHelper
     }
   end
 
-
   def share_price_vs_nta_chart_styling(selected_time_duration, selected_tax_type, lic)
     step_value = case selected_time_duration.to_i
                  when 1..2 then 1
@@ -131,6 +188,9 @@ module LicsHelper
         chart: {
           backgroundColor: '#f3eee8',
           marginRight: 100
+        },
+        title: {
+          text: nil
         },
         xAxis: {
           type: 'datetime',
@@ -168,6 +228,46 @@ module LicsHelper
         },
         tooltip: {
           xDateFormat: '%b-%y'
+        },
+        responsive: {
+          rules: [{
+            condition: {
+              maxWidth: 767
+            },
+            chartOptions: {
+              chart: {
+                marginRight: 10
+              },
+              xAxis: {
+                labels: {
+                  style: {fontSize: '10px'}
+                }
+              },
+              yAxis: {
+                labels: {
+                  style: {fontSize: '10px'}
+                },
+                # Note, the following has unfortunate duplication to the plotLines above
+                # The only way I could figure out how to do it at the time
+                plotLines: [
+                  {
+                    color: '#005454',
+                    width: 2,
+                    value: lic.share_price_vs_nta_average(selected_time_duration, selected_tax_type),
+                    dashStyle: 'solid',
+                    zIndex: 5,
+                    label: {
+                      text: "#{selected_time_duration}yr avg: #{lic.share_price_vs_nta_average(selected_time_duration, selected_tax_type).round(1).to_s}%",
+                      align: 'center',
+                      y: -5,
+                      x: 0,
+                      style: {color: '#005454', fontSize: '12px', fontFamily: 'Georgia', backgroundColor: 'rgba(243, 238, 232, 0.8)'}
+                    }
+                  }
+                ]
+              }
+            }
+          }]
         }
       }
     }
