@@ -31,7 +31,9 @@ class LicsController < ApplicationController
     @lic = Lic.find_by!(slug: params[:id])
 
     @selected_tax_type = params[:tax_type].presence || 'pre_tax'
-    if request.user_agent =~ /Mobile|webOS/
+
+    browser = Browser.new(request.user_agent)
+    if browser.device.mobile?
       @selected_time_duration = params[:time_duration].presence&.to_i || 3
     else
       @selected_time_duration = params[:time_duration].presence&.to_i || 10
