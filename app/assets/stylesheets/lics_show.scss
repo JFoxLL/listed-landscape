@@ -373,6 +373,13 @@ tr {
   }
 }
 
+.chart-share-price-vs-nta {
+    @include mobile {
+        padding: 15px 0px 15px 0px;
+    }
+}
+
+
 #chart-share-price-vs-nta-filter-options {
   padding-bottom: 10px;
   
