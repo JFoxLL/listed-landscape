@@ -238,6 +238,10 @@ module LicsHelper
               chart: {
                 marginRight: 10
               },
+              title: {
+                text: "--- #{selected_time_duration}yr avg: #{lic.share_price_vs_nta_average(selected_time_duration, selected_tax_type).round(1).to_s}%",
+                style: {color: '#005454', fontSize: '12px', fontFamily: 'Georgia', fontWeight: 'bold'},
+              },
               xAxis: {
                 labels: {
                   style: {fontSize: '10px'}
@@ -247,22 +251,13 @@ module LicsHelper
                 labels: {
                   style: {fontSize: '10px'}
                 },
-                # Note, the following has unfortunate duplication to the plotLines above
-                # The only way I could figure out how to do it at the time
                 plotLines: [
                   {
                     color: '#005454',
                     width: 2,
                     value: lic.share_price_vs_nta_average(selected_time_duration, selected_tax_type),
-                    dashStyle: 'solid',
+                    dashStyle: 'dash',
                     zIndex: 5,
-                    label: {
-                      text: "#{selected_time_duration}yr avg: #{lic.share_price_vs_nta_average(selected_time_duration, selected_tax_type).round(1).to_s}%",
-                      align: 'center',
-                      y: -5,
-                      x: 0,
-                      style: {color: '#005454', fontSize: '12px', fontFamily: 'Georgia', backgroundColor: 'rgba(243, 238, 232, 0.8)'}
-                    }
                   }
                 ]
               }
