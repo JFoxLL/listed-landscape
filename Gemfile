@@ -48,6 +48,9 @@ gem "chartkick"
 # Use Sass to process CSS
 gem "sassc-rails"
 
+# Browser type detection and targetting
+gem "browser"
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
