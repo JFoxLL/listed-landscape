@@ -1,7 +1,34 @@
 @import 'devices';
 
-/* Styling the LICs table on the index action view template */
+/* Styling for the LICs index action view template */
 
+/* Page Information */
+.lics-index-page-header h1 {
+    color: #005454;
+    font-family: 'Georgia', serif;
+    @include desktop {
+        font-size: 36px
+    }
+    @include mobile {
+        font-size: 24px;
+    }
+}
+
+.lics-index-page-details p {
+    color: #585858;
+    font-family: 'Georgia', serif;
+    @include desktop {
+        font-size: 16px
+    }
+    @include mobile {
+        font-size: 12px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+}
+
+
+/* LICs Table */
 .lics-index-table {
     width: 100%;
     border-collapse: collapse;
@@ -94,7 +121,7 @@ form {
     margin-top: 20px;
 }
 
-/* investment focus drop down */
+/* Investment focus drop down */
 .investment-focus-filter select {
     font-family: Georgia, serif;
     font-size: 14px;
