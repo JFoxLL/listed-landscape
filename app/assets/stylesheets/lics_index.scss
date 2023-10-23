@@ -109,9 +109,16 @@ form {
     color: #fcfaf9;
     font-family: Georgia, serif;
     border-radius: 5px;
-    padding: 8px 20px;
+    
     border: none;
     cursor: pointer;
+    @include desktop {
+        padding: 8px 20px;
+    }
+    @include mobile {
+        padding: 6px 50px;
+
+    }
 }
 
 .investment-focus-filter input[type="submit"]:hover {
