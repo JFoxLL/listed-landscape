@@ -79,7 +79,13 @@
         </tr>
         <tr>
           <td class="label">Calculated Cost (FY23)</td>
-          <td class="value"><%= sprintf("%.2f", @lic.calculated_mer) %>% (excluding Performance Fees)</td>
+          <td class="value">
+            <%= sprintf("%.2f", @lic.calculated_mer) %>%
+            <% if @device_type == 'mobile' %>
+              <br>
+            <% end %>
+            (excluding Performance Fees)
+          </td>
         </tr>
         <tr class="mobile-hide last-row">
           <td class="label">Objective</td>
