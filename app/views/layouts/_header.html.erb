@@ -8,11 +8,14 @@
 
     <!-- Menu Items -->
     <div class="menu-items">
-      <%= link_to 'View All LICs', listed_investment_companies_path, class: 'menu-link' %>
+      <% unless current_page?(root_path) || current_page?(listed_investment_companies_path) %>
+        <%= link_to 'Home', listed_investment_companies_path, class: 'menu-link' %>
+      <% end %>
     </div>
     
   </div>
 </header>
+
 
 
 
