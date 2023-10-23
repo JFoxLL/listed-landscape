@@ -1,4 +1,5 @@
 class LicsController < ApplicationController
+  before_action :set_device_type
   
   def index
     @investment_focus_options = Lic.group(:investment_focus).order('count_id desc').count('id').keys
@@ -29,11 +30,9 @@ class LicsController < ApplicationController
 
   def show
     @lic = Lic.find_by!(slug: params[:id])
-
     @selected_tax_type = params[:tax_type].presence || 'pre_tax'
 
-    browser = Browser.new(request.user_agent)
-    if browser.device.mobile?
+    if @device_type == 'mobile'
       @selected_time_duration = params[:time_duration].presence&.to_i || 3
     else
       @selected_time_duration = params[:time_duration].presence&.to_i || 10
@@ -49,6 +48,13 @@ class LicsController < ApplicationController
         end
       end
     end
+  end
+
+  private
+
+  def set_device_type
+    browser = Browser.new(request.user_agent)
+    @device_type = browser.device.mobile? ? 'mobile' : 'desktop'
   end
   
 end
