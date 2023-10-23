@@ -122,19 +122,48 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @include mobile {
+        height: auto;
+        padding: 20px 0;
+    }
 }
-  
+
 .footer-container {
     text-align: center;
     color: #fcfaf9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .footer-item {
+        margin: 0 10px;
+
+        @include desktop {
+            margin: 0 5px;
+        }
+
+        @include mobile {
+            flex-direction: column;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    }
 }
-  
+
 .footer-link {
     color: #fcfaf9;
     text-decoration: none;
 }
-  
-  
+
+.footer-hide-mobile {
+    @include mobile {
+        display: none;
+    }
+}
+
+
 /* Back to top button */
 #back-to-top-button {
     display: none;
