@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_24_233316) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_25_222854) do
   create_table "dividend_histories", force: :cascade do |t|
     t.string "lic_ticker"
     t.string "lic_name"
@@ -82,6 +82,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_24_233316) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "lic_id"
+  end
+
+  create_table "share_price_summaries", force: :cascade do |t|
+    t.string "lic_ticker"
+    t.string "lic_name"
+    t.integer "year"
+    t.decimal "sp_opening"
+    t.decimal "sp_closing"
+    t.decimal "sp_average"
+    t.integer "lic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "share_price_vs_nta", force: :cascade do |t|
