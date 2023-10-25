@@ -63,7 +63,7 @@ class Lic < ApplicationRecord
                             .group(:year)
                             .sum(:cash_amount)
                             .sort_by { |year, _amount| year }
-                            .last(10) # Get the trailing 10 years
+                            .last(10)
     
         chart_data = data.map do |year, amount|
           [year.to_s, amount]
