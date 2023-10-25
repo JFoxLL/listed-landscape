@@ -3,6 +3,7 @@ class Lic < ApplicationRecord
     has_many :size_net_assets
     has_many :share_price_vs_nta, class_name: 'SharePriceVsNta'
     has_many :key_people
+    has_many :dividend_histories
 
     before_save :set_slug
 
