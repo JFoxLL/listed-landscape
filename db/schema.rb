@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_25_234434) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_24_233316) do
+  create_table "dividend_histories", force: :cascade do |t|
+    t.string "lic_ticker"
+    t.string "lic_name"
+    t.integer "year"
+    t.date "ex_date"
+    t.date "payment_date"
+    t.string "dividend_type"
+    t.string "dividend_phase"
+    t.decimal "cash_amount"
+    t.decimal "franking_level"
+    t.decimal "corp_tax_rate"
+    t.decimal "franking_credit_amount"
+    t.decimal "grossed_up_amount"
+    t.decimal "drp_price"
+    t.integer "lic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "key_people", force: :cascade do |t|
     t.string "lic_ticker"
     t.string "lic_name"
