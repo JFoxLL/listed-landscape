@@ -58,6 +58,20 @@ class Lic < ApplicationRecord
         investment_managers.sort_by(&:kp_year_joined)
     end
 
+    def chart_dividend_history
+        data = DividendHistory.where(lic_id: id)
+                            .group(:year)
+                            .sum(:cash_amount)
+                            .sort_by { |year, _amount| year }
+                            .last(10) # Get the trailing 10 years
+    
+        chart_data = data.map do |year, amount|
+          [year.to_s, amount]
+        end
+    
+        chart_data
+    end
+
     def chart_share_price_vs_nta(time_duration_in_years, tax_type)
         records = fetch_records(time_duration_in_years)
     

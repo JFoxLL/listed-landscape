@@ -30,6 +30,8 @@ class LicsController < ApplicationController
 
   def show
     @lic = Lic.find_by!(slug: params[:id])
+
+    # Share Price vs NTA Chart
     @selected_tax_type = params[:tax_type].presence || 'pre_tax'
 
     if @device_type == 'mobile'
@@ -48,6 +50,8 @@ class LicsController < ApplicationController
         end
       end
     end
+
+    
   end
 
   private
