@@ -155,6 +155,20 @@
 <!-- Separator -->
 <%= render partial: 'show_page_separator' %>
 
+<!-- Dividends -->
+<section>
+  <h2 id="dividends">Dividends</h2>
+
+    <h3>Dividend History</h3>
+      <div class="chart-dividend-history">
+        <%= column_chart @lic.chart_dividend_history, **dividend_history_chart_styling %> 
+    </div>
+
+</section>
+
+<!-- Separator -->
+<%= render partial: 'show_page_separator' %>
+
 <!-- Share Price vs NTA -->
 <section>
   <h2 id="share-price-nta">Share Price vs NTA</h2>
