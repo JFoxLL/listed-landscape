@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lic_ticker: MyString
+  lic_name: MyString
+  year: 1
+  sp_opening: 9.99
+  sp_closing: 9.99
+  sp_average: 9.99
+  lic_id: 1
+
+two:
+  lic_ticker: MyString
+  lic_name: MyString
+  year: 1
+  sp_opening: 9.99
+  sp_closing: 9.99
+  sp_average: 9.99
+  lic_id: 1
