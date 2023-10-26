@@ -101,6 +101,77 @@ module LicsHelper
     }
   end
 
+  def size_net_assets_chart_styling
+    {
+      prefix: "$",
+      suffix: "M",
+      thousands: ",",
+      colors: ["#d4541b"],
+      height: "400px",
+      library: {
+        chart: {backgroundColor: '#f3eee8'},
+        tooltip: {
+          enabled: false
+        },
+        xAxis: {
+          labels: {
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          },
+          gridLineColor: '#A9A9A9',
+          lineColor: '#005454'
+        },
+        yAxis: {
+          labels: {
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          },
+          gridLineColor: '#A9A9A9'
+        },
+        responsive: {
+          rules: [{
+            condition: {
+              maxWidth: 767
+            },
+            chartOptions: {
+              tooltip: {
+                enabled: true
+              },
+              xAxis: {
+                labels: {
+                  style: {fontSize: '10px'}
+                }
+              },
+              yAxis: {
+                labels: {
+                  style: {fontSize: '10px'}
+                }
+              },
+              plotOptions: {
+                series: {
+                  dataLabels: {
+                    enabled: false
+                  }
+                }
+              }
+            }
+          }]
+        },
+        plotOptions: {
+          series: {
+            dataLabels: {
+              enabled: true,
+              format: '${point.y}M',
+              align: 'center',
+              verticalAlign: 'top',
+              y: -30,
+              zIndex: 1000,
+              style: {color: '#d4541b', fontSize: '14px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
+            }
+          }
+        }
+      }
+    }
+  end
+  
   def dividend_history_chart_styling
     {
       prefix: "$",
@@ -180,78 +251,6 @@ module LicsHelper
       }
     }
   end
-
-  def size_net_assets_chart_styling
-    {
-      prefix: "$",
-      suffix: "M",
-      thousands: ",",
-      colors: ["#d4541b"],
-      height: "400px",
-      library: {
-        chart: {backgroundColor: '#f3eee8'},
-        tooltip: {
-          enabled: false
-        },
-        xAxis: {
-          labels: {
-            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
-          },
-          gridLineColor: '#A9A9A9',
-          lineColor: '#005454'
-        },
-        yAxis: {
-          labels: {
-            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
-          },
-          gridLineColor: '#A9A9A9'
-        },
-        responsive: {
-          rules: [{
-            condition: {
-              maxWidth: 767
-            },
-            chartOptions: {
-              tooltip: {
-                enabled: true
-              },
-              xAxis: {
-                labels: {
-                  style: {fontSize: '10px'}
-                }
-              },
-              yAxis: {
-                labels: {
-                  style: {fontSize: '10px'}
-                }
-              },
-              plotOptions: {
-                series: {
-                  dataLabels: {
-                    enabled: false
-                  }
-                }
-              }
-            }
-          }]
-        },
-        plotOptions: {
-          series: {
-            dataLabels: {
-              enabled: true,
-              format: '${point.y}M',
-              align: 'center',
-              verticalAlign: 'top',
-              y: -30,
-              zIndex: 1000,
-              style: {color: '#d4541b', fontSize: '14px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
-            }
-          }
-        }
-      }
-    }
-  end
-  
   
 
   def share_price_vs_nta_chart_styling(selected_time_duration, selected_tax_type, lic)
