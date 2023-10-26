@@ -67,10 +67,22 @@ class Lic < ApplicationRecord
                             .last(10)
     
         chart_data = data.map do |year, amount|
-          [year.to_s, amount]
+            [year.to_s,amount]
         end
     
         chart_data
+    end
+
+    def calculate_dividend_yield(year)
+        dividend_amount = DividendHistory.where(lic_id: id, year: year).sum(:cash_amount)
+        opening_share_price = SharePriceSummary.find_by(lic_id: id, year: year).sp_opening
+
+        if opening_share_price
+            dividend_yield = (dividend_amount/opening_share_price) * 100
+            return dividend_yield.round(1)
+        else
+            nil
+        end
     end
 
     def chart_share_price_vs_nta(time_duration_in_years, tax_type)
