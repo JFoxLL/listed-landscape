@@ -60,21 +60,41 @@ class Lic < ApplicationRecord
     end
 
     def chart_dividend_history
-        data = DividendHistory.where(lic_id: id)
-                            .group(:year)
-                            .sum(:cash_amount)
-                            .sort_by { |year, _amount| year }
-                            .last(10)
+        interim_data = DividendHistory.where(lic_id: id, dividend_phase: 'Interim')
+                                      .group(:year)
+                                      .sum(:cash_amount)
+        
+        final_data = DividendHistory.where(lic_id: id, dividend_phase: 'Final')
+                                    .group(:year)
+                                    .sum(:cash_amount)
+        
+        special_data = DividendHistory.where(lic_id: id, dividend_phase: 'Special')
+                                      .group(:year)
+                                      .sum(:cash_amount)
     
-        chart_data = data.map do |year, amount|
-            dividend_yield_net = dividend_yield_net_calculation(year)
-            dividend_yield_gross = dividend_yield_gross_calculation(year)
-            ["#{year.to_s}<br><br>#{dividend_yield_net}%<br>#{dividend_yield_gross}%",amount]
+        years = (interim_data.keys + final_data.keys + special_data.keys).uniq.sort.last(10)
+    
+        chart_data = years.map do |year|
+          interim = interim_data[year] || 0
+          final = final_data[year] || 0
+          special = special_data[year] || 0
+          total = interim + final + special
+
+          dividend_yield_net = dividend_yield_net_calculation(year)
+          dividend_yield_gross = dividend_yield_gross_calculation(year)
+    
+          {
+            year: "#{year}<br><br>#{dividend_yield_net}%<br>#{dividend_yield_gross}%",
+            interim: interim,
+            final: final,
+            special: special,
+            total: total
+          }
         end
     
         chart_data
     end
-
+  
     def dividend_yield_net_calculation(year)
         dividend_amount = DividendHistory.where(lic_id: id, year: year).sum(:cash_amount)
         opening_share_price = SharePriceSummary.find_by(lic_id: id, year: year).sp_opening
