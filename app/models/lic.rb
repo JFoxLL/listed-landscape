@@ -67,19 +67,36 @@ class Lic < ApplicationRecord
                             .last(10)
     
         chart_data = data.map do |year, amount|
-            [year.to_s,amount]
+            dividend_yield_net = dividend_yield_net_calculation(year)
+            dividend_yield_gross = dividend_yield_gross_calculation(year)
+            ["#{year.to_s}<br><br>#{dividend_yield_net}%<br>#{dividend_yield_gross}%",amount]
         end
     
         chart_data
     end
 
-    def calculate_dividend_yield(year)
+    def dividend_yield_net_calculation(year)
         dividend_amount = DividendHistory.where(lic_id: id, year: year).sum(:cash_amount)
         opening_share_price = SharePriceSummary.find_by(lic_id: id, year: year).sp_opening
 
         if opening_share_price
-            dividend_yield = (dividend_amount/opening_share_price) * 100
-            return dividend_yield.round(1)
+            dividend_yield_net = (dividend_amount/opening_share_price) * 100
+            return dividend_yield_net.round(1)
+        else
+            nil
+        end
+    end
+
+    def dividend_yield_gross_calculation(year)
+        cash_dividend_amount = DividendHistory.where(lic_id: id, year: year).sum(:cash_amount)
+        franking_credit_amount = DividendHistory.where(lic_id: id, year: year).sum(:franking_credit_amount)
+        total_dividend_amount = cash_dividend_amount + franking_credit_amount
+
+        opening_share_price = SharePriceSummary.find_by(lic_id: id, year: year).sp_opening
+
+        if opening_share_price
+            dividend_yield_gross = (total_dividend_amount/opening_share_price) * 100
+            return dividend_yield_gross.round(1)
         else
             nil
         end
