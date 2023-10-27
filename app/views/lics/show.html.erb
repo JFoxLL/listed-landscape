@@ -89,13 +89,13 @@
         </tr>
         <tr class="mobile-hide last-row">
           <td class="label">Objective</td>
-          <td class="value"><%= @lic.objective %></td>
+          <td class="value"><%= @lic.objective.gsub('<br>', '<br><br>').html_safe %></td>
         </tr>
         <tr class="desktop-hide last-row">
           <td class="label">Objective</td>
         </tr>
         <tr class="desktop-hide last-row">
-          <td colspan="2" class="value"><%= @lic.objective %></td>
+          <td colspan="2" class="value"><%= @lic.objective.gsub('<br>', '<br><br>').html_safe %></td>
         </tr>
       </tbody>
     </table>
