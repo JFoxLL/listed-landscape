@@ -50,8 +50,6 @@ class LicsController < ApplicationController
         end
       end
     end
-
-    
   end
 
   private
