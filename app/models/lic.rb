@@ -84,7 +84,7 @@ class Lic < ApplicationRecord
           dividend_yield_gross = dividend_yield_gross_calculation(year)
     
           {
-            year: "#{year}<br>-<br>$#{total.round(2)}<br>#{dividend_yield_net}%<br>#{dividend_yield_gross}%",
+            year: "#{year}<br>-<br>$#{total.round(4)}<br>#{dividend_yield_net}%<br>#{dividend_yield_gross}%",
             interim: interim,
             final: final,
             special: special,
