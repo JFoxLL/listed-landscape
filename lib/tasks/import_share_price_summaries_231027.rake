@@ -1,6 +1,6 @@
 namespace :db do
     desc "Import share price summaries data from CSV file"
-    task import_share_price_summaries: :environment do
+    task import_share_price_summaries_231027: :environment do
       require 'csv'
   
       # Step to remove all existing records
@@ -8,7 +8,7 @@ namespace :db do
       SharePriceSummary.destroy_all
       puts "All existing records removed successfully!"
   
-      filepath = Rails.root.join('db', 'import_data', 'share_price_summaries_231026.csv')
+      filepath = Rails.root.join('db', 'import_data', 'share_price_summaries_231027.csv')
   
       puts "Importing Share Price Summaries data..."
   

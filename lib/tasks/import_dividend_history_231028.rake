@@ -1,6 +1,6 @@
 namespace :db do
     desc "Import dividend history data from CSV file"
-    task import_dividend_histories: :environment do
+    task import_dividend_history_231028: :environment do
       require 'csv'
   
       # Step to remove all existing records
@@ -8,7 +8,7 @@ namespace :db do
       DividendHistory.destroy_all
       puts "All existing records removed successfully!"
   
-      filepath = Rails.root.join('db', 'import_data', 'dividend_history_231025.csv')
+      filepath = Rails.root.join('db', 'import_data', 'dividend_history_231028.csv')
   
       puts "Importing Dividend History data..."
   
