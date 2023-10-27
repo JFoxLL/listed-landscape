@@ -175,7 +175,7 @@ module LicsHelper
   def dividend_history_chart_styling
     {
       prefix: "$",
-      colors: ["#de9779", "#005454", "#d4541b"],
+      colors: ["#005454", "#d4541b", "#de9779"],
       height: "400px",
       library: {
         chart: {
@@ -183,9 +183,15 @@ module LicsHelper
           backgroundColor: '#f3eee8'
         },
         tooltip: {
-          enabled: true
+          enabled: true,
+          headerFormat: '',
+          pointFormat: '${point.y}'
         },
         xAxis: {
+          title: {
+            text: "<br><br>Total Dividend Amount & Dividend Yields (Net & Gross)",
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          },
           labels: {
             style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
           },
@@ -238,8 +244,8 @@ module LicsHelper
           },
           series: {
             dataLabels: {
-              enabled: true,
-              format: '${point.y:.2f}',
+              enabled: false,
+              format: '${point.y}',
               align: 'center',
               verticalAlign: 'middle',
               y: 0,
