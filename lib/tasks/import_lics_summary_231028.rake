@@ -2,10 +2,10 @@
 
 namespace :db do
     desc "Import LICs data from CSV file"
-    task import_lics_summary_231027: :environment do
+    task import_lics_summary_231028: :environment do
       require 'csv'
   
-      csv_file_path = Rails.root.join('db', 'import_data', 'lics_summary_import_231027.csv')
+      csv_file_path = Rails.root.join('db', 'import_data', 'lics_summary_231028.csv')
   
       CSV.foreach(csv_file_path, headers: true) do |row|
         lic = Lic.find_or_initialize_by(ticker: row['ticker'])
