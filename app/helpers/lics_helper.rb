@@ -188,12 +188,8 @@ module LicsHelper
           pointFormat: '${point.y}'
         },
         xAxis: {
-          title: {
-            text: "<br><br>Total Dividend Amount & Dividend Yields (Net & Gross)",
-            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
-          },
           labels: {
-            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
           },
           gridLineColor: '#A9A9A9',
           lineColor: '#005454'
@@ -220,12 +216,12 @@ module LicsHelper
               },
               xAxis: {
                 labels: {
-                  style: {fontSize: '10px'}
+                  style: {fontSize: '6px'}
                 }
               },
               yAxis: {
                 labels: {
-                  style: {fontSize: '10px'}
+                  style: {fontSize: '8px'}
                 }
               },
               plotOptions: {
