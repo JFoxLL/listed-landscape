@@ -1,9 +1,9 @@
 <li class="key-person">
   <div class="key-person-top">
     <% if person.kp_image_saved == 'Yes' %>
-      <img class="key-person-image" src="<%= asset_path "kp_profile_images/#{person.kp_image_file_name}" %>" alt="<%= person.kp_name %>">
+      <img class="key-person-image" src="<%= asset_path "kp_profile_images/#{person.kp_image_file_name}.png" %>" alt="<%= person.kp_name %>">
     <% else %>
-      <img class="key-person-image" src="<%= asset_path "kp_profile_images/kp_image_placeholder" %>" alt="<%= person.kp_name %>">
+      <img class="key-person-image" src="<%= asset_path "kp_profile_images/kp_image_placeholder.png" %>" alt="<%= person.kp_name %>">
     <% end %>
     <div class="key-person-info">
       <h3 class="key-person-name"><%= person.kp_name %></h3>
