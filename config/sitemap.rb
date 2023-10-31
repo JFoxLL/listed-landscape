@@ -16,9 +16,7 @@ end
 # Notes:
   # To refresh the sitemap:
     # run: rake sitemap:refresh:no_ping
-    # Push to Heroku
-    # Update sitemap in Google Cloud Storage bucket
-
+    # Push to Heroku (git push heroku main)
 
 
 # Gem default instructions:
