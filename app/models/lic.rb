@@ -98,14 +98,17 @@ class Lic < ApplicationRecord
 
         #---#
         div_amount_net_data_hash = DividendHistory.where(lic_id: id)
+                                                        .order(:year)
                                                         .group(:year)
                                                         .sum(:cash_amount)
         
         div_amount_gross_data_hash = DividendHistory.where(lic_id: id)
+                                                        .order(:year)
                                                         .group(:year)
                                                         .sum(:grossed_up_amount)
 
         sp_opening_data_hash = SharePriceSummary.where(lic_id: id)
+                                                        .order(:year)
                                                         .pluck(:year, :sp_opening)
                                                         .to_h
         #---#
