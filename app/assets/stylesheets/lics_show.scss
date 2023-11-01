@@ -361,6 +361,7 @@ tr {
 .chart-number-shareholders,
 .chart-size-net-assets,
 .chart-dividend-history,
+.chart-dividend-yield,
 .chart-share-price-vs-nta {
   background-color: #f3eee8;
   border-radius: 20px;
@@ -379,7 +380,6 @@ tr {
         padding: 15px 0px 15px 0px;
     }
 }
-
 
 #chart-share-price-vs-nta-filter-options {
   padding-bottom: 10px;
@@ -430,7 +430,6 @@ tr {
 .chart-share-price-vs-nta-button:hover {
   background-color: #004040;
 }
-
 
   
 
