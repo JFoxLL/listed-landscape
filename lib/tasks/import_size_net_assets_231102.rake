@@ -1,6 +1,6 @@
 namespace :db do
     desc "Import Size Net Assets data from CSV"
-    task import_size_net_assets: :environment do
+    task import_size_net_assets_231102: :environment do
       require 'csv'
   
       # Step to remove all existing records
@@ -8,7 +8,7 @@ namespace :db do
       SizeNetAsset.destroy_all
       puts "All existing records removed successfully!"
   
-      file_path = Rails.root.join('db', 'import_data', 'size_net_assets_231017.csv')
+      file_path = Rails.root.join('db', 'import_data', 'size_net_assets_231102.csv')
   
       puts "Importing Size Net Assets data..."
   
@@ -30,4 +30,3 @@ namespace :db do
       puts "Size Net Assets data imported successfully!"
     end
   end
-  
