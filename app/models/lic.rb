@@ -80,11 +80,9 @@ class Lic < ApplicationRecord
           special = special_data[year] || 0
           total = interim + final + special
 
-          dividend_yield_net = dividend_yield_net_calculation(year)
-          dividend_yield_gross = dividend_yield_gross_calculation(year)
     
           {
-            year: "#{year}<br><br>$#{total.round(2)}<br>#{dividend_yield_net}%<br>#{dividend_yield_gross}%",
+            year: "#{year}<br><br>$#{total.round(2)}",
             interim: interim,
             final: final,
             special: special,
@@ -94,34 +92,62 @@ class Lic < ApplicationRecord
     
         chart_data
     end
+
+    def chart_dividend_yield
+        chart_data = []
+
+        #---#
+        div_amount_net_data_hash = DividendHistory.where(lic_id: id)
+                                                        .group(:year)
+                                                        .sum(:cash_amount)
+        
+        div_amount_gross_data_hash = DividendHistory.where(lic_id: id)
+                                                        .group(:year)
+                                                        .sum(:grossed_up_amount)
+
+        sp_opening_data_hash = SharePriceSummary.where(lic_id: id)
+                                                        .pluck(:year, :sp_opening)
+                                                        .to_h
+        #---#
+        
+        #---#
+        div_yield_net_data_hash = {}
+        
+        div_amount_net_data_hash.each do |year, div_amount|
+            div_yield_net_calc = ((div_amount / sp_opening_data_hash[year]) * 100).round(1)
+            year_str = year.to_s
+            div_yield_net_data_hash[year_str] = div_yield_net_calc
+        end
+
+        div_yield_net = {
+            name: "Cash Dividend Yield",
+            data: div_yield_net_data_hash
+        }
+        #---#
+
+        #---#
+        div_yield_gross_data_hash = {}
+
+        div_amount_gross_data_hash.each do |year, div_amount|
+            div_yield_gross_calc = ((div_amount / sp_opening_data_hash[year]) * 100).round(1)
+            year_str = year.to_s
+            div_yield_gross_data_hash[year_str] = div_yield_gross_calc
+        end
+
+        div_yield_gross = {
+            name: "Gross Dividend Yield (including Franking)",
+            data: div_yield_gross_data_hash
+        }
+        #---#
+
+        #---#
+        chart_data << div_yield_net
+        chart_data << div_yield_gross
+        #---#
+
+        return chart_data
+    end
   
-    def dividend_yield_net_calculation(year)
-        dividend_amount = DividendHistory.where(lic_id: id, year: year).sum(:cash_amount)
-        opening_share_price = SharePriceSummary.find_by(lic_id: id, year: year).sp_opening
-
-        if opening_share_price
-            dividend_yield_net = (dividend_amount/opening_share_price) * 100
-            return dividend_yield_net.round(1)
-        else
-            nil
-        end
-    end
-
-    def dividend_yield_gross_calculation(year)
-        cash_dividend_amount = DividendHistory.where(lic_id: id, year: year).sum(:cash_amount)
-        franking_credit_amount = DividendHistory.where(lic_id: id, year: year).sum(:franking_credit_amount)
-        total_dividend_amount = cash_dividend_amount + franking_credit_amount
-
-        opening_share_price = SharePriceSummary.find_by(lic_id: id, year: year).sp_opening
-
-        if opening_share_price
-            dividend_yield_gross = (total_dividend_amount/opening_share_price) * 100
-            return dividend_yield_gross.round(1)
-        else
-            nil
-        end
-    end
-
     def chart_share_price_vs_nta(time_duration_in_years, tax_type)
         records = fetch_records(time_duration_in_years)
     
@@ -150,7 +176,6 @@ class Lic < ApplicationRecord
         average = sum / records.count
         return average.round(1)
     end
-
 
     private
 
