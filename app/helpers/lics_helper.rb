@@ -171,15 +171,88 @@ module LicsHelper
       }
     }
   end
-  
-  def dividend_history_chart_styling
+
+  def dividend_history_annualised_chart_styling
+    {
+      prefix: "$",
+      colors: ["#d4541b"],
+      height: "400px",
+      library: {
+        chart: {backgroundColor: '#f3eee8'},
+        tooltip: {
+          enabled: false
+        },
+        xAxis: {
+          labels: {
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          },
+          gridLineColor: '#A9A9A9',
+          lineColor: '#005454'
+        },
+        yAxis: {
+          labels: {
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          },
+          gridLineColor: '#A9A9A9'
+        },
+        legend: {
+          enabled: true,
+          align: 'center',
+          verticalAlign: 'top'
+        },
+        responsive: {
+          rules: [{
+            condition: {
+              maxWidth: 767
+            },
+            chartOptions: {
+              tooltip: {
+                enabled: true
+              },
+              xAxis: {
+                labels: {
+                  style: {fontSize: '10px'}
+                }
+              },
+              yAxis: {
+                labels: {
+                  style: {fontSize: '10px'}
+                }
+              },
+              plotOptions: {
+                series: {
+                  dataLabels: {
+                    enabled: false
+                  }
+                }
+              }
+            }
+          }]
+        },
+        plotOptions: {
+          series: {
+            dataLabels: {
+              enabled: true,
+              format: '${point.y}',
+              align: 'center',
+              verticalAlign: 'top',
+              y: -30,
+              zIndex: 1000,
+              style: {color: '#d4541b', fontSize: '14px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
+            }
+          }
+        }
+      }
+    }
+  end
+
+  def dividend_history_split_chart_styling
     {
       prefix: "$",
       colors: ["#005454", "#d4541b", "#de9779"],
       height: "400px",
       library: {
         chart: {
-          type: 'column',
           backgroundColor: '#f3eee8'
         },
         tooltip: {
@@ -216,12 +289,12 @@ module LicsHelper
               },
               xAxis: {
                 labels: {
-                  style: {fontSize: '6px'}
+                  style: {fontSize: '10px'}
                 }
               },
               yAxis: {
                 labels: {
-                  style: {fontSize: '8px'}
+                  style: {fontSize: '10px'}
                 }
               },
               plotOptions: {
@@ -235,23 +308,15 @@ module LicsHelper
           }]
         },
         plotOptions: {
-          column: {
-            stacking: 'normal'
-          },
           series: {
             dataLabels: {
-              enabled: false,
-              format: '${point.y}',
-              align: 'center',
-              verticalAlign: 'middle',
-              y: 0,
-              zIndex: 5,
-              style: {color: '#f3eee8', fontSize: '14px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
+              enabled: false
             }
           },
         }
       }
     }
+
   end
 
   def dividend_yield_chart_styling

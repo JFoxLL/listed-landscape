@@ -59,40 +59,74 @@ class Lic < ApplicationRecord
         investment_managers.sort_by(&:kp_year_joined)
     end
 
-    def chart_dividend_history
-        interim_data = DividendHistory.where(lic_id: id, dividend_phase: 'Interim')
-                                      .group(:year)
-                                      .sum(:cash_amount)
-        
-        final_data = DividendHistory.where(lic_id: id, dividend_phase: 'Final')
-                                    .group(:year)
-                                    .sum(:cash_amount)
-        
-        special_data = DividendHistory.where(lic_id: id, dividend_phase: 'Special')
-                                      .group(:year)
-                                      .sum(:cash_amount)
-    
-        years = (interim_data.keys + final_data.keys + special_data.keys).uniq.sort.last(10)
-    
-        chart_data = years.map do |year|
-          interim = interim_data[year] || 0
-          final = final_data[year] || 0
-          special = special_data[year] || 0
-          total = interim + final + special
+    def chart_dividend_history_annualised
+        chart_data = []
 
-    
-          {
-            year: "#{year}<br><br>$#{total.round(2)}",
-            interim: interim,
-            final: final,
-            special: special,
-            total: total
-          }
-        end
-    
-        chart_data
+        total_div_amount_data_hash = DividendHistory.where(lic_id: id)
+                                                    .order(:year)
+                                                    .group(:year)
+                                                    .sum(:cash_amount)
+                                                    .transform_values { |value| value.round(4) }
+
+        total_div_amount = {
+            name: "Total Dividends",
+            data: total_div_amount_data_hash
+        }                
+
+        chart_data << total_div_amount
+
+        return chart_data
     end
 
+    def chart_dividend_history_split
+        chart_data = []
+
+        #---#
+        interim_div_amount_data_hash = DividendHistory.where(lic_id: id, dividend_phase: 'Interim')
+                                                        .order(:year)
+                                                        .group(:year)
+                                                        .sum(:cash_amount)
+                                                        .transform_values { |value| value.round(4) }
+
+        final_div_amount_data_hash = DividendHistory.where(lic_id: id, dividend_phase: 'Final')
+                                                        .order(:year)
+                                                        .group(:year)
+                                                        .sum(:cash_amount)
+                                                        .transform_values { |value| value.round(4) }
+
+        special_div_amount_data_hash = DividendHistory.where(lic_id: id, dividend_phase: 'Special')
+                                                        .order(:year)
+                                                        .group(:year)
+                                                        .sum(:cash_amount)
+                                                        .transform_values { |value| value.round(4) }
+        #---#
+
+        #---#
+        interim_div_amount = {
+            name: "Interim",
+            data: interim_div_amount_data_hash
+        }
+
+        final_div_amount = {
+            name: "Final",
+            data: final_div_amount_data_hash
+        }
+
+        special_div_amount = {
+            name: "Special",
+            data: special_div_amount_data_hash
+        }
+        #---#
+
+        #---#
+        chart_data << special_div_amount
+        chart_data << final_div_amount
+        chart_data << interim_div_amount
+        #---#
+
+        return chart_data                                              
+    end
+ 
     def chart_dividend_yield
         chart_data = []
 

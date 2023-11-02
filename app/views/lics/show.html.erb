@@ -159,19 +159,21 @@
 <section>
   <h2 id="dividends">Dividends</h2>
 
-    <h3>Dividend History</h3>
+    <h3>Dividend History - Annualised</h3>
       <div class="chart-dividend-history">
-        <%= column_chart [
-          { name: "Special", data: @lic.chart_dividend_history.map { |data| [data[:year], data[:special]] }},
-          { name: "Final", data: @lic.chart_dividend_history.map { |data| [data[:year], data[:final]] }},
-          { name: "Interim", data: @lic.chart_dividend_history.map { |data| [data[:year], data[:interim]] }},
-        ], **dividend_history_chart_styling %>
+        <%= column_chart @lic.chart_dividend_history_annualised, **dividend_history_annualised_chart_styling %>
       </div>
 
-      <h3>Corresponding Dividend Yields</h3>
-        <div class="chart-dividend-yield">
-          <%= line_chart @lic.chart_dividend_yield, **dividend_yield_chart_styling %>
-        </div>
+    <h3>Dividend History - Split</h3>
+      <div class="chart-dividend-history">
+        <%= column_chart @lic.chart_dividend_history_split, stacked: true, **dividend_history_split_chart_styling %>
+        
+      </div>
+
+    <h3>Corresponding Dividend Yields</h3>
+      <div class="chart-dividend-yield">
+        <%= line_chart @lic.chart_dividend_yield, **dividend_yield_chart_styling %>
+      </div>
 
 </section>
 
