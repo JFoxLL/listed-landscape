@@ -40,7 +40,9 @@ module LicsHelper
       library: {
         chart: {backgroundColor: '#f3eee8'},
         tooltip: {
-          enabled: false
+          enabled: true,
+          headerFormat: '<b>{point.key}:</b><br>',
+          pointFormat: '{point.y}K'
         },
         xAxis: {
           labels: {
@@ -55,34 +57,10 @@ module LicsHelper
           },
           gridLineColor: '#A9A9A9'
         },
-        responsive: {
-          rules: [{
-            condition: {
-              maxWidth: 767
-            },
-            chartOptions: {
-              tooltip: {
-                enabled: true
-              },
-              xAxis: {
-                labels: {
-                  style: {fontSize: '10px'}
-                }
-              },
-              yAxis: {
-                labels: {
-                  style: {fontSize: '10px'}
-                }
-              },
-              plotOptions: {
-                series: {
-                  dataLabels: {
-                    enabled: false
-                  }
-                }
-              }
-            }
-          }]
+        legend: {
+          enabled: true,
+          align: 'center',
+          verticalAlign: 'top'
         },
         plotOptions: {
           series: {
@@ -96,35 +74,6 @@ module LicsHelper
               style: {color: '#d4541b', fontSize: '14px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
             }
           }
-        }
-      }
-    }
-  end
-
-  def size_net_assets_chart_styling
-    {
-      prefix: "$",
-      suffix: "M",
-      thousands: ",",
-      colors: ["#d4541b"],
-      height: "400px",
-      library: {
-        chart: {backgroundColor: '#f3eee8'},
-        tooltip: {
-          enabled: false
-        },
-        xAxis: {
-          labels: {
-            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
-          },
-          gridLineColor: '#A9A9A9',
-          lineColor: '#005454'
-        },
-        yAxis: {
-          labels: {
-            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
-          },
-          gridLineColor: '#A9A9A9'
         },
         responsive: {
           rules: [{
@@ -148,26 +97,167 @@ module LicsHelper
               plotOptions: {
                 series: {
                   dataLabels: {
-                    enabled: false
+                    enabled: false,
                   }
                 }
               }
             }
           }]
         },
+      }
+    }
+  end
+
+  def size_net_assets_b_chart_styling
+    {
+      prefix: "$",
+      suffix: "B",
+      thousands: ",",
+      colors: ["#d4541b"],
+      height: "400px",
+      library: {
+        chart: {backgroundColor: '#f3eee8'},
+        tooltip: {
+          enabled: true,
+          headerFormat: '<b>{point.key}:</b><br>',
+          pointFormat: '{point.y}B'
+        },
+        xAxis: {
+          labels: {
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          },
+          gridLineColor: '#A9A9A9',
+          lineColor: '#005454'
+        },
+        yAxis: {
+          labels: {
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          },
+          gridLineColor: '#A9A9A9'
+        },
+        legend: {
+          align: 'center',
+          verticalAlign: 'top'
+        },
         plotOptions: {
           series: {
             dataLabels: {
-              enabled: true,
-              format: '${point.y}M',
-              align: 'center',
-              verticalAlign: 'top',
-              y: -30,
-              zIndex: 1000,
-              style: {color: '#d4541b', fontSize: '14px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
+            enabled: true,
+            format: '${point.y}B',
+            align: 'center',
+            verticalAlign: 'top',
+            y: -30,
+            zIndex: 5,
+            style: {color: '#d4541b', fontSize: '14px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
             }
           }
-        }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+              maxWidth: 767
+            },
+            chartOptions: {
+              tooltip: {
+                enabled: true
+              },
+              xAxis: {
+                labels: {
+                  style: {fontSize: '10px'}
+                }
+              },
+              yAxis: {
+                labels: {
+                  style: {fontSize: '10px'}
+                }
+              },
+              plotOptions: {
+                series: {
+                  dataLabels: {
+                  enabled: false
+                  }
+                }
+              }
+            }
+          }]
+        },
+      }
+    }
+  end
+
+  def size_net_assets_m_chart_styling
+    {
+      prefix: "$",
+      suffix: "M",
+      thousands: ",",
+      colors: ["#d4541b"],
+      height: "400px",
+      library: {
+        chart: {backgroundColor: '#f3eee8'},
+        tooltip: {
+          enabled: true,
+          headerFormat: '<b>{point.key}:</b><br>',
+          pointFormat: '{point.y}M'
+        },
+        xAxis: {
+          labels: {
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          },
+          gridLineColor: '#A9A9A9',
+          lineColor: '#005454'
+        },
+        yAxis: {
+          labels: {
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          },
+          gridLineColor: '#A9A9A9'
+        },
+        legend: {
+          align: 'center',
+          verticalAlign: 'top'
+        },
+        plotOptions: {
+          series: {
+            dataLabels: {
+            enabled: true,
+            format: '${point.y}M',
+            align: 'center',
+            verticalAlign: 'top',
+            y: -30,
+            zIndex: 5,
+            style: {color: '#d4541b', fontSize: '14px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+              maxWidth: 767
+            },
+            chartOptions: {
+              tooltip: {
+                enabled: true
+              },
+              xAxis: {
+                labels: {
+                  style: {fontSize: '10px'}
+                }
+              },
+              yAxis: {
+                labels: {
+                  style: {fontSize: '10px'}
+                }
+              },
+              plotOptions: {
+                series: {
+                  dataLabels: {
+                  enabled: false
+                  }
+                }
+              }
+            }
+          }]
+        },
       }
     }
   end
@@ -330,7 +420,7 @@ module LicsHelper
         },
         tooltip: {
           enabled: true,
-          headerFormat: '{point.key}<br>',
+          headerFormat: '<b>{point.key}:</b><br>',
           pointFormat: '{point.y}%'
         },
         xAxis: {
@@ -358,11 +448,6 @@ module LicsHelper
               maxWidth: 767
             },
             chartOptions: {
-              tooltip: {
-                enabled: true,
-                headerFormat: '{point.key}<br>',
-                pointFormat: '{point.y}%'
-              },
               xAxis: {
                 labels: {
                   style: {fontSize: '10px'}
