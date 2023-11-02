@@ -13,39 +13,94 @@ class Lic < ApplicationRecord
     end
 
     def chart_number_shareholders
-        data = NumberShareholder.where(lic_id: id).order(year: :asc).pluck(:year, :number_shareholders)
-        start_year = [data.length - 10, 0].max
+        chart_data = []
+
+        num_shareholders_data_hash = NumberShareholder.where(lic_id: id)
+                                                        .order(:year)
+                                                        .pluck(:year, :number_shareholders)
+
+        num_shareholders_data_hash_formatted = {}
         
-        chart_data = data[start_year..-1].map do |entry|
-          year = entry[0].to_s
-          number = entry[1]
-      
-          formatted_number = if number < 10_000
-            (number / 1000.0).round(1)
-          else
-            (number / 1000).round
-          end
-          
-          [year, formatted_number]
+        num_shareholders_data_hash.each do |year, num_s|
+            year_str = year.to_s
+            
+            num_s_formatted = if num_s < 10_000
+                (num_s / 1000.0).round(1)
+            else
+                (num_s / 1000).round
+            end
+
+            num_shareholders_data_hash_formatted[year_str] = num_s_formatted      
         end
-        
-        chart_data
+
+        num_shareholders = {
+            name: "Number of Shareholders",
+            data: num_shareholders_data_hash_formatted
+        }
+
+        chart_data << num_shareholders
+
+        return chart_data
     end
 
-    def chart_size_net_assets
-        data = SizeNetAsset.where(lic_id: id).order(year: :asc).pluck(:year, :size_net_assets)
-        start_year = [data.length - 10, 0].max
+    # Used to determin which 'Size (Net Assets)' chart to render
+    def max_size
+        max_size = SizeNetAsset.where(lic_id: id)
+                                        .pluck(:size_net_assets)
+                                        .max
+        return max_size
+    end
+
+    def chart_size_net_assets_b
+        chart_data = []
+
+        size_data_hash = SizeNetAsset.where(lic_id: id)
+                                                .order(:year)
+                                                .pluck(:year, :size_net_assets)
+                                                .to_h
         
-        chart_data = data[start_year..-1].map do |entry|
-          year = entry[0].to_s
-          size_net_assets = entry[1]
-      
-          formatted_size = (size_net_assets / 1_000_000.0).round
-          
-          [year, formatted_size]
+        size_data_hash_formatted = {}
+
+        size_data_hash.each do |year, size|
+            year_str = year.to_s
+            size_formatted = (size / 1_000_000_000.0).round(1)
+            size_data_hash_formatted[year_str] = size_formatted
         end
+
+        size = {
+            name: "Size (Net Assets)",
+            data: size_data_hash_formatted,
+        }
+
+        chart_data << size
+
+        return chart_data
+    end
+
+    def chart_size_net_assets_m
+        chart_data = []
+
+        size_data_hash = SizeNetAsset.where(lic_id: id)
+                                                .order(:year)
+                                                .pluck(:year, :size_net_assets)
+                                                .to_h
         
-        chart_data
+        size_data_hash_formatted = {}
+
+        size_data_hash.each do |year, size|
+            year_str = year.to_s
+            size_formatted = (size / 1_000_000.0).round
+            size_data_hash_formatted[year_str] = size_formatted
+        end
+
+        size = {
+            name: "Size (Net Assets)",
+            data: size_data_hash_formatted,
+        }
+
+        chart_data << size
+
+        return chart_data
     end
 
     def key_people_directors

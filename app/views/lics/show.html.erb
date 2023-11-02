@@ -143,12 +143,16 @@
 
     <h3>Number of Shareholders</h3>
     <div class="chart-number-shareholders">
-      <%= column_chart @lic.chart_number_shareholders, **number_shareholders_chart_styling %> 
+      <%= line_chart @lic.chart_number_shareholders, **number_shareholders_chart_styling %> 
     </div>
 
     <h3>Size (Net Assets)</h3>
     <div class="chart-size-net-assets">
-      <%= column_chart @lic.chart_size_net_assets, **size_net_assets_chart_styling %>
+      <% if @lic.max_size > 1_000_000_000 %>
+        <%= line_chart @lic.chart_size_net_assets_b, **size_net_assets_b_chart_styling %>
+      <% else %>
+        <%= line_chart @lic.chart_size_net_assets_m, **size_net_assets_m_chart_styling %>
+      <% end %>
     </div>
 </section>
 
