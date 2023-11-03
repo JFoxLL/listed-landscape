@@ -124,7 +124,7 @@ class Lic < ApplicationRecord
                                                     .transform_values { |value| value.round(4) }
 
         total_div_amount = {
-            name: "Total Dividends",
+            name: "Total Annual Dividends",
             data: total_div_amount_data_hash
         }                
 
