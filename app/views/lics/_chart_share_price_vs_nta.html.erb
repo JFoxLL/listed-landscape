@@ -1,17 +1,28 @@
 <div class="chart-share-price-vs-nta-filter">
+
   <%= form_tag(url_for(action: 'show', id: @lic.slug), method: "get", id: "chart-share-price-vs-nta-filter-options") do %>
+
+    <!-- Tax Type Selection -->
     <div class="chart-share-price-vs-nta-filter-option">
       <label for="tax_type" class="chart-share-price-vs-nta-filter-label">NTA Tax Type:</label>
       <%= select_tag 'tax_type', options_for_select([['Pre Tax', 'pre_tax'], ['Post Tax', 'post_tax']], @selected_tax_type), class: "chart-share-price-vs-nta-filter-select" %>
     </div>
+
+    <!-- Time Duration Selection -->
     <div class="chart-share-price-vs-nta-filter-option">
       <label for="time_duration" class="chart-share-price-vs-nta-filter-label">Time Duration:</label>
       <%= select_tag 'time_duration', options_for_select((1..10).map { |i| [ "#{i} Year#{'s' if i > 1}", i ] }, @selected_time_duration), class: "chart-share-price-vs-nta-filter-select" %>
     </div>
+
+    <!-- Update Chart Button -->
     <%= submit_tag "Update Chart", class: "chart-share-price-vs-nta-button" %>
+
   <% end %>
+
 </div>
 
+
+<!-- SP vs NTA Chart -->
 <div class="chart-share-price-vs-nta">
   <%= column_chart lic.chart_share_price_vs_nta(@selected_time_duration, @selected_tax_type), 
       suffix: "%", 

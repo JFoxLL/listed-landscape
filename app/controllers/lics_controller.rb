@@ -31,6 +31,11 @@ class LicsController < ApplicationController
   def show
     @lic = Lic.find_by!(slug: params[:id])
 
+
+    # Dividend History Chart
+    @dividend_history_view_type = params[:dividend_history_view] || "annualised"
+
+
     # Share Price vs NTA Chart
     @selected_tax_type = params[:tax_type].presence || 'pre_tax'
 
@@ -42,14 +47,23 @@ class LicsController < ApplicationController
 
     @chart_data = @lic.chart_share_price_vs_nta(@selected_time_duration, @selected_tax_type)
 
+    
+    # Turbo-stream responses
     respond_to do |format|
       format.html
       format.turbo_stream do
-        render turbo_stream: turbo_stream.update("chart_share_price_vs_nta") do
-          render partial: "lics/chart_share_price_vs_nta", locals: { lic: @lic, selected_time_duration: @selected_time_duration, selected_tax_type: @selected_tax_type }
+        if params[:dividend_history_view]
+          render turbo_stream: turbo_stream.update("dividend_history") do
+            render partial: "lics/chart_dividend_history_#{@dividend_history_view_type}"
+          end
+        elsif params[:time_duration] || params[:tax_type]
+          render turbo_stream: turbo_stream.update("chart_share_price_vs_nta") do
+            render partial: "lics/chart_share_price_vs_nta", locals: { lic: @lic, selected_time_duration: @selected_time_duration, selected_tax_type: @selected_tax_type }
+          end
         end
       end
     end
+  
   end
 
   private

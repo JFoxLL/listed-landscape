@@ -360,7 +360,8 @@ tr {
 /* Charts */
 .chart-number-shareholders,
 .chart-size-net-assets,
-.chart-dividend-history,
+.chart-dividend-history-annualised,
+.chart-dividend-history-split,
 .chart-dividend-yield,
 .chart-share-price-vs-nta {
   background-color: #f3eee8;
@@ -381,7 +382,8 @@ tr {
     }
 }
 
-#chart-share-price-vs-nta-filter-options {
+#chart-share-price-vs-nta-filter-options,
+#chart-dividend-history-filter-options {
   padding-bottom: 10px;
   
   @include desktop {
@@ -389,7 +391,8 @@ tr {
     justify-content: flex-start;
   }
   
-  .chart-share-price-vs-nta-filter-option {
+  .chart-share-price-vs-nta-filter-option,
+  .chart-dividend-history-filter-option {
     @include desktop {
       padding-right: 20px;
     }
@@ -400,20 +403,24 @@ tr {
 }
 
 .chart-share-price-vs-nta-filter-label,
-.chart-share-price-vs-nta-filter-select {
+.chart-share-price-vs-nta-filter-select,
+.chart_dividend_history_filter_label,
+.chart-dividend-history-filter-select {
   font-family: Georgia, serif;
   font-size: 14px;
   color: #585858;
   margin-right: 10px;
 }
 
-.chart-share-price-vs-nta-filter-select {
+.chart-share-price-vs-nta-filter-select,
+.chart-dividend-history-filter-select {
   padding: 2px;
   border: 1px solid #585858;
   border-radius: 5px;
 }
 
-.chart-share-price-vs-nta-button {
+.chart-share-price-vs-nta-button,
+.chart-dividend-history-button {
   background-color: #005454;
   color: #fcfaf9;
   font-family: 'Georgia', serif;
@@ -427,7 +434,8 @@ tr {
   }
 }
 
-.chart-share-price-vs-nta-button:hover {
+.chart-share-price-vs-nta-button:hover,
+.chart-dividend-history-button:hover {
   background-color: #004040;
 }
 
