@@ -288,7 +288,9 @@ module LicsHelper
       library: {
         chart: {backgroundColor: '#f3eee8'},
         tooltip: {
-          enabled: false
+          enabled: true,
+          headerFormat: '<b>{point.key}:</b><br>',
+          pointFormat: '${point.y}'
         },
         xAxis: {
           labels: {
@@ -371,7 +373,7 @@ module LicsHelper
         },
         tooltip: {
           enabled: true,
-          headerFormat: '',
+          headerFormat: '<b>{point.key}:</b><br>',
           pointFormat: '${point.y}'
         },
         xAxis: {
@@ -422,15 +424,15 @@ module LicsHelper
                 labels: {
                   style: {fontSize: '10px'}
                 }
-              }
-            },
-            plotOptions: {
-              series: {
-                dataLabels: {
-                  enabled: false,
+              },
+              plotOptions: {
+                series: {
+                  dataLabels: {
+                    enabled: false,
+                  }
                 }
-              }
-            },
+              },
+            }
           }]
         }
       }
@@ -519,7 +521,6 @@ module LicsHelper
     }
   end
   
-
   def share_price_vs_nta_chart_styling(selected_time_duration, selected_tax_type, lic)
     step_value = case selected_time_duration.to_i
                  when 1..2 then 1
