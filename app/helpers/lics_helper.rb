@@ -97,7 +97,13 @@ module LicsHelper
               plotOptions: {
                 series: {
                   dataLabels: {
-                    enabled: false,
+                    enabled: true,
+                    format: '{point.y}K',
+                    align: 'center',
+                    verticalAlign: 'top',
+                    y: -30,
+                    zIndex: 5,
+                    style: {color: '#d4541b', fontSize: '8px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
                   }
                 }
               }
@@ -174,7 +180,13 @@ module LicsHelper
               plotOptions: {
                 series: {
                   dataLabels: {
-                  enabled: false
+                    enabled: true,
+                    format: '${point.y}B',
+                    align: 'center',
+                    verticalAlign: 'top',
+                    y: -30,
+                    zIndex: 5,
+                    style: {color: '#d4541b', fontSize: '8px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
                   }
                 }
               }
@@ -251,7 +263,13 @@ module LicsHelper
               plotOptions: {
                 series: {
                   dataLabels: {
-                  enabled: false
+                    enabled: true,
+                    format: '${point.y}M',
+                    align: 'center',
+                    verticalAlign: 'top',
+                    y: -30,
+                    zIndex: 5,
+                    style: {color: '#d4541b', fontSize: '8px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
                   }
                 }
               }
@@ -290,6 +308,19 @@ module LicsHelper
           align: 'center',
           verticalAlign: 'top'
         },
+        plotOptions: {
+          series: {
+            dataLabels: {
+              enabled: true,
+              format: '${point.y}',
+              align: 'center',
+              verticalAlign: 'top',
+              y: -30,
+              zIndex: 1000,
+              style: {color: '#d4541b', fontSize: '14px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
+            }
+          }
+        },
         responsive: {
           rules: [{
             condition: {
@@ -312,26 +343,19 @@ module LicsHelper
               plotOptions: {
                 series: {
                   dataLabels: {
-                    enabled: false
+                    enabled: true,
+                    format: '${point.y}',
+                    align: 'center',
+                    verticalAlign: 'top',
+                    y: -30,
+                    zIndex: 5,
+                    style: {color: '#d4541b', fontSize: '8px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
                   }
                 }
               }
             }
           }]
         },
-        plotOptions: {
-          series: {
-            dataLabels: {
-              enabled: true,
-              format: '${point.y}',
-              align: 'center',
-              verticalAlign: 'top',
-              y: -30,
-              zIndex: 1000,
-              style: {color: '#d4541b', fontSize: '14px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
-            }
-          }
-        }
       }
     }
   end
@@ -368,6 +392,18 @@ module LicsHelper
           align: 'center',
           verticalAlign: 'top'
         },
+        plotOptions: {
+          series: {
+            dataLabels: {
+              enabled: true,
+              format: '${point.y}',
+              align: 'center',
+              y: -10,
+              zIndex: 5,
+              style: {color: '#f3eee8', fontSize: '12px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
+            }
+          }
+        },
         responsive: {
           rules: [{
             condition: {
@@ -386,27 +422,19 @@ module LicsHelper
                 labels: {
                   style: {fontSize: '10px'}
                 }
-              },
-              plotOptions: {
-                series: {
-                  dataLabels: {
-                    enabled: false
-                  }
+              }
+            },
+            plotOptions: {
+              series: {
+                dataLabels: {
+                  enabled: false,
                 }
               }
-            }
+            },
           }]
-        },
-        plotOptions: {
-          series: {
-            dataLabels: {
-              enabled: false
-            }
-          },
         }
       }
     }
-
   end
 
   def dividend_yield_chart_styling
@@ -442,6 +470,19 @@ module LicsHelper
           align: 'center',
           verticalAlign: 'top'
         },
+        plotOptions: {
+          series: {
+            dataLabels: {
+              enabled: true,
+              format: '{point.y}%',
+              align: 'center',
+              verticalAlign: 'top',
+              y: -30,
+              zIndex: 5,
+              style: {color: '#757575', fontSize: '12px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
+            }
+          },
+        },
         responsive: {
           rules: [{
             condition: {
@@ -461,26 +502,19 @@ module LicsHelper
               plotOptions: {
                 series: {
                   dataLabels: {
-                    enabled: false
+                    enabled: true,
+                    format: '{point.y}%',
+                    align: 'center',
+                    verticalAlign: 'top',
+                    y: -30,
+                    zIndex: 5,
+                    style: {color: '#757575', fontSize: '8px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
                   }
                 }
               }
             }
           }]
         },
-        plotOptions: {
-          series: {
-            dataLabels: {
-              enabled: true,
-              format: '{point.y}%',
-              align: 'center',
-              verticalAlign: 'top',
-              y: -30,
-              zIndex: 5,
-              style: {color: '#757575', fontSize: '12px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
-            }
-          },
-        }
       }
     }
   end
