@@ -126,7 +126,7 @@ module LicsHelper
         tooltip: {
           enabled: true,
           headerFormat: '<b>{point.key}:</b><br>',
-          pointFormat: '{point.y}B'
+          pointFormat: '${point.y}B'
         },
         xAxis: {
           labels: {
@@ -209,7 +209,7 @@ module LicsHelper
         tooltip: {
           enabled: true,
           headerFormat: '<b>{point.key}:</b><br>',
-          pointFormat: '{point.y}M'
+          pointFormat: '${point.y}M'
         },
         xAxis: {
           labels: {
@@ -576,7 +576,9 @@ module LicsHelper
           ]
         },
         tooltip: {
-          xDateFormat: '%b-%y'
+          enabled: true,
+          xDateFormat: '<b>%b-%y:</b>',
+          pointFormat: '{point.y}%'
         },
         responsive: {
           rules: [{
