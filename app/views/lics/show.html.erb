@@ -142,12 +142,12 @@
   <h2 id="shareholders-size">Shareholders & Portfolio Size</h2>
 
     <h3>Number of Shareholders</h3>
-    <div class="chart-number-shareholders">
+    <div class="chart-style-template">
       <%= line_chart @lic.chart_number_shareholders, **number_shareholders_chart_styling %> 
     </div>
 
     <h3>Size (Net Assets)</h3>
-    <div class="chart-size-net-assets">
+    <div class="chart-style-template">
       <% if @lic.max_size > 1_000_000_000 %>
         <%= line_chart @lic.chart_size_net_assets_b, **size_net_assets_b_chart_styling %>
       <% else %>
@@ -166,22 +166,22 @@
     <h3>Dividend History</h3>
 
       <!-- Filtering the Dividend History chart -->
-      <%= form_tag listed_investment_company_path(id: @lic.slug), method: :get, data: { turbo_frame: "dividend_history" }, id: "chart-dividend-history-filter-options" do %>
+      <%= form_tag listed_investment_company_path(id: @lic.slug), method: :get, data: { turbo_frame: "dividend_history" }, id: "chart-filter-options" do %>
 
-        <div class="chart-dividend-history-filter-option">
-          <label for="dividend_history_view" class="chart_dividend_history_filter_label">Dividend History View:</label>
+        <div class="chart-filter-option">
+          <label for="dividend_history_view" class="chart-filter-label">Dividend History View:</label>
             <%= select_tag "dividend_history_view", options_for_select([
                 ["Total Annual Dividends", "annualised"],
                 ["Dividend Split", "split"]
                 ],
                 selected: "annualised"
                 ), 
-                class: "chart-dividend-history-filter-select",
+                class: "chart-filter-select",
                 data: { turbo_frame: "dividend_history" }
             %>
         </div>
 
-        <%= button_tag "Update Chart", class: "chart-dividend-history-button", data: { turbo_frame: "dividend_history" } %>
+        <%= button_tag "Update Chart", class: "chart-button", data: { turbo_frame: "dividend_history" } %>
 
     <% end %>
 
@@ -190,7 +190,7 @@
     <% end %>
 
     <h3>Corresponding Dividend Yields</h3>
-      <div class="chart-dividend-yield">
+      <div class="chart-style-template">
         <%= line_chart @lic.chart_dividend_yield, **dividend_yield_chart_styling %>
       </div>
 
