@@ -1,0 +1,16 @@
+<h2>Some Common Questions about <%= @lic.ticker %></h2>
+
+<% @common_questions.each do |common_question| %>
+    <%= common_question.q1_q %>
+    <%= common_question.q1_a.html_safe %>
+    <br>
+    <%= common_question.q2_q %>
+    <%= common_question.q2_a.html_safe %>
+    <br>
+    <%= common_question.q3_q %>
+    <%= common_question.q3_a.html_safe %>
+    <br>
+    <%= common_question.q4_q %>
+    <%= common_question.q4_a.html_safe %>
+
+<% end %>

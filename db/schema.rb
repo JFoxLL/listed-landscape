@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_30_040036) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_07_020617) do
+  create_table "common_questions", force: :cascade do |t|
+    t.string "lic_ticker"
+    t.string "lic_name"
+    t.integer "lic_id"
+    t.text "q1_q"
+    t.text "q1_a"
+    t.text "q2_q"
+    t.text "q2_a"
+    t.text "q3_q"
+    t.text "q3_a"
+    t.text "q4_q"
+    t.text "q4_a"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "dividend_histories", force: :cascade do |t|
     t.string "lic_ticker"
     t.string "lic_name"
