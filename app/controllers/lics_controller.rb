@@ -47,6 +47,10 @@ class LicsController < ApplicationController
 
     @chart_data = @lic.chart_share_price_vs_nta(@selected_time_duration, @selected_tax_type)
 
+
+    # Common Questions
+    @common_questions = @lic.common_questions
+
     
     # Turbo-stream responses
     respond_to do |format|
