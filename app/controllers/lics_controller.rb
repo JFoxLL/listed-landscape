@@ -51,7 +51,6 @@ class LicsController < ApplicationController
     # Common Questions
     @common_questions = @lic.common_questions
 
-    
     # Turbo-stream responses
     respond_to do |format|
       format.html
