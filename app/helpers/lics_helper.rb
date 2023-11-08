@@ -578,7 +578,7 @@ module LicsHelper
         tooltip: {
           enabled: true,
           xDateFormat: '<b>%b-%y:</b>',
-          pointFormat: '{point.y}%'
+          pointFormat: '{point.y:.1f}%'
         },
         responsive: {
           rules: [{
