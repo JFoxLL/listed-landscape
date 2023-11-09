@@ -288,9 +288,7 @@ module LicsHelper
       library: {
         chart: {backgroundColor: '#f3eee8'},
         tooltip: {
-          enabled: true,
-          headerFormat: '<b>{point.key}:</b><br>',
-          pointFormat: '${point.y}'
+          enabled: false
         },
         xAxis: {
           labels: {
@@ -330,7 +328,9 @@ module LicsHelper
             },
             chartOptions: {
               tooltip: {
-                enabled: true
+                enabled: true,
+                headerFormat: '<b>{point.key}:</b><br>',
+                pointFormat: '${point.y}'
               },
               xAxis: {
                 labels: {
@@ -365,7 +365,84 @@ module LicsHelper
   def dividend_history_split_chart_styling
     {
       prefix: "$",
-      colors: ["#005454", "#d4541b", "#de9779"],
+      colors: ["#9f2700", "#d4541b", "#de9779"],
+      height: "400px",
+      library: {
+        chart: {
+          backgroundColor: '#f3eee8'
+        },
+        tooltip: {
+          enabled: true,
+          headerFormat: '<b>{point.key}:</b><br>',
+          pointFormat: '${point.y}'
+        },
+        xAxis: {
+          labels: {
+          style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          },
+          gridLineColor: '#A9A9A9',
+          lineColor: '#005454'
+        },
+        yAxis: {
+          min: 0,
+          labels: {
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          },
+          gridLineColor: '#A9A9A9'
+        },
+        legend: {
+          align: 'center',
+          verticalAlign: 'top'
+        },
+        plotOptions: {
+          series: {
+            dataLabels: {
+              enabled: true,
+              format: '${point.y}',
+              align: 'center',
+              y: -10,
+              zIndex: 5,
+              style: {color: '#f3eee8', fontSize: '12px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+              maxWidth: 767
+            },
+            chartOptions: {
+              tooltip: {
+                enabled: true
+              },
+              xAxis: {
+                labels: {
+                  style: {fontSize: '10px'}
+                }
+              },
+              yAxis: {
+                labels: {
+                  style: {fontSize: '10px'}
+                }
+              },
+              plotOptions: {
+                series: {
+                  dataLabels: {
+                    enabled: false,
+                  }
+                }
+              },
+            }
+          }]
+        }
+      }
+    }
+  end
+
+  def dividend_history_franking_chart_styling
+    {
+      prefix: "$",
+      colors: ["#005454", "#d4541b"],
       height: "400px",
       library: {
         chart: {
