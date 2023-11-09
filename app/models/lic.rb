@@ -134,6 +134,43 @@ class Lic < ApplicationRecord
         return chart_data
     end
 
+    def chart_dividend_history_franking
+        chart_data = []
+
+        #---#
+        total_div_cash_amount_data_hash = DividendHistory.where(lic_id: id)
+                                                            .order(:year)
+                                                            .group(:year)
+                                                            .sum(:cash_amount)
+                                                            .transform_values { |value| value.round(2) }
+        
+        total_div_credit_amount_data_hash = DividendHistory.where(lic_id: id)
+                                                                .order(:year)
+                                                                .group(:year)
+                                                                .sum(:franking_credit_amount)
+                                                                .transform_values { |value| value.round(2) }
+        #---#
+
+        #---#
+        total_div_cash_amount = {
+            name: "Total Annual Cash Dividends",
+            data: total_div_cash_amount_data_hash
+        }
+
+        total_div_credit_amount = {
+            name: "Franking Credits",
+            data: total_div_credit_amount_data_hash
+        }
+        #---#
+
+        #---#
+        chart_data << total_div_credit_amount
+        chart_data << total_div_cash_amount
+        #---#
+
+        return chart_data
+    end
+
     def chart_dividend_history_split
         chart_data = []
 
@@ -183,43 +220,6 @@ class Lic < ApplicationRecord
         return chart_data                                              
     end
 
-    def chart_dividend_history_franking
-        chart_data = []
-
-        #---#
-        total_div_cash_amount_data_hash = DividendHistory.where(lic_id: id)
-                                                            .order(:year)
-                                                            .group(:year)
-                                                            .sum(:cash_amount)
-                                                            .transform_values { |value| value.round(2) }
-        
-        total_div_credit_amount_data_hash = DividendHistory.where(lic_id: id)
-                                                                .order(:year)
-                                                                .group(:year)
-                                                                .sum(:franking_credit_amount)
-                                                                .transform_values { |value| value.round(2) }
-        #---#
-
-        #---#
-        total_div_cash_amount = {
-            name: "Total Annual Cash Dividends",
-            data: total_div_cash_amount_data_hash
-        }
-
-        total_div_credit_amount = {
-            name: "Franking Credits",
-            data: total_div_credit_amount_data_hash
-        }
-        #---#
-
-        #---#
-        chart_data << total_div_credit_amount
-        chart_data << total_div_cash_amount
-        #---#
-
-        return chart_data
-    end
- 
     def chart_dividend_yield
         chart_data = []
 
