@@ -61,9 +61,6 @@ gem "browser"
 # Create and manage sitemap
 gem "sitemap_generator"
 
-# Simple Analytics service
-gem 'simple_analytics_rails'
-
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
