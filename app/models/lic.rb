@@ -5,6 +5,7 @@ class Lic < ApplicationRecord
     has_many :key_people
     has_many :dividend_histories
     has_many :share_price_summaries
+    has_many :share_price_histories
     has_many :common_questions
 
     before_save :set_slug
