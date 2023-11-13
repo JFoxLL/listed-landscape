@@ -14,6 +14,17 @@ class Lic < ApplicationRecord
         slug
     end
 
+    def key_people_directors
+        directors = key_people.where(kp_role_director: 'Yes').where.not(kp_role_chairman: 'Yes')
+        chairman = key_people.where(kp_role_chairman: 'Yes')
+        [chairman, directors.order(:kp_year_joined)].flatten
+    end
+    
+    def key_people_investment_managers
+        investment_managers = key_people.where(kp_role_investmentmanager: 'Yes')
+        investment_managers.sort_by(&:kp_year_joined)
+    end
+
     def chart_number_shareholders
         chart_data = []
 
@@ -105,24 +116,13 @@ class Lic < ApplicationRecord
         return chart_data
     end
 
-    def key_people_directors
-        directors = key_people.where(kp_role_director: 'Yes').where.not(kp_role_chairman: 'Yes')
-        chairman = key_people.where(kp_role_chairman: 'Yes')
-        [chairman, directors.order(:kp_year_joined)].flatten
-    end
-    
-    def key_people_investment_managers
-        investment_managers = key_people.where(kp_role_investmentmanager: 'Yes')
-        investment_managers.sort_by(&:kp_year_joined)
-    end
-
     def chart_performance
         chart_data = []
 
         starting_amount = 10_000
-        performance_timeline_years = 5  # Just static 5 yrs for now, intended to change
+        chart_duration_years = 5  # Just static 5 yrs for now, intended to change
         number_of_days_in_a_year = 365.25
-        days_to_go_back = (performance_timeline_years * number_of_days_in_a_year).round
+        days_to_go_back = (chart_duration_years * number_of_days_in_a_year).round
 
         most_recent_share_price_date = share_price_histories.order(date: :desc).first.date
 
