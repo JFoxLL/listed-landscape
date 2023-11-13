@@ -116,6 +116,37 @@ class Lic < ApplicationRecord
         investment_managers.sort_by(&:kp_year_joined)
     end
 
+    def chart_performance
+        chart_data = []
+
+        starting_amount = 10_000
+        performance_timeline_years = 5  # Just static 5 yrs for now, intended to change
+        number_of_days_in_a_year = 365.25
+        days_to_go_back = (performance_timeline_years * number_of_days_in_a_year).round
+
+        most_recent_share_price_date = share_price_histories.order(date: :desc).first.date
+
+        start_date = [share_price_histories.order(date: :asc).first.date, most_recent_share_price_date - days_to_go_back.days].max
+        share_price_data = share_price_histories.where("date >= ?", start_date).order(date: :asc).pluck(:date, :share_price)
+
+        starting_share_price = share_price_data.first.last
+        starting_number_shares = (starting_amount / starting_share_price).round(2)
+
+        investment_value_data_hash = share_price_data.map do |date, share_price|
+            investment_value = starting_number_shares * share_price
+            [date.to_time.to_i * 1000, investment_value.round]
+        end.to_h
+
+        investment_performance = {
+            name: "Performance - Share Price Only",
+            data: investment_value_data_hash
+        }
+
+        chart_data << investment_performance
+
+        return chart_data
+    end
+
     def chart_dividend_history_annualised
         chart_data = []
 
