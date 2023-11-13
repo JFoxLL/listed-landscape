@@ -280,6 +280,82 @@ module LicsHelper
     }
   end
 
+  def performance_chart_styling
+    {
+      prefix: "$",
+      colors: ["#d4541b"],
+      height: "400px", 
+      library: {
+        chart: {backgroundColor: '#f3eee8'},
+        tooltip: {
+          enabled: true,
+          headerFormat: '<b>{point.key:%e %b, %Y}:</b><br>',
+          pointFormat: '${point.y:,.0f}'
+        },
+        xAxis: {
+          type: 'datetime',
+          dateTimeFormats: {
+            day: '%e %b, %Y'
+          },
+          labels: {
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          },
+          gridLineColor: '#A9A9A9',
+          lineColor: '#005454'
+        },
+        yAxis: {
+          labels: {
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          },
+          gridLineColor: '#A9A9A9'
+        },
+        legend: {
+          enabled: true,
+          align: 'center',
+          verticalAlign: 'top'
+        },
+        plotOptions: {
+          series: {
+            dataLabels: {
+              enabled: false,
+              format: '{point.y}K',
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+              maxWidth: 767
+            },
+            chartOptions: {
+              tooltip: {
+                enabled: true
+              },
+              xAxis: {
+                labels: {
+                  style: {fontSize: '10px'}
+                }
+              },
+              yAxis: {
+                labels: {
+                  style: {fontSize: '10px'}
+                }
+              },
+              plotOptions: {
+                series: {
+                  dataLabels: {
+                    enabled: false
+                  }
+                }
+              }
+            }
+          }]
+        },
+      }
+    }
+
+  end
+
   def dividend_history_annualised_chart_styling
     {
       prefix: "$",
