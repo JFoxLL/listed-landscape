@@ -161,10 +161,18 @@
 
 <!-- Performance -->
 <section>
-  <h2 id="performance">Performance</h2>
-    <div class="chart-style-template">
-      <%= line_chart @performance_chart_data, **performance_chart_styling %>
-    </div>
+  <h2 id="performance">Long Term Performance</h2>
+    
+    <h3>5yr Performance</h3>
+      <div class="chart-style-template">
+        <%= line_chart @performance_chart_data_5yrs, **performance_chart_styling %>
+      </div>
+
+    <h3>10yr Performance</h3>
+      <div class="chart-style-template">
+        <%= line_chart @performance_chart_data_10yrs, **performance_chart_styling %>
+      </div>
+
 </section>
 
 
