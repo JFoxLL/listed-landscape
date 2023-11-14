@@ -145,9 +145,17 @@ class Lic < ApplicationRecord
         #---#
         # Extracting the dividend data from the chart start date onwards
         # Result is an array of arrays [[payment_date1, cash_amount1, drp_price1], ...]
-        dividend_data = dividend_histories.where("payment_date >= ?", chart_start_date)
+        dividend_net_data = dividend_histories.where("payment_date >= ?", chart_start_date)
                                             .order(payment_date: :asc)
                                             .pluck(:payment_date, :cash_amount, :drp_price)
+        #---#
+
+        #---#
+        # Extracting the dividend+franking data from the chart start date onwards
+        # Result is an array of arrays [[payment_date1, grossed_up_amount1, drp_price1], ...]
+        dividend_gross_data = dividend_histories.where("payment_date >= ?", chart_start_date)
+                                                .order(payment_date: :asc)
+                                                .pluck(:payment_date, :grossed_up_amount, :drp_price)
         #---#
 
         #---#
@@ -165,44 +173,72 @@ class Lic < ApplicationRecord
         #---#
 
         #---#
-        # Creation of 'With Dividends Invested' data hash
-        divs_reinvested_investment_value_data_hash = {}
-        current_number_shares = starting_number_shares
+        # Creation of 'With Dividends reinvested' data hash
+        dividends_net_reinvested_investment_value_data_hash = {}
+        dividends_net_reinvested_number_shares = starting_number_shares
 
         share_price_data.each do |date, share_price|
 
-            dividend_data.each do |dividend_record|
-                dividend_payment_date, dividend_cash_amount, drp_price = dividend_record
+            dividend_net_data.each do |dividend_record|
+                dividend_payment_date, dividend_net_amount, drp_price = dividend_record
 
                 if dividend_payment_date == date
-                    number_shares_received = ((current_number_shares * dividend_cash_amount) / drp_price).round(2)
-                    current_number_shares += number_shares_received
+                    number_shares_received = ((dividends_net_reinvested_number_shares * dividend_net_amount) / drp_price).round(2)
+                    dividends_net_reinvested_number_shares += number_shares_received
 
-                    dividend_data.delete(dividend_record)
+                    dividend_net_data.delete(dividend_record)
                 end
             end
         
-            investment_value = current_number_shares * share_price
-            divs_reinvested_investment_value_data_hash[date.to_time.to_i * 1000] = investment_value.round
+            dividends_net_reinvested_investment_value = dividends_net_reinvested_number_shares * share_price
+            dividends_net_reinvested_investment_value_data_hash[date.to_time.to_i * 1000] = dividends_net_reinvested_investment_value.round
+        end
+        #---#
+
+        #---#
+        # Creation of 'With Dividends & Franking Credits reinvested' data hash
+        dividends_gross_reinvested_investment_value_data_hash = {}
+        dividends_gross_reinvested_number_shares = starting_number_shares
+
+        share_price_data.each do |date, share_price|
+
+            dividend_gross_data.each do |dividend_record|
+                dividend_payment_date, dividend_gross_amount, drp_price = dividend_record
+
+                if dividend_payment_date == date
+                    number_shares_received = ((dividends_gross_reinvested_number_shares * dividend_gross_amount) / drp_price).round(2)
+                    dividends_gross_reinvested_number_shares += number_shares_received
+
+                    dividend_gross_data.delete(dividend_record)
+                end
+            end
+        
+            dividends_gross_reinvested_investment_value = dividends_gross_reinvested_number_shares * share_price
+            dividends_gross_reinvested_investment_value_data_hash[date.to_time.to_i * 1000] = dividends_gross_reinvested_investment_value.round
         end
         #---#
 
         #---#
         # Setting up Highcharts data formats
         share_price_only_investment_performance = {
-            name: "Performance - Share Price Only",
+            name: "Share Price Only",
             data: share_price_only_investment_value_data_hash
         }
-        divs_reinvested_investment_performance = {
-            name: "Performance - With Dividends Reinvested",
-            data: divs_reinvested_investment_value_data_hash
+        dividends_net_reinvested_investment_performance = {
+            name: "Plus Cash Dividends",
+            data: dividends_net_reinvested_investment_value_data_hash
+        }
+        dividends_gross_reinvested_investment_performance = {
+            name: "Plus Franking Credits",
+            data: dividends_gross_reinvested_investment_value_data_hash
         }
         #---#
 
         #---#
         # Populating the chart_data_array
         chart_data << share_price_only_investment_performance
-        chart_data << divs_reinvested_investment_performance
+        chart_data << dividends_net_reinvested_investment_performance
+        chart_data << dividends_gross_reinvested_investment_performance
         #---#
 
         return chart_data
