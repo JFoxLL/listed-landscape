@@ -119,30 +119,91 @@ class Lic < ApplicationRecord
     def chart_performance
         chart_data = []
 
+        #---#
+        # Chart Parameters
         starting_amount = 10_000
-        chart_duration_years = 5  # Just static 5 yrs for now, intended to change
+        chart_duration_years = 5  # Just static 5 yrs for now, intend to change
         number_of_days_in_a_year = 365.25
         days_to_go_back = (chart_duration_years * number_of_days_in_a_year).round
+        #---#
 
-        most_recent_share_price_date = share_price_histories.order(date: :desc).first.date
+        #---#
+        # Identifying the chart start date
+        earliest_share_price_date = share_price_histories.order(date: :asc).first.date
+        latest_share_price_date = share_price_histories.order(date: :desc).first.date
+        chart_start_date = [earliest_share_price_date, latest_share_price_date - days_to_go_back.days].max
+        #---#
 
-        start_date = [share_price_histories.order(date: :asc).first.date, most_recent_share_price_date - days_to_go_back.days].max
-        share_price_data = share_price_histories.where("date >= ?", start_date).order(date: :asc).pluck(:date, :share_price)
+        #---#
+        # Extracting the share price data from the chart start date onwards
+        # Result is an array of arrays [[date1, share_price1], [date2, share_price2],...]
+        share_price_data = share_price_histories.where("date >= ?", chart_start_date)
+                                                .order(date: :asc)
+                                                .pluck(:date, :share_price)
+        #---#
 
+        #---#
+        # Extracting the dividend data from the chart start date onwards
+        # Result is an array of arrays [[payment_date1, cash_amount1, drp_price1], ...]
+        dividend_data = dividend_histories.where("payment_date >= ?", chart_start_date)
+                                            .order(payment_date: :asc)
+                                            .pluck(:payment_date, :cash_amount, :drp_price)
+        #---#
+
+        #---#
+        # Identifies the starting share price, then calculates number of initial shares
         starting_share_price = share_price_data.first.last
         starting_number_shares = (starting_amount / starting_share_price).round(2)
+        #---#
 
-        investment_value_data_hash = share_price_data.map do |date, share_price|
+        #---#
+        # Creation of 'Share Price Only' data hash
+        share_price_only_investment_value_data_hash = share_price_data.map do |date, share_price|
             investment_value = starting_number_shares * share_price
             [date.to_time.to_i * 1000, investment_value.round]
         end.to_h
+        #---#
 
-        investment_performance = {
+        #---#
+        # Creation of 'With Dividends Invested' data hash
+        divs_reinvested_investment_value_data_hash = {}
+        current_number_shares = starting_number_shares
+
+        share_price_data.each do |date, share_price|
+
+            dividend_data.each do |dividend_record|
+                dividend_payment_date, dividend_cash_amount, drp_price = dividend_record
+
+                if dividend_payment_date == date
+                    number_shares_received = (current_number_shares * dividend_cash_amount) / drp_price
+                    current_number_shares += number_shares_received
+
+                    dividend_data.delete(dividend_record)
+                end
+            end
+        
+            investment_value = current_number_shares * share_price
+            divs_reinvested_investment_value_data_hash[date.to_time.to_i * 1000] = investment_value.round
+        end
+        #---#
+
+        #---#
+        # Setting up Highcharts data formats
+        share_price_only_investment_performance = {
             name: "Performance - Share Price Only",
-            data: investment_value_data_hash
+            data: share_price_only_investment_value_data_hash
         }
+        divs_reinvested_investment_performance = {
+            name: "Performance - With Dividends Reinvested",
+            data: divs_reinvested_investment_value_data_hash
+        }
+        #---#
 
-        chart_data << investment_performance
+        #---#
+        # Populating the chart_data_array
+        chart_data << share_price_only_investment_performance
+        chart_data << divs_reinvested_investment_performance
+        #---#
 
         return chart_data
     end
