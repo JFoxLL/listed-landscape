@@ -116,13 +116,12 @@ class Lic < ApplicationRecord
         return chart_data
     end
 
-    def chart_performance
+    def chart_performance(chart_duration_years)
         chart_data = []
 
         #---#
         # Chart Parameters
         starting_amount = 10_000
-        chart_duration_years = 5  # Just static 5 yrs for now, intend to change
         number_of_days_in_a_year = 365.25
         days_to_go_back = (chart_duration_years * number_of_days_in_a_year).round
         #---#
@@ -225,7 +224,7 @@ class Lic < ApplicationRecord
             data: share_price_only_investment_value_data_hash
         }
         dividends_net_reinvested_investment_performance = {
-            name: "Plus Cash Dividends",
+            name: "Plus Dividends",
             data: dividends_net_reinvested_investment_value_data_hash
         }
         dividends_gross_reinvested_investment_performance = {

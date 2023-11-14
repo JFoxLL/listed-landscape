@@ -32,7 +32,8 @@ class LicsController < ApplicationController
     @lic = Lic.find_by!(slug: params[:id])
 
     # Performance Chart
-    @performance_chart_data = @lic.chart_performance
+    @performance_chart_data_5yrs = @lic.chart_performance(5)
+    @performance_chart_data_10yrs = @lic.chart_performance(10)
 
 
     # Dividend History Chart

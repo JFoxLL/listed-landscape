@@ -283,7 +283,7 @@ module LicsHelper
   def performance_chart_styling
     {
       prefix: "$",
-      colors: ["#d4541b"],
+      colors: ["#d4541b", "#005454", "#de9779"],
       height: "400px", 
       library: {
         chart: {backgroundColor: '#f3eee8'},
@@ -304,8 +304,10 @@ module LicsHelper
           lineColor: '#005454'
         },
         yAxis: {
+          min: 5000,
           labels: {
-            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'},
+            format: '{value:,.0f}'
           },
           gridLineColor: '#A9A9A9'
         },
@@ -316,9 +318,9 @@ module LicsHelper
         },
         plotOptions: {
           series: {
+            lineWidth: 2,
             dataLabels: {
               enabled: false,
-              format: '{point.y}K',
             }
           }
         },
@@ -353,7 +355,6 @@ module LicsHelper
         },
       }
     }
-
   end
 
   def dividend_history_annualised_chart_styling
