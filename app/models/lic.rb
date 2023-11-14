@@ -175,7 +175,7 @@ class Lic < ApplicationRecord
                 dividend_payment_date, dividend_cash_amount, drp_price = dividend_record
 
                 if dividend_payment_date == date
-                    number_shares_received = (current_number_shares * dividend_cash_amount) / drp_price
+                    number_shares_received = ((current_number_shares * dividend_cash_amount) / drp_price).round(2)
                     current_number_shares += number_shares_received
 
                     dividend_data.delete(dividend_record)
