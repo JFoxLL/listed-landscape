@@ -283,6 +283,7 @@ module LicsHelper
   def performance_chart_styling
     {
       prefix: "$",
+      suffix: "K",
       colors: ["#d4541b", "#005454", "#de9779"],
       height: "400px", 
       library: {
@@ -290,7 +291,7 @@ module LicsHelper
         tooltip: {
           enabled: true,
           headerFormat: '<b>{point.key:%e %b, %Y}:</b><br>',
-          pointFormat: '${point.y:,.0f}'
+          pointFormat: '${point.y}K'
         },
         xAxis: {
           type: 'datetime',
@@ -304,7 +305,7 @@ module LicsHelper
           lineColor: '#005454'
         },
         yAxis: {
-          min: 5000,
+          min: 5,
           labels: {
             style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'},
             format: '{value:,.0f}'
