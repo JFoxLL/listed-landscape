@@ -171,6 +171,7 @@ class Lic < ApplicationRecord
         end.to_h
 
         share_price_only_investment_value_data_hash_monthly = {}
+        share_price_only_investment_value_data_hash_monthly[share_price_only_investment_value_data_hash_daily.first.first.to_time.to_i * 1000] = share_price_only_investment_value_data_hash_daily.first.last
         share_price_only_investment_value_data_hash_daily.each do |date, investment_value|
             if date == date.last_weekday_of_month
                 share_price_only_investment_value_data_hash_monthly[date.to_time.to_i * 1000] = investment_value
@@ -201,6 +202,7 @@ class Lic < ApplicationRecord
         end
 
         dividends_net_reinvested_investment_value_data_hash_monthly = {}
+        dividends_net_reinvested_investment_value_data_hash_monthly[dividends_net_reinvested_investment_value_data_hash_daily.first.first.to_time.to_i * 1000] = dividends_net_reinvested_investment_value_data_hash_daily.first.last
         dividends_net_reinvested_investment_value_data_hash_daily.each do |date, investment_value|
             if date == date.last_weekday_of_month
                 dividends_net_reinvested_investment_value_data_hash_monthly[date.to_time.to_i * 1000] = investment_value
@@ -231,6 +233,7 @@ class Lic < ApplicationRecord
         end
 
         dividends_gross_reinvested_investment_value_data_hash_monthly = {}
+        dividends_gross_reinvested_investment_value_data_hash_monthly[dividends_gross_reinvested_investment_value_data_hash_daily.first.first.to_time.to_i * 1000] = dividends_gross_reinvested_investment_value_data_hash_daily.first.last
         dividends_gross_reinvested_investment_value_data_hash_daily.each do |date, investment_value|
             if date == date.last_weekday_of_month
                 dividends_gross_reinvested_investment_value_data_hash_monthly[date.to_time.to_i * 1000] = investment_value
