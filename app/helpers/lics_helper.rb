@@ -295,10 +295,12 @@ module LicsHelper
         },
         xAxis: {
           type: 'datetime',
-          dateTimeFormats: {
-            day: '%e %b, %Y'
+          tickInterval: 365 * 24 * 3600 * 1000, # One year in milliseconds
+          dateTimeLabelFormats: {
+            year: '%Y'
           },
           labels: {
+            format: '{value:%Y}',
             style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
           },
           gridLineColor: '#A9A9A9',
