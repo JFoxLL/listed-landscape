@@ -165,15 +165,22 @@ class Lic < ApplicationRecord
 
         #---#
         # Creation of 'Share Price Only' data hash
-        share_price_only_investment_value_data_hash = share_price_data.map do |date, share_price|
+        share_price_only_investment_value_data_hash_daily = share_price_data.map do |date, share_price|
             investment_value = starting_number_shares * share_price
-            [date.to_time.to_i * 1000, investment_value.round]
+            [date, investment_value.round]
         end.to_h
+
+        share_price_only_investment_value_data_hash_monthly = {}
+        share_price_only_investment_value_data_hash_daily.each do |date, investment_value|
+            if date == date.last_weekday_of_month
+                share_price_only_investment_value_data_hash_monthly[date.to_time.to_i * 1000] = investment_value
+            end
+        end
         #---#
 
         #---#
         # Creation of 'With Dividends reinvested' data hash
-        dividends_net_reinvested_investment_value_data_hash = {}
+        dividends_net_reinvested_investment_value_data_hash_daily = {}
         dividends_net_reinvested_number_shares = starting_number_shares
 
         share_price_data.each do |date, share_price|
@@ -190,13 +197,20 @@ class Lic < ApplicationRecord
             end
         
             dividends_net_reinvested_investment_value = dividends_net_reinvested_number_shares * share_price
-            dividends_net_reinvested_investment_value_data_hash[date.to_time.to_i * 1000] = dividends_net_reinvested_investment_value.round
+            dividends_net_reinvested_investment_value_data_hash_daily[date] = dividends_net_reinvested_investment_value.round
+        end
+
+        dividends_net_reinvested_investment_value_data_hash_monthly = {}
+        dividends_net_reinvested_investment_value_data_hash_daily.each do |date, investment_value|
+            if date == date.last_weekday_of_month
+                dividends_net_reinvested_investment_value_data_hash_monthly[date.to_time.to_i * 1000] = investment_value
+            end
         end
         #---#
 
         #---#
         # Creation of 'With Dividends & Franking Credits reinvested' data hash
-        dividends_gross_reinvested_investment_value_data_hash = {}
+        dividends_gross_reinvested_investment_value_data_hash_daily = {}
         dividends_gross_reinvested_number_shares = starting_number_shares
 
         share_price_data.each do |date, share_price|
@@ -213,7 +227,14 @@ class Lic < ApplicationRecord
             end
         
             dividends_gross_reinvested_investment_value = dividends_gross_reinvested_number_shares * share_price
-            dividends_gross_reinvested_investment_value_data_hash[date.to_time.to_i * 1000] = dividends_gross_reinvested_investment_value.round
+            dividends_gross_reinvested_investment_value_data_hash_daily[date] = dividends_gross_reinvested_investment_value.round
+        end
+
+        dividends_gross_reinvested_investment_value_data_hash_monthly = {}
+        dividends_gross_reinvested_investment_value_data_hash_daily.each do |date, investment_value|
+            if date == date.last_weekday_of_month
+                dividends_gross_reinvested_investment_value_data_hash_monthly[date.to_time.to_i * 1000] = investment_value
+            end
         end
         #---#
 
@@ -221,15 +242,15 @@ class Lic < ApplicationRecord
         # Setting up Highcharts data formats
         share_price_only_investment_performance = {
             name: "Share Price Only",
-            data: share_price_only_investment_value_data_hash
+            data: share_price_only_investment_value_data_hash_monthly
         }
         dividends_net_reinvested_investment_performance = {
             name: "Plus Dividends",
-            data: dividends_net_reinvested_investment_value_data_hash
+            data: dividends_net_reinvested_investment_value_data_hash_monthly
         }
         dividends_gross_reinvested_investment_performance = {
             name: "Plus Franking Credits",
-            data: dividends_gross_reinvested_investment_value_data_hash
+            data: dividends_gross_reinvested_investment_value_data_hash_monthly
         }
         #---#
 
