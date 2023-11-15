@@ -166,8 +166,8 @@ class Lic < ApplicationRecord
         #---#
         # Creation of 'Share Price Only' data hash
         share_price_only_investment_value_data_hash_daily = share_price_data.map do |date, share_price|
-            investment_value = starting_number_shares * share_price
-            [date, investment_value.round]
+            investment_value = ((starting_number_shares * share_price) / 1000).round(1)
+            [date, investment_value]
         end.to_h
 
         share_price_only_investment_value_data_hash_monthly = {}
@@ -196,8 +196,8 @@ class Lic < ApplicationRecord
                 end
             end
         
-            dividends_net_reinvested_investment_value = dividends_net_reinvested_number_shares * share_price
-            dividends_net_reinvested_investment_value_data_hash_daily[date] = dividends_net_reinvested_investment_value.round
+            dividends_net_reinvested_investment_value = ((dividends_net_reinvested_number_shares * share_price) / 1000).round(1)
+            dividends_net_reinvested_investment_value_data_hash_daily[date] = dividends_net_reinvested_investment_value
         end
 
         dividends_net_reinvested_investment_value_data_hash_monthly = {}
@@ -226,8 +226,8 @@ class Lic < ApplicationRecord
                 end
             end
         
-            dividends_gross_reinvested_investment_value = dividends_gross_reinvested_number_shares * share_price
-            dividends_gross_reinvested_investment_value_data_hash_daily[date] = dividends_gross_reinvested_investment_value.round
+            dividends_gross_reinvested_investment_value = ((dividends_gross_reinvested_number_shares * share_price) / 1000).round(1)
+            dividends_gross_reinvested_investment_value_data_hash_daily[date] = dividends_gross_reinvested_investment_value
         end
 
         dividends_gross_reinvested_investment_value_data_hash_monthly = {}
