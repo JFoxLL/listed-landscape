@@ -319,10 +319,13 @@ module LicsHelper
         plotOptions: {
           series: {
             lineWidth: 2,
+            marker: {
+              enabled: false
+            },
             dataLabels: {
               enabled: false,
             }
-          }
+          },
         },
         responsive: {
           rules: [{
