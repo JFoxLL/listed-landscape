@@ -31,7 +31,7 @@ class LicsController < ApplicationController
   def show
     @lic = Lic.find_by!(slug: params[:id])
 
-    # Performance Chart
+    # Performance Charts
     @performance_chart_data_5yrs = @lic.chart_performance(5)
     @performance_chart_data_10yrs = @lic.chart_performance(10)
 

@@ -160,21 +160,22 @@ class Lic < ApplicationRecord
         #---#
         # Identifies the starting share price, then calculates number of initial shares
         starting_share_price = share_price_data.first.last
-        starting_number_shares = (starting_amount / starting_share_price).round(2)
+        starting_number_shares = (starting_amount / starting_share_price).round(4)
         #---#
 
         #---#
         # Creation of 'Share Price Only' data hash
         share_price_only_investment_value_data_hash_daily = share_price_data.map do |date, share_price|
-            investment_value = ((starting_number_shares * share_price) / 1000).round(1)
+            investment_value = (starting_number_shares * share_price).round(4)
             [date, investment_value]
         end.to_h
 
         share_price_only_investment_value_data_hash_monthly = {}
-        share_price_only_investment_value_data_hash_monthly[share_price_only_investment_value_data_hash_daily.first.first.to_time.to_i * 1000] = share_price_only_investment_value_data_hash_daily.first.last
+        share_price_only_investment_value_data_hash_monthly[share_price_only_investment_value_data_hash_daily.first.first.to_time.to_i * 1000] = 
+            (share_price_only_investment_value_data_hash_daily.first.last / 1000).round(1)
         share_price_only_investment_value_data_hash_daily.each do |date, investment_value|
             if date == date.last_weekday_of_month
-                share_price_only_investment_value_data_hash_monthly[date.to_time.to_i * 1000] = investment_value
+                share_price_only_investment_value_data_hash_monthly[date.to_time.to_i * 1000] = (investment_value / 1000).round(1)
             end
         end
         #---#
@@ -190,22 +191,23 @@ class Lic < ApplicationRecord
                 dividend_payment_date, dividend_net_amount, drp_price = dividend_record
 
                 if dividend_payment_date == date
-                    number_shares_received = ((dividends_net_reinvested_number_shares * dividend_net_amount) / drp_price).round(2)
+                    number_shares_received = ((dividends_net_reinvested_number_shares * dividend_net_amount) / drp_price).round(4)
                     dividends_net_reinvested_number_shares += number_shares_received
 
                     dividend_net_data.delete(dividend_record)
                 end
             end
         
-            dividends_net_reinvested_investment_value = ((dividends_net_reinvested_number_shares * share_price) / 1000).round(1)
+            dividends_net_reinvested_investment_value = (dividends_net_reinvested_number_shares * share_price).round(4)
             dividends_net_reinvested_investment_value_data_hash_daily[date] = dividends_net_reinvested_investment_value
         end
 
         dividends_net_reinvested_investment_value_data_hash_monthly = {}
-        dividends_net_reinvested_investment_value_data_hash_monthly[dividends_net_reinvested_investment_value_data_hash_daily.first.first.to_time.to_i * 1000] = dividends_net_reinvested_investment_value_data_hash_daily.first.last
+        dividends_net_reinvested_investment_value_data_hash_monthly[dividends_net_reinvested_investment_value_data_hash_daily.first.first.to_time.to_i * 1000] = 
+            (dividends_net_reinvested_investment_value_data_hash_daily.first.last / 1000).round(1)
         dividends_net_reinvested_investment_value_data_hash_daily.each do |date, investment_value|
             if date == date.last_weekday_of_month
-                dividends_net_reinvested_investment_value_data_hash_monthly[date.to_time.to_i * 1000] = investment_value
+                dividends_net_reinvested_investment_value_data_hash_monthly[date.to_time.to_i * 1000] = (investment_value / 1000).round(1)
             end
         end
         #---#
@@ -221,38 +223,61 @@ class Lic < ApplicationRecord
                 dividend_payment_date, dividend_gross_amount, drp_price = dividend_record
 
                 if dividend_payment_date == date
-                    number_shares_received = ((dividends_gross_reinvested_number_shares * dividend_gross_amount) / drp_price).round(2)
+                    number_shares_received = ((dividends_gross_reinvested_number_shares * dividend_gross_amount) / drp_price).round(4)
                     dividends_gross_reinvested_number_shares += number_shares_received
 
                     dividend_gross_data.delete(dividend_record)
                 end
             end
         
-            dividends_gross_reinvested_investment_value = ((dividends_gross_reinvested_number_shares * share_price) / 1000).round(1)
+            dividends_gross_reinvested_investment_value = (dividends_gross_reinvested_number_shares * share_price).round(4)
             dividends_gross_reinvested_investment_value_data_hash_daily[date] = dividends_gross_reinvested_investment_value
         end
 
         dividends_gross_reinvested_investment_value_data_hash_monthly = {}
-        dividends_gross_reinvested_investment_value_data_hash_monthly[dividends_gross_reinvested_investment_value_data_hash_daily.first.first.to_time.to_i * 1000] = dividends_gross_reinvested_investment_value_data_hash_daily.first.last
+        dividends_gross_reinvested_investment_value_data_hash_monthly[dividends_gross_reinvested_investment_value_data_hash_daily.first.first.to_time.to_i * 1000] = 
+            (dividends_gross_reinvested_investment_value_data_hash_daily.first.last / 1000).round(1)
         dividends_gross_reinvested_investment_value_data_hash_daily.each do |date, investment_value|
             if date == date.last_weekday_of_month
-                dividends_gross_reinvested_investment_value_data_hash_monthly[date.to_time.to_i * 1000] = investment_value
+                dividends_gross_reinvested_investment_value_data_hash_monthly[date.to_time.to_i * 1000] = (investment_value / 1000).round(1)
             end
         end
         #---#
 
         #---#
+        # Calclating CAGR values
+        cagr_start_date = share_price_data.first.first
+        cagr_end_date = share_price_data.last.first
+        cagr_number_years = ((cagr_end_date - cagr_start_date) / number_of_days_in_a_year).round(4)
+
+        cagr_share_price_only = 
+            ((share_price_only_investment_value_data_hash_daily.to_a.last[1] /
+              share_price_only_investment_value_data_hash_daily.to_a.first[1]) **
+              (1 / cagr_number_years) - 1) * 100
+
+        cagr_dividends_net_reinvested = 
+            ((dividends_net_reinvested_investment_value_data_hash_daily.to_a.last[1] /
+              dividends_net_reinvested_investment_value_data_hash_daily.to_a.first[1]) **
+              (1 / cagr_number_years) - 1) *100
+
+        cagr_dividends_gross_reinvested = 
+            ((dividends_gross_reinvested_investment_value_data_hash_daily.to_a.last[1] /
+              dividends_gross_reinvested_investment_value_data_hash_daily.to_a.first[1]) **
+              (1 / cagr_number_years) - 1) *100
+        #---#
+
+        #---#
         # Setting up Highcharts data formats
         share_price_only_investment_performance = {
-            name: "Share Price Only",
+            name: "Share Price Only (#{cagr_share_price_only.round(1)}% p.a)",
             data: share_price_only_investment_value_data_hash_monthly
         }
         dividends_net_reinvested_investment_performance = {
-            name: "Plus Dividends",
+            name: "Plus Dividends (#{cagr_dividends_net_reinvested.round(1)}% p.a)",
             data: dividends_net_reinvested_investment_value_data_hash_monthly
         }
         dividends_gross_reinvested_investment_performance = {
-            name: "Plus Franking Credits",
+            name: "Plus Franking Credits (#{cagr_dividends_gross_reinvested.round(1)}% p.a)",
             data: dividends_gross_reinvested_investment_value_data_hash_monthly
         }
         #---#
