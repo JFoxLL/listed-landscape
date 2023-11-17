@@ -245,6 +245,12 @@ class Lic < ApplicationRecord
         #---#
 
         #---#
+        # Extracting final investment_value values
+        final_value_share_price_only = share_price_only_investment_value_data_hash_monthly.to_a.last[1]
+        final_value_dividends_net_reinvested = dividends_net_reinvested_investment_value_data_hash_monthly.to_a.last[1]
+        final_value_dividends_gross_reinvested = dividends_gross_reinvested_investment_value_data_hash_monthly.to_a.last[1]
+
+        #---#
         # Calclating CAGR values
         cagr_start_date = share_price_data.first.first
         cagr_end_date = share_price_data.last.first
@@ -269,15 +275,15 @@ class Lic < ApplicationRecord
         #---#
         # Setting up Highcharts data formats
         share_price_only_investment_performance = {
-            name: "Share Price Only (#{cagr_share_price_only.round(1)}% p.a)",
+            name: "Share Price Only: $#{final_value_share_price_only}K (#{cagr_share_price_only.round(1)}% p.a)",
             data: share_price_only_investment_value_data_hash_monthly
         }
         dividends_net_reinvested_investment_performance = {
-            name: "Plus Dividends (#{cagr_dividends_net_reinvested.round(1)}% p.a)",
+            name: "Plus Dividends: $#{final_value_dividends_net_reinvested}K (#{cagr_dividends_net_reinvested.round(1)}% p.a)",
             data: dividends_net_reinvested_investment_value_data_hash_monthly
         }
         dividends_gross_reinvested_investment_performance = {
-            name: "Plus Franking Credits (#{cagr_dividends_gross_reinvested.round(1)}% p.a)",
+            name: "Plus Franking Credits: $#{final_value_dividends_gross_reinvested}K (#{cagr_dividends_gross_reinvested.round(1)}% p.a)",
             data: dividends_gross_reinvested_investment_value_data_hash_monthly
         }
         #---#

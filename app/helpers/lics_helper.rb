@@ -60,7 +60,8 @@ module LicsHelper
         legend: {
           enabled: true,
           align: 'center',
-          verticalAlign: 'top'
+          verticalAlign: 'top',
+          itemStyle: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
         },
         plotOptions: {
           series: {
@@ -143,7 +144,8 @@ module LicsHelper
         },
         legend: {
           align: 'center',
-          verticalAlign: 'top'
+          verticalAlign: 'top',
+          itemStyle: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
         },
         plotOptions: {
           series: {
@@ -226,7 +228,8 @@ module LicsHelper
         },
         legend: {
           align: 'center',
-          verticalAlign: 'top'
+          verticalAlign: 'top',
+          itemStyle: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
         },
         plotOptions: {
           series: {
@@ -317,7 +320,8 @@ module LicsHelper
         legend: {
           enabled: true,
           align: 'center',
-          verticalAlign: 'top'
+          verticalAlign: 'top',
+          itemStyle: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
         },
         plotOptions: {
           series: {
@@ -389,7 +393,8 @@ module LicsHelper
         legend: {
           enabled: true,
           align: 'center',
-          verticalAlign: 'top'
+          verticalAlign: 'top',
+          itemStyle: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
         },
         plotOptions: {
           series: {
@@ -475,7 +480,8 @@ module LicsHelper
         },
         legend: {
           align: 'center',
-          verticalAlign: 'top'
+          verticalAlign: 'top',
+          itemStyle: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
         },
         plotOptions: {
           series: {
@@ -552,7 +558,8 @@ module LicsHelper
         },
         legend: {
           align: 'center',
-          verticalAlign: 'top'
+          verticalAlign: 'top',
+          itemStyle: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
         },
         plotOptions: {
           series: {
@@ -630,7 +637,8 @@ module LicsHelper
         },
         legend: {
           align: 'center',
-          verticalAlign: 'top'
+          verticalAlign: 'top',
+          itemStyle: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
         },
         plotOptions: {
           series: {
