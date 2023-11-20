@@ -7,6 +7,7 @@ class Lic < ApplicationRecord
     has_many :share_price_summaries
     has_many :share_price_histories
     has_many :common_questions
+    has_many :annual_reports
 
     before_save :set_slug
 
