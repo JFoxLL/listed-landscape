@@ -15,6 +15,25 @@ class Lic < ApplicationRecord
         slug
     end
 
+    def annual_report_links
+        ar_records = annual_reports.order(year: :desc).limit(10).pluck(:year, :annual_report_filename).to_h
+
+        ar_base_url = "https://storage.googleapis.com/listed-landscape-app-storage/lic-annual-reports/"
+
+        ar_urls = {}
+        ar_records.each do |year, filename|
+            ar_full_url = "#{ar_base_url}#{filename}"
+            ar_urls[year] = ar_full_url
+        end
+
+        ar_links = ar_urls.map do |year, url|
+            "<a href='#{url}'>#{year}</a>"
+        end
+
+        return ar_links.join(", ").html_safe
+
+    end
+
     def key_people_directors
         directors = key_people.where(kp_role_director: 'Yes').where.not(kp_role_chairman: 'Yes')
         chairman = key_people.where(kp_role_chairman: 'Yes')
