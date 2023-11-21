@@ -8,6 +8,7 @@ class Lic < ApplicationRecord
     has_many :share_price_histories
     has_many :common_questions
     has_many :annual_reports
+    has_many :dividend_comparisons
 
     before_save :set_slug
 
