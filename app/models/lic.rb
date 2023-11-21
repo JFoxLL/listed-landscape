@@ -22,16 +22,15 @@ class Lic < ApplicationRecord
 
         ar_urls = {}
         ar_records.each do |year, filename|
-            ar_full_url = "#{ar_base_url}#{filename}"
+            ar_full_url = "#{ar_base_url}#{filename}.pdf"
             ar_urls[year] = ar_full_url
         end
 
         ar_links = ar_urls.map do |year, url|
-            "<a href='#{url}'>#{year}</a>"
+            "<a href='#{url}' target='_blank'>#{year}</a>"
         end
 
         return ar_links.join(", ").html_safe
-
     end
 
     def key_people_directors
