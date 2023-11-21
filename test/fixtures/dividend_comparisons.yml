@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lic_ticker: MyString
+  lic_name: MyString
+  year: 1
+  dividend_income: 1
+  distribution_income: 1
+  foreign_income: 1
+  dividends_paid_short: 1
+  interest_income: 1
+  interest_paid: 1
+  total_income: 1
+  dividends_paid: 1
+  lic_id: 1
+
+two:
+  lic_ticker: MyString
+  lic_name: MyString
+  year: 1
+  dividend_income: 1
+  distribution_income: 1
+  foreign_income: 1
+  dividends_paid_short: 1
+  interest_income: 1
+  interest_paid: 1
+  total_income: 1
+  dividends_paid: 1
+  lic_id: 1

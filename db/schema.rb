@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_20_010639) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_21_231909) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -61,6 +61,23 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_20_010639) do
     t.text "q3_a"
     t.text "q4_q"
     t.text "q4_a"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "dividend_comparisons", force: :cascade do |t|
+    t.string "lic_ticker"
+    t.string "lic_name"
+    t.integer "year"
+    t.integer "dividend_income"
+    t.integer "distribution_income"
+    t.integer "foreign_income"
+    t.integer "dividends_paid_short"
+    t.integer "interest_income"
+    t.integer "interest_paid"
+    t.integer "total_income"
+    t.integer "dividends_paid"
+    t.integer "lic_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
