@@ -16,7 +16,8 @@
 <div class="page-header">
   <div class="page-header-content">
     <div class="page-header-logo">
-      <%= image_tag "lic_logos/#{@lic.logo_filename}.png", alt: "#{@lic.name} Logo", class: "page-logo mobile-hide" %>
+      <% lic_logo_url = "https://storage.googleapis.com/listed-landscape-app-storage/lic-logos/#{@lic.logo_filename}.png" %>
+      <%= image_tag lic_logo_url, alt: "#{@lic.name} Logo", class: "page-logo mobile-hide" %>
     </div>
     <div class="page-header-title">
       <h1><%= @lic.name %></h1>
