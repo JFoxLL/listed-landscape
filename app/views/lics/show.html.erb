@@ -87,19 +87,19 @@
             (excluding Performance Fees)
           </td>
         </tr>
-        <!-- <tr>
-          <td class="label">Annual Reports</td>
-          <td class="value"><%= @lic.annual_report_links %></td>
-        </tr> -->
-        <tr class="mobile-hide last-row">
+        <tr class="mobile-hide">
           <td class="label">Objective</td>
           <td class="value"><%= @lic.objective.gsub('<br>', '<br><br>').html_safe %></td>
         </tr>
         <tr class="desktop-hide last-row">
           <td class="label">Objective</td>
         </tr>
-        <tr class="desktop-hide last-row">
+        <tr class="desktop-hide">
           <td colspan="2" class="value"><%= @lic.objective.gsub('<br>', '<br><br>').html_safe %></td>
+        </tr>
+        <tr class="last-row">
+          <td class="label"><% if @device_type == 'desktop' %>Recent <% end %>Annual Reports</td>
+          <td class="value"><%= @lic.annual_report_links %></td>
         </tr>
       </tbody>
     </table>
