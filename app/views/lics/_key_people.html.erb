@@ -1,9 +1,11 @@
 <li class="key-person">
   <div class="key-person-top">
     <% if person.kp_image_saved == 'Yes' %>
-      <img class="key-person-image" src="<%= asset_path "kp_profile_images/#{person.kp_image_file_name}.png" %>" alt="<%= person.kp_name %>">
+      <% key_person_image_url = "https://storage.googleapis.com/listed-landscape-app-storage/key-personnel-profile-images/#{person.kp_image_file_name}.png" %>
+      <%= image_tag key_person_image_url, alt: "#{person.kp_name}", class: "key-person-image", loading: "lazy" %>
     <% else %>
-      <img class="key-person-image" src="<%= asset_path "kp_profile_images/kp_image_placeholder.png" %>" alt="<%= person.kp_name %>">
+      <% key_person_placeholder_image_url = "https://storage.googleapis.com/listed-landscape-app-storage/key-personnel-profile-images/kp_image_placeholder.png" %>
+      <%= image_tag key_person_placeholder_image_url, alt: "#{person.kp_name}", class: "key-person-image", loading: "lazy" %>
     <% end %>
     <div class="key-person-info">
       <h3 class="key-person-name"><%= person.kp_name %></h3>
