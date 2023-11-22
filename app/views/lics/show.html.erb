@@ -219,6 +219,11 @@
       <div class="chart-style-template">
         <%= line_chart @lic.chart_dividend_yield, **dividend_yield_chart_styling %>
       </div>
+    
+    <h3>Dividend Comparison</h3>
+      <div class="chart-style-template">
+        <%= column_chart @lic.chart_dividend_comparison, **dividend_comparison_chart_styling %>
+      </div>
 
 </section>
 

@@ -480,6 +480,55 @@ class Lic < ApplicationRecord
 
         return chart_data
     end
+
+    def chart_dividend_comparison
+        chart_data = []
+
+        #---#
+        div_income_data_hash = DividendComparison.where(lic_id: id)
+                                                    .order(:year)
+                                                    .pluck(:year, :total_income)
+                                                    .to_h
+
+        div_paid_data_hash = DividendComparison.where(lic_id: id)
+                                                .order(:year)
+                                                .pluck(:year, :dividends_paid)
+                                                .to_h
+        #---#
+        
+        #---#
+        div_income_data_hash_formatted = {}
+        div_income_data_hash.each do |year, value|
+            value_formatted = (value / 1_000_000.0).round
+            div_income_data_hash_formatted[year] = value_formatted
+        end
+
+        div_paid_data_hash_formatted = {}
+        div_paid_data_hash.each do |year, value|
+            value_formatted = (value / 1_000_000.0).round
+            div_paid_data_hash_formatted[year] = value_formatted
+        end
+        #---#
+
+        #---#
+        div_income = {
+            name: "Dividend Income from Investment Portfolio (& Interest)",
+            data: div_income_data_hash_formatted
+        }
+
+        div_paid = {
+            name: "Dividends Paid to Shareholders (Cash & DRP)",
+            data: div_paid_data_hash_formatted
+        }
+        #---#
+
+        #---#
+        chart_data << div_income
+        chart_data << div_paid
+        #---#
+
+        return chart_data
+    end
   
     def chart_share_price_vs_nta(time_duration_in_years, tax_type)
         records = fetch_records(time_duration_in_years)
