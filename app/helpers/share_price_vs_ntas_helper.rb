@@ -1,0 +1,2 @@
+module SharePriceVsNtasHelper
+end
