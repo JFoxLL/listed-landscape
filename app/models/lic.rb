@@ -559,6 +559,20 @@ class Lic < ApplicationRecord
         return average.round(1)
     end
 
+    # This method is used in the 'Share Price vs NTA' index view
+    def sp_vs_nta_latest_record
+        latest_entry = share_price_vs_nta.order(month_year: :desc).first
+
+        {
+            month_year: latest_entry.month_year,
+            share_price: latest_entry.share_price,
+            pre_tax_nta: latest_entry.pre_tax_nta,
+            post_tax_nta: latest_entry.post_tax_nta,
+            sp_vs_pre_tax_nta: latest_entry.sp_vs_pre_tax_nta,
+            sp_vs_post_tax_nta: latest_entry.sp_vs_post_tax_nta
+        }
+    end
+
     private
 
     def set_slug

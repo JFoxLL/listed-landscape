@@ -1,1 +1,55 @@
-<h1>Test</h1>
+<!-- SEO details -->
+<% content_for :title do %>
+  Share Prices vs NTA's | Australian LICs
+<% end %>
+
+<% content_for :description do %>
+  [<%= Time.now.strftime("%b %Y") %> Updated!] Share Price vs Net Tangible Assets (NTAs) for Australian Listed Investment Companies (LICs). Listed Landscape.
+<% end %>
+
+<% content_for :keywords do %>
+  Listed Investment Companies, LICs, NTA, Listed Landscape
+<% end %>
+
+
+<!-- Page Header -->
+<div class="index-page-header">
+    <h1>Share Prices vs NTA's</h1>
+</div>
+<div class="index-page-details">
+    <p>Share Prices vs Net Tangible Assets (NTA's) for the 30 largest LICs listed on the ASX.</p>
+    <p>Click on the LIC Name to view a historical chart of this metric.
+</div>
+
+<!-- Share Price vs NTA's table filter -->
+
+
+<!-- Share Price vs NTA's Index table -->
+<table class="index-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Ticker</th>
+      <th>Size</th>
+      <th>Updated</th>
+      <th>Share Price</th>
+      <th>Pre-Tax NTA</th>
+      <th>SP vs NTA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @lics.each do |lic| %>
+      <tr>
+        <td class="index-table-hover-effect">
+            <%= link_to lic.name, "#{listed_investment_company_path(lic)}#share-price-nta", class: "index-table-lic-name", target: "_blank" %>
+        </td>
+        <td class="center"><%= lic.ticker %></td>
+        <td class="center"><%= format_market_cap(lic.market_cap) %></td>
+        <td class="center"><%= lic.sp_vs_nta_latest_record[:month_year].strftime("%b-%y") %></td>
+        <td class="center"><%= number_to_currency(lic.sp_vs_nta_latest_record[:share_price], precision: 2) %></td>
+        <td class="center"><%= number_to_currency(lic.sp_vs_nta_latest_record[:pre_tax_nta], precision: 2) %></td>
+        <td class="center"><%= lic.sp_vs_nta_latest_record[:sp_vs_pre_tax_nta].round(1) %>%</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
