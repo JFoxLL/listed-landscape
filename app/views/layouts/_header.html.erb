@@ -8,9 +8,8 @@
 
     <!-- Menu Items -->
     <div class="menu-items">
-      <% unless current_page?(root_path) || current_page?(listed_investment_companies_path) %>
-        <%= link_to 'Home', listed_investment_companies_path, class: 'menu-link' %>
-      <% end %>
+      <%= link_to 'NTAs', share_price_vs_nta_path, class: 'menu-link' %>
+      <%= link_to 'Home', listed_investment_companies_path, class: 'menu-link' %>
     </div>
     
   </div>
@@ -19,3 +18,13 @@
 
 
 
+<!-- Note, I previously had the following to hide/show different items on different pages
+    <div class="menu-items">
+      <% unless current_page?(share_price_vs_nta_path) %>
+        <%= link_to 'NTAs', share_price_vs_nta_path, class: 'menu-link' %>
+      <% end %>
+      <% unless current_page?(root_path) || current_page?(listed_investment_companies_path) %>
+        <%= link_to 'Home', listed_investment_companies_path, class: 'menu-link' %>
+      <% end %>
+    </div>
+ -->

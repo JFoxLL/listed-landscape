@@ -1,9 +1,9 @@
 @import 'devices';
 
-/* Styling for the LICs index action view template */
+/* Styling for the index action view templates */
 
 /* Page Information */
-.lics-index-page-header h1 {
+.index-page-header h1 {
     color: #005454;
     font-family: 'Georgia', serif;
     @include desktop {
@@ -14,7 +14,7 @@
     }
 }
 
-.lics-index-page-details p {
+.index-page-details p {
     color: #585858;
     font-family: 'Georgia', serif;
     @include desktop {
@@ -28,8 +28,8 @@
 }
 
 
-/* LICs Table */
-.lics-index-table {
+/* Index Tables */
+.index-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
@@ -48,7 +48,7 @@
 
 
 /* Table Headers */
-.lics-index-table th {
+.index-table th {
     border: 1px solid lightgrey;
     padding: 6px;
     font-family: Georgia, serif;
@@ -58,26 +58,26 @@
     }
 }
 
-.lics-index-table th a {
+.index-table th a {
     text-decoration: none;
     color: inherit;
 }
 
-.lics-index-table th a:hover {
+.index-table th a:hover {
     text-decoration: underline;
 }
 
-.lics-index-table th:hover {
+.index-table th:hover {
     background-color: #f0f0f0;
 }
 
-.lics-index-table th.sorted {
+.index-table th.sorted {
     text-decoration: underline;
   }
 
 
 /* Table Values */
-.lics-index-table td {
+.index-table td {
     border: 1px solid lightgrey;
     padding: 6px;
     font-family: Georgia, serif;
@@ -87,7 +87,7 @@
     }
 }
 
-.lics-index-table-lic-name {
+.index-table-lic-name {
     text-decoration: none;
     color: inherit;
     @include mobile {
@@ -99,23 +99,23 @@
     }
 }
 
-.lics-index-table-lic-name:hover {
+.index-table-lic-name:hover {
     text-decoration: underline;
 }
 
-.lics-index-table td:hover{
+.index-table td:hover{
     background-color: #f0f0f0;
 } 
 
-.lics-index-table-link:hover {
+.index-table-link:hover {
     text-decoration: underline;  
 }
 
-.lics-index-table td.center {
+.index-table td.center {
     text-align: center;
 }
 
-.lics-index-table td.lics-index-table-lic-cost {
+.index-table td.index-table-lic-cost {
     white-space: nowrap;
 }
 
