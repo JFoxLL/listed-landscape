@@ -559,7 +559,8 @@ class Lic < ApplicationRecord
         return average.round(1)
     end
 
-    # This method is used in the 'Share Price vs NTA' index view
+    #---#
+    # The following methods are used in the 'Share Price vs NTA' index view
     def sp_vs_nta_latest_record
         latest_entry = share_price_vs_nta.order(month_year: :desc).first
 
@@ -572,6 +573,22 @@ class Lic < ApplicationRecord
             sp_vs_post_tax_nta: latest_entry.sp_vs_post_tax_nta
         }
     end
+
+    def sp_vs_pre_tax_nta_averages(years)
+        all_records = share_price_vs_nta.order(month_year: :desc).pluck(:sp_vs_pre_tax_nta)
+        number_months = years * 12
+        
+        if all_records.length < number_months
+            desired_records = all_records
+        else
+            desired_records = all_records.first(number_months)
+        end
+
+        average = (desired_records.sum.to_f / desired_records.count)
+
+        return average.round(1)
+    end
+    #---#
 
     private
 
