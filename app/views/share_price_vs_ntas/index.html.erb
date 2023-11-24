@@ -36,13 +36,16 @@
       <th>Share Price</th>
       <th>Pre-Tax NTA</th>
       <th>SP vs NTA</th>
+      <th>3yr Avg</th>
+      <th>5yr Avg</th>
+      <th>10yr Avg</th>
     </tr>
   </thead>
   <tbody>
     <% @lics.each do |lic| %>
       <tr>
         <td class="index-table-hover-effect">
-            <%= link_to truncate(lic.name, length: 35), "#{listed_investment_company_path(lic)}#share-price-nta", class: "index-table-lic-name", target: "_blank" %>
+            <%= link_to truncate(lic.name, length: 45), "#{listed_investment_company_path(lic)}#share-price-nta", class: "index-table-lic-name", target: "_blank" %>
         </td>
         <td class="center"><%= lic.ticker %></td>
         <td class="center"><%= format_market_cap(lic.market_cap) %></td>
@@ -62,6 +65,9 @@
         <td class="index-table-hover-effect center">
           <%= link_to "#{lic.sp_vs_nta_latest_record[:sp_vs_pre_tax_nta].round(1)}%", "#{listed_investment_company_path(lic)}#share-price-nta", class: "index-table-lic-name", target: "_blank" %>
         </td>
+        <td class="center"><%= "#{lic.sp_vs_pre_tax_nta_averages(3)}%" %></td>
+        <td class="center"><%= "#{lic.sp_vs_pre_tax_nta_averages(5)}%" %></td>
+        <td class="center"><%= "#{lic.sp_vs_pre_tax_nta_averages(10)}%" %></td>
       </tr>
     <% end %>
   </tbody>
