@@ -1,4 +1,4 @@
-<table class="index-table">
+<table class="lics-index-table">
   <thead>
     <tr>
       <% {
@@ -18,8 +18,8 @@
   <tbody>
     <% lics.each do |lic| %>
       <tr>
-        <td class="index-table-hover-effect">
-            <%= link_to lic.name, listed_investment_company_path(lic), class: "index-table-lic-name", data: { turbo_frame: "_top" } %>
+        <td class="lics-index-table-hover-effect">
+            <%= link_to lic.name, listed_investment_company_path(lic), class: "lics-index-table-lic-name", data: { turbo_frame: "_top" } %>
         </td>
         <td class="center"><%= lic.ticker %></td>
         <td class="center"><%= format_market_cap(lic.market_cap) %></td>
@@ -38,7 +38,7 @@
             <% end %>
           <% end %>
         </td>
-        <td class="center index-table-lic-cost"><%= sprintf("%.2f", lic.calculated_mer) %> %</td>
+        <td class="center lics-index-table-lic-cost"><%= sprintf("%.2f", lic.calculated_mer) %> %</td>
       </tr>
     <% end %>
   </tbody>

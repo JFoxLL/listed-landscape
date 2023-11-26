@@ -1,9 +1,9 @@
 @import 'devices';
 
-/* Styling for the index action view templates */
+/* Styling for the Lics index action view template */
 
 /* Page Information */
-.index-page-header h1 {
+.lics-index-page-header h1 {
     color: #005454;
     font-family: 'Georgia', serif;
     @include desktop {
@@ -14,7 +14,7 @@
     }
 }
 
-.index-page-details p {
+.lics-index-page-details p {
     color: #585858;
     font-family: 'Georgia', serif;
     @include desktop {
@@ -29,7 +29,7 @@
 
 
 /* Index Tables */
-.index-table {
+.lics-index-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
@@ -48,7 +48,7 @@
 
 
 /* Table Headers */
-.index-table th {
+.lics-index-table th {
     border: 1px solid lightgrey;
     padding: 6px;
     font-family: Georgia, serif;
@@ -58,26 +58,26 @@
     }
 }
 
-.index-table th a {
+.lics-index-table th a {
     text-decoration: none;
     color: inherit;
 }
 
-.index-table th a:hover {
+.lics-index-table th a:hover {
     text-decoration: underline;
 }
 
-.index-table th:hover {
+.lics-index-table th:hover {
     background-color: #f0f0f0;
 }
 
-.index-table th.sorted {
+.lics-index-table th.sorted {
     text-decoration: underline;
   }
 
 
 /* Table Values */
-.index-table td {
+.lics-index-table td {
     border: 1px solid lightgrey;
     padding: 6px;
     font-family: Georgia, serif;
@@ -87,7 +87,7 @@
     }
 }
 
-.index-table-lic-name {
+.lics-index-table-lic-name {
     text-decoration: none;
     color: inherit;
     @include mobile {
@@ -99,23 +99,23 @@
     }
 }
 
-.index-table-lic-name:hover {
+.lics-index-table-lic-name:hover {
     text-decoration: underline;
 }
 
-.index-table td:hover{
+.lics-index-table td:hover{
     background-color: #f0f0f0;
 } 
 
-.index-table-link:hover {
+.lics-index-table-link:hover {
     text-decoration: underline;  
 }
 
-.index-table td.center {
+.lics-index-table td.center {
     text-align: center;
 }
 
-.index-table td.index-table-lic-cost {
+.lics-index-table td.index-table-lic-cost {
     white-space: nowrap;
 }
 
@@ -126,7 +126,7 @@ form {
 }
 
 /* Investment focus drop down */
-.investment-focus-filter select {
+.lics-index-table-investment-focus-filter select {
     font-family: Georgia, serif;
     font-size: 14px;
     color: #585858;
@@ -135,7 +135,7 @@ form {
     border-radius: 5px;
 }
 
-.investment-focus-filter input[type="submit"] {
+.lics-index-table-investment-focus-filter input[type="submit"] {
     background-color: #005454;
     color: #fcfaf9;
     font-family: Georgia, serif;
@@ -152,6 +152,6 @@ form {
     }
 }
 
-.investment-focus-filter input[type="submit"]:hover {
+.lics-index-table-investment-focus-filter input[type="submit"]:hover {
     background-color: #004040;
 }
