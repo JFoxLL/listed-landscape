@@ -1,15 +1,15 @@
 <!-- Page Header -->
-<div class="index-page-header">
+<div class="lics-index-page-header">
   <h1>Listed Investment Companies in Australia</h1>
 </div>
-<div class="index-page-details">
+<div class="lics-index-page-details">
   <p>The table below shows the 30 largest LICs listed on the ASX.</p>
   <p>The table can be sorted by clicking the column headings.</p>
   <p>Click the LIC Name to view more information.</p>
 </div>
 
 <!-- LICs Index Table Filter -->
-<%= form_tag listed_investment_companies_path, method: :get, class: "investment-focus-filter", data: { turbo_frame: "lics_index_table" } do %>
+<%= form_tag listed_investment_companies_path, method: :get, class: "lics-index-table-investment-focus-filter", data: { turbo_frame: "lics_index_table" } do %>
   <%= hidden_field_tag :sort_by, params[:sort_by] %>
   <%= hidden_field_tag :sort_order, params[:sort_order] %>
   <%= select_tag :investment_focus, options_for_select(@investment_focus_options, params[:investment_focus]), prompt: 'All' %>
