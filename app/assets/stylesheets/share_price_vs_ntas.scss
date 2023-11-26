@@ -28,22 +28,14 @@
 }
 
 
-/* Index Tables */
+/* Table */
 .sp-vs-nta-index-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
     margin-bottom: 40px;
-    @include desktop {
-
-
-    }
-    @include mobile {
-        table-layout: fixed;
-        overflow-x: auto;
-        display: block;
-
-    }
+    overflow-x: auto;
+    display: block;
 }
 
 
@@ -53,6 +45,8 @@
     padding: 6px;
     font-family: Georgia, serif;
     color: #005454;
+    white-space: nowrap;
+    overflow: hidden;
     @include mobile {
         font-size: 10px
     }
@@ -82,6 +76,8 @@
     padding: 6px;
     font-family: Georgia, serif;
     color: #585858;
+    white-space: nowrap;
+    overflow: hidden;
     @include mobile {
         font-size: 10px
     }
@@ -118,3 +114,5 @@
 .sp-vs-nta-index-table td.index-table-lic-cost {
     white-space: nowrap;
 }
+
+
