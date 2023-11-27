@@ -10,7 +10,7 @@
         'calculated_mer' => 'Cost'
       }.each do |db_column, display_name| %>
         <th class="<%= 'sorted' if @sort_column == db_column %>">
-          <%= sortable(db_column, display_name, @sort_column, @sort_direction) %>
+          <%= sort_lics_index_table(db_column, display_name, @sort_column, @sort_direction) %>
         </th>
       <% end %>
     </tr>

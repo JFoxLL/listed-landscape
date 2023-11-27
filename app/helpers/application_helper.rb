@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-    def sortable(column, title = nil, current_sort_column, current_sort_direction)
+    def sort_lics_index_table(column, title = nil, current_sort_column, current_sort_direction)
         title ||= column.titleize
         css_class = (column == current_sort_column) ? "current #{current_sort_direction}" : nil
         direction = (column == current_sort_column && current_sort_direction == "asc") ? "desc" : "asc"
