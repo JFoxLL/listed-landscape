@@ -38,6 +38,12 @@
     display: block;
 }
 
+.sp-vs-nta-index-table-lic-name-column {
+    @include desktop {
+        min-width: 330px
+    }
+}
+
 
 /* Table Headers */
 .sp-vs-nta-index-table th {
