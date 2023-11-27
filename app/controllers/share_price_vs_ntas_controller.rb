@@ -1,5 +1,4 @@
 class SharePriceVsNtasController < ApplicationController
-    before_action :set_device_type
 
     def index
         @investment_focus_options = Lic.group(:investment_focus).order('count_id desc').count('id').keys

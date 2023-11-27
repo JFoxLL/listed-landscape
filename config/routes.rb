@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   get "share-price-vs-nta" => "share_price_vs_ntas#index"
 
+  get "performance" => "performances#index"
+
 end
