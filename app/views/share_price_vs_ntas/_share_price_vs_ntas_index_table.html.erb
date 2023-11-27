@@ -23,7 +23,7 @@
           <% if @device_type == 'desktop' %>
             <%= link_to truncate(lic.name, length: 45), "#{listed_investment_company_path(lic)}#share-price-nta", class: "sp-vs-nta-index-table-lic-name", target: "_blank" %>
           <% else %>
-            <%= link_to truncate(lic.name, length: 35), "#{listed_investment_company_path(lic)}#share-price-nta", class: "sp-vs-nta-index-table-lic-name", target: "_blank" %>
+            <%= link_to truncate(lic.name, length: 30), "#{listed_investment_company_path(lic)}#share-price-nta", class: "sp-vs-nta-index-table-lic-name", target: "_blank" %>
           <% end %>
         </td>
         <td class="center"><%= format_market_cap(lic.market_cap) %></td>
