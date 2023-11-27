@@ -31,4 +31,6 @@
 
 
 <!-- Share Price vs NTA's Index table -->
-<%= render partial: 'share_price_vs_ntas/share_price_vs_ntas_index_table', locals: { lics: @lics } %>
+<%= turbo_frame_tag 'share_price_vs_ntas_index_table' do %>
+  <%= render partial: 'share_price_vs_ntas/share_price_vs_ntas_index_table', locals: { lics: @lics } %>
+<% end %>
