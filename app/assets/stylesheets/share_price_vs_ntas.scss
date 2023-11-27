@@ -83,6 +83,18 @@
     }
 }
 
+.sp-vs-nta-index-table th:nth-child(3),
+.sp-vs-nta-index-table th:nth-child(6),
+.sp-vs-nta-index-table td:nth-child(3),
+.sp-vs-nta-index-table td:nth-child(6) {
+    background-color: #f3eee8;
+}
+
+.sp-vs-nta-index-table thead tr th[colspan="3"] {
+    background-color: #fcfaf9;
+    color: #005454;
+}
+
 .sp-vs-nta-index-table-lic-name {
     text-decoration: none;
     color: inherit;
@@ -114,5 +126,3 @@
 .sp-vs-nta-index-table td.index-table-lic-cost {
     white-space: nowrap;
 }
-
-
