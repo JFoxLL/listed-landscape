@@ -21,45 +21,6 @@
     <p>Click the LIC Name to view a historical chart of this metric.
 </div>
 
-<!-- Share Price vs NTA's table filter -->
-
 
 <!-- Share Price vs NTA's Index table -->
-<table class="sp-vs-nta-index-table">
-  <thead>
-    <tr>
-      <th colspan="2"></th>
-      <th colspan="3">Pre-Tax</th>
-      <th colspan="3">Post-Tax</th>
-    <tr>
-      <th>Name</th>
-      <th>Updated</th>
-      <th>Prem/ Disc</th>
-      <th>3yr Avg</th>
-      <th>10yr Avg</th>
-      <th>Prem/ Disc</th>
-      <th>3yr Avg</th>
-      <th>10yr Avg</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @lics.each do |lic| %>
-      <tr>
-        <td class="sp-vs-nta-index-table-hover-effect">
-          <% if @device_type == 'desktop' %>
-            <%= link_to truncate(lic.name, length: 45), "#{listed_investment_company_path(lic)}#share-price-nta", class: "sp-vs-nta-index-table-lic-name", target: "_blank" %>
-          <% else %>
-            <%= link_to truncate(lic.name, length: 35), "#{listed_investment_company_path(lic)}#share-price-nta", class: "sp-vs-nta-index-table-lic-name", target: "_blank" %>
-          <% end %>
-        </td>
-        <td class="center"><%= lic.sp_vs_nta_latest_record[:month_year].strftime("%b-%y") %></td>
-        <td class="center"><%= "#{lic.sp_vs_nta_latest_record[:sp_vs_pre_tax_nta].round}%" %></td>
-        <td class="center"><%= "#{lic.sp_vs_pre_tax_nta_averages(3, :sp_vs_pre_tax_nta)}%" %></td>
-        <td class="center"><%= "#{lic.sp_vs_pre_tax_nta_averages(10, :sp_vs_pre_tax_nta)}%" %></td>
-        <td class="center"><%= "#{lic.sp_vs_nta_latest_record[:sp_vs_post_tax_nta].round}%" %></td>
-        <td class="center"><%= "#{lic.sp_vs_pre_tax_nta_averages(3, :sp_vs_post_tax_nta)}%" %></td>
-        <td class="center"><%= "#{lic.sp_vs_pre_tax_nta_averages(10, :sp_vs_post_tax_nta)}%" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render partial: 'share_price_vs_ntas/share_price_vs_ntas_index_table', locals: { lics: @lics } %>
