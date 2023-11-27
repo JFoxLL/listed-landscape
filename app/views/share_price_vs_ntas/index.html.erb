@@ -21,6 +21,14 @@
     <p>Click the LIC Name to view a historical chart of this metric.
 </div>
 
+<!-- Share Price v NTA's Index Table Filter -->
+<%= form_tag share_price_vs_nta_path, method: :get, class: "lics-index-table-investment-focus-filter", data: { turbo_frame: "share_price_vs_ntas_index_table" } do %>
+  <%= hidden_field_tag :sort_by, params[:sort_by] %>
+  <%= hidden_field_tag :sort_order, params[:sort_order] %>
+  <%= select_tag :investment_focus, options_for_select(@investment_focus_options, params[:investment_focus]), prompt: 'All' %>
+  <%= submit_tag 'Filter', name: nil %>
+<% end %>
+
 
 <!-- Share Price vs NTA's Index table -->
 <%= render partial: 'share_price_vs_ntas/share_price_vs_ntas_index_table', locals: { lics: @lics } %>
