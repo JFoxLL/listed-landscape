@@ -574,8 +574,8 @@ class Lic < ApplicationRecord
         }
     end
 
-    def sp_vs_pre_tax_nta_averages(years)
-        all_records = share_price_vs_nta.order(month_year: :desc).pluck(:sp_vs_pre_tax_nta)
+    def sp_vs_pre_tax_nta_averages(years, tax_type)
+        all_records = share_price_vs_nta.order(month_year: :desc).pluck(tax_type)
         number_months = years * 12
         
         if all_records.length < number_months
@@ -586,7 +586,7 @@ class Lic < ApplicationRecord
 
         average = (desired_records.sum.to_f / desired_records.count)
 
-        return average.round(1)
+        return average.round(0)
     end
     #---#
 

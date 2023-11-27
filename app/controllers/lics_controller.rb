@@ -1,5 +1,4 @@
 class LicsController < ApplicationController
-  before_action :set_device_type
   
   def index
     @investment_focus_options = Lic.group(:investment_focus).order('count_id desc').count('id').keys
@@ -74,12 +73,5 @@ class LicsController < ApplicationController
   
   end
 
-  private
-
-  def set_device_type
-    browser = Browser.new(request.user_agent)
-    @device_type = browser.device.mobile? ? 'mobile' : 'desktop'
-  end
-  
 end
 
