@@ -5,7 +5,7 @@ class SharePriceVsNtasController < ApplicationController
         @investment_focus_options = Lic.group(:investment_focus).order('count_id desc').count('id').keys
 
         if params[:investment_focus].present?
-            @lics = Lic.includes(:share_price_vs_nta).where(investment_focus: params[:investment_focus])
+            @lics = Lic.includes(:share_price_vs_nta).where(investment_focus: params[:investment_focus]).order(market_cap: :desc)
         else
             @lics = Lic.includes(:share_price_vs_nta).order(market_cap: :desc)
         end

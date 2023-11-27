@@ -38,13 +38,6 @@
     display: block;
 }
 
-.sp-vs-nta-index-table-lic-name-column {
-    @include desktop {
-        min-width: 330px
-    }
-}
-
-
 /* Table Headers */
 .sp-vs-nta-index-table th {
     border: 1px solid lightgrey;
@@ -104,13 +97,6 @@
 .sp-vs-nta-index-table-lic-name {
     text-decoration: none;
     color: inherit;
-    @include mobile {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
 }
 
 .sp-vs-nta-index-table-lic-name:hover {
@@ -129,6 +115,18 @@
     text-align: center;
 }
 
-.sp-vs-nta-index-table td.index-table-lic-cost {
-    white-space: nowrap;
+.sp-vs-nta-index-table-lic-name-column {
+    @include desktop {
+        min-width: 330px
+    }
+    @include mobile {
+        position: sticky;
+        left: 0;
+        background-color: #fcfaf9;
+        border: 1px solid lightgrey;
+        padding: 6px;
+    }
 }
+
+
+/* Investment focus filter styling is on the lics_index.scss file */
