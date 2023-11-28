@@ -1,0 +1,36 @@
+<!-- SEO details -->
+<% content_for :title do %>
+  Performances of Australian LICs
+<% end %>
+
+<% content_for :description do %>
+  [<%= Time.now.strftime("%b %Y") %> Updated!] Performance data (over 1 to 10 years) for Australian Listed Investment Companies (LICs) | Listed Landscape.
+<% end %>
+
+<% content_for :keywords do %>
+  Listed Investment Companies, LICs, Performance, Listed Landscape
+<% end %>
+
+
+<!-- Page Header -->
+<div class="sp-vs-nta-index-page-header">
+    <h1>Performance</h1>
+</div>
+<div class="sp-vs-nta-index-page-details">
+    <p>Performance data for the 30 largest LICs listed on the ASX.</p>
+    <p>Click the LIC Name to view visual charts of this metric.
+</div>
+
+<!-- Performance Index Table Filter -->
+<%= form_tag performance_path, method: :get, class: "lics-index-table-investment-focus-filter", data: { turbo_frame: "performances_index_table" } do %>
+  <%= hidden_field_tag :sort_by, params[:sort_by] %>
+  <%= hidden_field_tag :sort_order, params[:sort_order] %>
+  <%= select_tag :investment_focus, options_for_select(@investment_focus_options, params[:investment_focus]), prompt: 'All' %>
+  <%= submit_tag 'Filter', name: nil %>
+<% end %>
+
+
+<!-- Performance Index table -->
+<%= turbo_frame_tag 'performances_index_table' do %>
+  <%= render partial: 'performances/performances_index_table', locals: { lics: @lics } %>
+<% end %>

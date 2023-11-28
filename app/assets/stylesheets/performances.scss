@@ -1,0 +1,125 @@
+@import 'devices';
+
+/* Styling for the Performance index action view template */
+
+/* Page Information */
+.performance-index-page-header h1 {
+    color: #005454;
+    font-family: 'Georgia', serif;
+    @include desktop {
+        font-size: 36px
+    }
+    @include mobile {
+        font-size: 24px;
+    }
+}
+
+.performance-index-page-details p {
+    color: #585858;
+    font-family: 'Georgia', serif;
+    @include desktop {
+        font-size: 16px
+    }
+    @include mobile {
+        font-size: 12px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+}
+
+
+/* Table */
+.performance-index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    overflow-x: auto;
+    display: block;
+}
+
+/* Table Headers */
+.performance-index-table th {
+    border: 1px solid lightgrey;
+    padding: 6px;
+    font-family: Georgia, serif;
+    color: #005454;
+    white-space: nowrap;
+    overflow: hidden;
+    @include mobile {
+        font-size: 10px
+    }
+}
+
+.performance-index-table th a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.performance-index-table th a:hover {
+    text-decoration: underline;
+}
+
+.performance-index-table th:hover {
+    background-color: #f0f0f0;
+}
+
+.performance-index-table th.sorted {
+    text-decoration: underline;
+  }
+
+
+/* Table Values */
+.performance-index-table td {
+    border: 1px solid lightgrey;
+    padding: 6px;
+    font-family: Georgia, serif;
+    color: #585858;
+    white-space: nowrap;
+    overflow: hidden;
+    @include mobile {
+        font-size: 10px
+    }
+}
+
+.performance-index-table thead tr th[colspan="3"] {
+    background-color: #fcfaf9;
+    color: #005454;
+}
+
+.performance-index-table-lic-name {
+    text-decoration: none;
+    color: inherit;
+}
+
+.performance-index-table-lic-name:hover {
+    text-decoration: underline;
+}
+
+.performance-index-table td:hover{
+    background-color: #f0f0f0;
+} 
+
+.performance-index-table-link:hover {
+    text-decoration: underline;  
+}
+
+.performance-index-table td.center {
+    text-align: center;
+}
+
+.performance-index-table-lic-name-column {
+    @include desktop {
+        min-width: 330px
+    }
+    @include mobile {
+        position: sticky;
+        left: 0;
+        background-color: #fcfaf9;
+        border: 1px solid lightgrey;
+        padding: 6px;
+    }
+}
+
+
+/* Investment focus filter styling is on the lics_index.scss file */
