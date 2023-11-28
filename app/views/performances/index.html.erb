@@ -21,6 +21,8 @@
     <p>Click the LIC Name to view visual charts of this metric.
 </div>
 
+
+
 <!-- Performance Index Table Filter -->
 <%= form_tag performance_path, method: :get, class: "lics-index-table-investment-focus-filter", data: { turbo_frame: "performances_index_table" } do %>
   <%= hidden_field_tag :sort_by, params[:sort_by] %>

@@ -25,11 +25,12 @@
         </td>
         <td class="center"><%= format_market_cap(lic.market_cap) %></td>
         <td class="center"><%= lic.performance_last_updated.strftime("%b-%y") %></td>
-        <td class="center"><%= "#{lic.performance_cagr_calculation_net(1)}" %></td>
-        <td class="center"><%= "#{lic.performance_cagr_calculation_net(3)}" %></td>
-        <td class="center"><%= "#{lic.performance_cagr_calculation_net(5)}" %></td>
-        <td class="center"><%= "#{lic.performance_cagr_calculation_net(9.8)}" %></td>
+        <td class="center <%= performance_table_colour_shading(lic.performance_cagr_calculation_net(1)) %>"><%= "#{lic.performance_cagr_calculation_net(1)}" %></td>
+        <td class="center <%= performance_table_colour_shading(lic.performance_cagr_calculation_net(3)) %>"><%= "#{lic.performance_cagr_calculation_net(3)}" %></td>
+        <td class="center <%= performance_table_colour_shading(lic.performance_cagr_calculation_net(5)) %>"><%= "#{lic.performance_cagr_calculation_net(5)}" %></td>
+        <td class="center <%= performance_table_colour_shading(lic.performance_cagr_calculation_net(9.8)) %>"><%= "#{lic.performance_cagr_calculation_net(9.8)}" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
