@@ -121,5 +121,14 @@
     }
 }
 
+.performance-index-table-data-column {
+    @include desktop {
+        min-width: 48px;
+    }
+    @include mobile {
+        min-width: 30px;
+    }
+}
+
 
 /* Investment focus filter styling is on the lics_index.scss file */
