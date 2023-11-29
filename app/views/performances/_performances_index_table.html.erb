@@ -21,21 +21,21 @@
   </thead>
   <tbody>
     <% lics.each do |lic| %>
-      <% cache [lic, 'performance_index_table_row_cache'] do %>
-        <tr>
-          <td class="performance-index-table-lic-name-column">
-            <% if @device_type == 'desktop' %>
-              <%= link_to truncate(lic.name, length: 45), "#{listed_investment_company_path(lic)}#performance", class: "performance-index-table-lic-name", target: "_blank" %>
-            <% else %>
-              <%= link_to truncate(lic.name, length: 30), "#{listed_investment_company_path(lic)}#performance", class: "performance-index-table-lic-name", target: "_blank" %>
-            <% end %>
-          </td>
-          <td class="center">
-            <%= format_market_cap(lic.market_cap) %>
-          </td>
-          <td class="center">
-            <%= lic.performance_last_updated.strftime("%b-%y") %>
-          </td>
+      <tr>
+        <td class="performance-index-table-lic-name-column">
+          <% if @device_type == 'desktop' %>
+            <%= link_to truncate(lic.name, length: 45), "#{listed_investment_company_path(lic)}#performance", class: "performance-index-table-lic-name", target: "_blank" %>
+          <% else %>
+            <%= link_to truncate(lic.name, length: 30), "#{listed_investment_company_path(lic)}#performance", class: "performance-index-table-lic-name", target: "_blank" %>
+          <% end %>
+        </td>
+        <td class="center">
+          <%= format_market_cap(lic.market_cap) %>
+        </td>
+        <td class="center">
+          <%= lic.performance_last_updated.strftime("%b-%y") %>
+        </td>
+        <% cache [lic, 'performance_index_table_row_cache'] do %>
           <td class="center <%= performance_table_colour_shading(lic.performance_cagr_calculation(1, :cash_amount)) %> performance-index-table-data-column">
             <%= "#{lic.performance_cagr_calculation(1, :cash_amount)}" %>
           </td>
@@ -60,8 +60,8 @@
           <td class="center <%= performance_table_colour_shading(lic.performance_cagr_calculation(9.8, :grossed_up_amount)) %> performance-index-table-data-column">
             <%= "#{lic.performance_cagr_calculation(9.8, :grossed_up_amount)}" %>
           </td>
-        </tr>
-      <% end %>
+        <% end %>
+      </tr>
     <% end %>
   </tbody>
 </table>
