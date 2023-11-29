@@ -596,7 +596,7 @@ class Lic < ApplicationRecord
         most_recent_sp_date = share_price_histories.order(date: :desc).pluck(:date).first
     end
 
-    def performance_cagr_calculation_net(years)
+    def performance_cagr_calculation(years, div_type)
         # Parameters
         starting_amount = 10_000
         number_of_days_in_a_year = 365.25
@@ -621,40 +621,40 @@ class Lic < ApplicationRecord
 
             # Extracting dividend data from the calculation start date onwards
             # Result is an array of arrays [[payment_date1, cash_amount1, drp_price1], ...]
-            dividend_net_data = dividend_histories.where("payment_date >= ?", calculation_start_date)
+            dividend_data = dividend_histories.where("payment_date >= ?", calculation_start_date)
                                                     .order(payment_date: :asc)
-                                                    .pluck(:payment_date, :cash_amount, :drp_price)
+                                                    .pluck(:payment_date, div_type, :drp_price)
 
             # Identifies the starting share price, then calculates the number of initial shares
             starting_share_price = share_price_data.first.last
             starting_number_shares = (starting_amount / starting_share_price).round(4)
 
             # Calculating the end investment value
-            dividends_net_reinvested_investment_value_data_hash_daily = {}
-            dividends_net_reinvested_number_shares = starting_number_shares
+            dividends_reinvested_investment_value_data_hash_daily = {}
+            dividends_reinvested_number_shares = starting_number_shares
 
             share_price_data.each do |date, share_price|
 
-                dividend_net_data.each do |dividend_record|
-                    dividend_payment_date, dividend_net_amount, drp_price = dividend_record
+                dividend_data.each do |dividend_record|
+                    dividend_payment_date, dividend_amount, drp_price = dividend_record
 
                     if dividend_payment_date == date
-                        number_shares_received = ((dividends_net_reinvested_number_shares * dividend_net_amount) / drp_price).round(4)
-                        dividends_net_reinvested_number_shares += number_shares_received
+                        number_shares_received = ((dividends_reinvested_number_shares * dividend_amount) / drp_price).round(4)
+                        dividends_reinvested_number_shares += number_shares_received
 
-                        dividend_net_data.delete(dividend_record)
+                        dividend_data.delete(dividend_record)
                     end
                 end
 
-                dividends_net_reinvested_investment_value = (dividends_net_reinvested_number_shares * share_price).round(4)
-                dividends_net_reinvested_investment_value_data_hash_daily[date] = dividends_net_reinvested_investment_value
+                dividends_reinvested_investment_value = (dividends_reinvested_number_shares * share_price).round(4)
+                dividends_reinvested_investment_value_data_hash_daily[date] = dividends_reinvested_investment_value
                 
             end
-            end_amount = dividends_net_reinvested_investment_value_data_hash_daily.to_a.last[1]
+            end_amount = dividends_reinvested_investment_value_data_hash_daily.to_a.last[1]
 
-            cagr_calculation_dividend_net_reinvested = ((end_amount / starting_amount.to_f) ** (1 / years.to_f) - 1) * 100
+            cagr_calculation_dividend_reinvested = ((end_amount / starting_amount.to_f) ** (1 / years.to_f) - 1) * 100
 
-            return "#{cagr_calculation_dividend_net_reinvested.round(0)}%"
+            return "#{cagr_calculation_dividend_reinvested.round(0)}%"
         end
     end
 
