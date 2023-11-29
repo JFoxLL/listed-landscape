@@ -14,7 +14,7 @@ class PerformancesController < ApplicationController
       format.turbo_stream do
         render turbo_stream: turbo_stream.update('performances_index_table', partial: 'performances_index_table', locals: { lics: @lics })
       end
-  end
+    end
 
 
   end

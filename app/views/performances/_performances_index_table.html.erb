@@ -3,6 +3,7 @@
     <tr>
       <th colspan="3" style="border: none;"></th>
       <th colspan="4">Dividends Reinvested</th>
+    </tr>
     <tr>
       <th class="performance-index-table-lic-name-column">Name</th>
       <th>Size</th>
@@ -15,22 +16,25 @@
   </thead>
   <tbody>
     <% lics.each do |lic| %>
-      <tr>
-        <td class="performance-index-table-lic-name-column">
-          <% if @device_type == 'desktop' %>
-            <%= link_to truncate(lic.name, length: 45), "#{listed_investment_company_path(lic)}#performance", class: "performance-index-table-lic-name", target: "_blank" %>
-          <% else %>
-            <%= link_to truncate(lic.name, length: 30), "#{listed_investment_company_path(lic)}#performance", class: "performance-index-table-lic-name", target: "_blank" %>
-          <% end %>
-        </td>
-        <td class="center"><%= format_market_cap(lic.market_cap) %></td>
-        <td class="center"><%= lic.performance_last_updated.strftime("%b-%y") %></td>
-        <td class="center <%= performance_table_colour_shading(lic.performance_cagr_calculation_net(1)) %>"><%= "#{lic.performance_cagr_calculation_net(1)}" %></td>
-        <td class="center <%= performance_table_colour_shading(lic.performance_cagr_calculation_net(3)) %>"><%= "#{lic.performance_cagr_calculation_net(3)}" %></td>
-        <td class="center <%= performance_table_colour_shading(lic.performance_cagr_calculation_net(5)) %>"><%= "#{lic.performance_cagr_calculation_net(5)}" %></td>
-        <td class="center <%= performance_table_colour_shading(lic.performance_cagr_calculation_net(9.8)) %>"><%= "#{lic.performance_cagr_calculation_net(9.8)}" %></td>
-      </tr>
+      <% cache [lic, 'performance_index_table_row_cache'] do %>
+        <tr>
+          <td class="performance-index-table-lic-name-column">
+            <% if @device_type == 'desktop' %>
+              <%= link_to truncate(lic.name, length: 45), "#{listed_investment_company_path(lic)}#performance", class: "performance-index-table-lic-name", target: "_blank" %>
+            <% else %>
+              <%= link_to truncate(lic.name, length: 30), "#{listed_investment_company_path(lic)}#performance", class: "performance-index-table-lic-name", target: "_blank" %>
+            <% end %>
+          </td>
+          <td class="center"><%= format_market_cap(lic.market_cap) %></td>
+          <td class="center"><%= lic.performance_last_updated.strftime("%b-%y") %></td>
+          <td class="center <%= performance_table_colour_shading(lic.performance_cagr_calculation_net(1)) %>"><%= "#{lic.performance_cagr_calculation_net(1)}" %></td>
+          <td class="center <%= performance_table_colour_shading(lic.performance_cagr_calculation_net(3)) %>"><%= "#{lic.performance_cagr_calculation_net(3)}" %></td>
+          <td class="center <%= performance_table_colour_shading(lic.performance_cagr_calculation_net(5)) %>"><%= "#{lic.performance_cagr_calculation_net(5)}" %></td>
+          <td class="center <%= performance_table_colour_shading(lic.performance_cagr_calculation_net(9.8)) %>"><%= "#{lic.performance_cagr_calculation_net(9.8)}" %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
+
 
