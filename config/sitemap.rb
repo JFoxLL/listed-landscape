@@ -8,7 +8,8 @@ SitemapGenerator::Sitemap.create do
     add listed_investment_company_path(lic), :priority => 0.7, :changefreq => 'monthly'
   end
 
-  add share_price_vs_nta_path, :priority => 0.8, :changefreq => 'monthly'
+  add share_price_vs_nta_path, :priority => 0.5, :changefreq => 'monthly'
+  add performance_path, :priority => 0.5, :changefreq => 'monthly'
 
 end
 
