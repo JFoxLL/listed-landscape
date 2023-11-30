@@ -1,31 +1,27 @@
 <header class="header">
   <div class="container header-container">
-
+    
     <!-- Logo -->
     <div class="logo">
       <%= link_to image_tag('/listed_landscape_header_logo_350x50px.png', alt: 'Listed Landscape Website Logo'), root_path %>
     </div>
 
-    <!-- Menu Items -->
-    <div class="menu-items">
-      <%= link_to 'NTAs', share_price_vs_nta_path, class: 'menu-link' %>
-      <%= link_to 'Performance', performance_path, class: 'menu-link' %>
-      <%= link_to 'Home', listed_investment_companies_path, class: 'menu-link' %>
+
+    <!-- Menu -->
+    <div data-controller="mobile-menu">
+      <!-- Mobil menu -->
+      <div id="mobile_menu" class="mobile_menu" data-action="click->mobile-menu#toggle">
+        <div class="mobile_menu_line"></div>
+        <div class="mobile_menu_line"></div>
+        <div class="mobile_menu_line"></div>
+      </div>
+      <!-- Menu links -->
+      <div id="menu-items" class="menu-items" data-mobile-menu-target="menu">
+        <%= link_to 'NTAs', share_price_vs_nta_path, class: 'menu-link' %>
+        <%= link_to 'Performance', performance_path, class: 'menu-link' %>
+        <%= link_to 'Home', listed_investment_companies_path, class: 'menu-link' %>
+      </div>
     </div>
-    
+  
   </div>
 </header>
-
-
-
-
-<!-- Note, I previously had the following to hide/show different items on different pages
-    <div class="menu-items">
-      <% unless current_page?(share_price_vs_nta_path) %>
-        <%= link_to 'NTAs', share_price_vs_nta_path, class: 'menu-link' %>
-      <% end %>
-      <% unless current_page?(root_path) || current_page?(listed_investment_companies_path) %>
-        <%= link_to 'Home', listed_investment_companies_path, class: 'menu-link' %>
-      <% end %>
-    </div>
- -->

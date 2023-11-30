@@ -77,7 +77,7 @@
     width: 100vw;
     background-color: #004A4A;
     text-align: center;
-    z-index: 1000;
+    z-index: 10;
     @include mobile {
         overflow-x: auto;
         white-space: nowrap;
