@@ -14,10 +14,16 @@ SitemapGenerator::Sitemap.create do
 end
 
 
-# Notes:
-  # To refresh the sitemap:
-    # run: rake sitemap:refresh:no_ping
-    # Push to Heroku (git push heroku main)
+# Steps to refresh the sitemap:
+  # In development:
+    # Update sitemap code above
+    # Command to update sitemap: rake sitemap:refresh:no_ping
+    # Merge changes into main
+    # Push to origin (github) (git push origin main)
+  # Push to production on Heroku (git push heroku main)
+  # Restart Heroku server (heroku restart)
+  # Resubmit updated sitemap in Google Search Consol
+
 
 
 # Gem default instructions:
