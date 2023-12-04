@@ -19,7 +19,7 @@
   <tbody>
     <% lics.each do |lic| %>
       <tr>
-        <td>
+        <td class="sp-vs-nta-index-table-lic-name-column">
           <% if @device_type == 'desktop' %>
             <%= link_to truncate(lic.name, length: 45), "#{listed_investment_company_path(lic)}#share-price-nta", class: "sp-vs-nta-index-table-lic-name", target: "_blank" %>
           <% else %>
