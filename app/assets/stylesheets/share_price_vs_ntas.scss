@@ -115,6 +115,8 @@
     text-align: center;
 }
 
+
+/* Sticky left hand column */
 .sp-vs-nta-index-table-lic-name-column {
     @include desktop {
         min-width: 330px
@@ -129,20 +131,6 @@
 }
 
 
-/* Colour-coded cell shading based on performance (see Performances helper) */
-.negative-performance {
-    background-color: rgba(222, 151, 121, 0.2);
-}
-
-.strong-performance {
-    background-color: rgba(129, 148, 98, 0.2);
-}
-
-.neutral-performance {
-    background-color: transparent;
-}
-  
-
-
-
 /* Investment focus filter styling is on the lics_index.scss file */
+
+
