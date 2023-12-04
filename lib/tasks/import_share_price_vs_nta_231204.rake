@@ -1,6 +1,6 @@
 namespace :db do
     desc 'Import Share Price Vs NTA data from CSV'
-    task import_share_price_vs_nta_231114: :environment do
+    task import_share_price_vs_nta_231204: :environment do
       require 'csv'
   
       # Step to remove all existing records
@@ -9,11 +9,14 @@ namespace :db do
       puts "All existing records removed successfully!"
   
       # Update the file name here
-      csv_file_path = 'db/import_data/share_price_vs_nta_231114.csv'
+      csv_file_path = 'db/import_data/share_price_vs_nta_231204.csv'
   
       puts "Importing Share Price Vs NTA data..."
   
       CSV.foreach(csv_file_path, headers: true) do |row|
+        # Skip the row if 'pre_tax_nta' is blank
+        next if row['pre_tax_nta'].blank?
+  
         lic = Lic.find_by(ticker: row['lic_ticker'])
         if lic
           SharePriceVsNta.create(
