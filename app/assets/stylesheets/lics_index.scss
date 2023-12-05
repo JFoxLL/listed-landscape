@@ -34,15 +34,10 @@
     border-collapse: collapse;
     margin-top: 20px;
     margin-bottom: 40px;
-    @include desktop {
-
-
-    }
     @include mobile {
         table-layout: fixed;
         overflow-x: auto;
         display: block;
-
     }
 }
 
