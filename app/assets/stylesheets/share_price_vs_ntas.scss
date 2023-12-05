@@ -28,19 +28,44 @@
 }
 
 
-/* Table */
-.sp-vs-nta-index-table {
-    width: 100%;
-    border-collapse: collapse;
+/* Table structure */
+.sp-vs-nta-index-table-container {
     margin-top: 20px;
     margin-bottom: 40px;
-    overflow-x: auto;
-    display: block;
+    overflow: auto;
+    width: 100%;
+    @include desktop {
+        height: 600px;
+    }
+    @include mobile {
+        height: 500px;
+    }
 }
+
+.sp-vs-nta-index-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+
+    thead {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background-color: #fcfaf9;
+    }
+
+    th:first-child, td:first-child{
+        position: sticky;
+        left: 0;
+        z-index: 1;
+        background-color: #fcfaf9;
+    }
+}
+
 
 /* Table Headers */
 .sp-vs-nta-index-table th {
-    border: 1px solid lightgrey;
+    border: 0.5px solid lightgrey;
     padding: 6px;
     font-family: Georgia, serif;
     color: #005454;
@@ -71,7 +96,7 @@
 
 /* Table Values */
 .sp-vs-nta-index-table td {
-    border: 1px solid lightgrey;
+    border: 0.5px solid lightgrey;
     padding: 6px;
     font-family: Georgia, serif;
     color: #585858;
@@ -116,17 +141,36 @@
 }
 
 
-/* Sticky left hand column */
-.sp-vs-nta-index-table-lic-name-column {
-    @include desktop {
-        min-width: 330px
+/* Table specific borders */
+.sp-vs-nta-index-table {
+    /* Left hand column */
+    th:first-child,
+    td:first-child {
+        border-left: 1px solid #005454;
     }
-    @include mobile {
-        position: sticky;
-        left: 0;
-        background-color: #fcfaf9;
-        border: 1px solid lightgrey;
-        padding: 6px;
+    /* Right hand column */
+    th:last-child,
+    td:last-child {
+        border-right: 1px solid #005454;
+    }
+    /* Top row */
+    tr:first-child th {
+        border-top: 1px solid #005454;
+    }
+    /* Bottom row */
+    tr:last-child td {
+        border-bottom: 1px solid #005454;
+    }
+    /* Bottom header row */
+    tr:last-child th {
+        border-bottom: 1px solid #005454;
+    }
+    /* Left-hand side of NTA columns */
+    th:nth-child(4),
+    td:nth-child(4),
+    th:nth-child(7),
+    td:nth-child(7) {
+        border-left: 1px solid #005454;
     }
 }
 
