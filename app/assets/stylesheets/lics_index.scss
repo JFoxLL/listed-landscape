@@ -28,23 +28,39 @@
 }
 
 
-/* Table */
-.lics-index-table {
-    width: 100%;
-    border-collapse: collapse;
+/* Table structure */
+.lics-index-table-container {
     margin-top: 20px;
     margin-bottom: 40px;
+    overflow: auto;
+    width: 100%;
+    @include desktop {
+        height: 600px;
+    }
     @include mobile {
-        table-layout: fixed;
-        overflow-x: auto;
-        display: block;
+        height: 500px;
+    }
+}
+
+.lics-index-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+
+    thead {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background-color: #fcfaf9;
     }
 }
 
 
+
+
 /* Table Headers */
 .lics-index-table th {
-    border: 1px solid lightgrey;
+    border: 0.5px solid lightgrey;
     padding: 6px;
     font-family: Georgia, serif;
     color: #005454;
@@ -73,7 +89,7 @@
 
 /* Table Values */
 .lics-index-table td {
-    border: 1px solid lightgrey;
+    border: 0.5px solid lightgrey;
     padding: 6px;
     font-family: Georgia, serif;
     color: #585858;
@@ -112,6 +128,30 @@
 
 .lics-index-table td.lics-index-table-lic-cost {
     white-space: nowrap;
+}
+
+
+/* Table specific borders */
+.lics-index-table {
+    /* Left hand column */
+    th:first-child,
+    td:first-child {
+        border-left: 1px solid #005454;
+    }
+    /* Right hand column */
+    th:last-child,
+    td:last-child {
+        border-right: 1px solid #005454;
+    }
+    /* Header row */
+    tr:first-child th {
+        border-top: 1px solid #005454;
+        border-bottom: 1px solid #005454;
+    }
+    /* Bottom row */
+    tr:last-child td {
+        border-bottom: 1px solid #005454;
+    }
 }
 
 

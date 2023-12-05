@@ -1,46 +1,48 @@
-<table class="lics-index-table">
-  <thead>
-    <tr>
-      <% {
-        'name' => 'Name',
-        'ticker' => 'Ticker',
-        'market_cap' => 'Size',
-        'listing_year' => 'Listed',
-        'investment_focus' => 'Focus',
-        'calculated_mer' => 'Cost'
-      }.each do |db_column, display_name| %>
-        <th class="<%= 'sorted' if @sort_column == db_column %>">
-          <%= sort_lics_index_table(db_column, display_name, @sort_column, @sort_direction) %>
-        </th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <% lics.each do |lic| %>
+<div class = "lics-index-table-container ll-scrollbar">
+  <table class="lics-index-table">
+    <thead>
       <tr>
-        <td class="lics-index-table-hover-effect">
-            <%= link_to lic.name, listed_investment_company_path(lic), class: "lics-index-table-lic-name", data: { turbo_frame: "_top" } %>
-        </td>
-        <td class="center"><%= lic.ticker %></td>
-        <td class="center"><%= format_market_cap(lic.market_cap) %></td>
-        <td class="center"><%= lic.listing_year %></td>
-        <td class="<%= @device_type == 'desktop' ? '' : 'center' %>">
-          <% if @device_type == 'desktop' %>
-            <%= lic.investment_focus %>
-          <% else %>
-            <% case lic.investment_focus %>
-              <% when 'Australian Equities' %>
-                <%= 'Aus Equities' %>
-              <% when 'Global Infrastructure' %>
-                <%= 'Global Infra' %>
-              <% else %>
-                <%= lic.investment_focus %>
-            <% end %>
-          <% end %>
-        </td>
-        <td class="center lics-index-table-lic-cost"><%= sprintf("%.2f", lic.calculated_mer) %> %</td>
+        <% {
+          'name' => 'Name',
+          'ticker' => 'Ticker',
+          'market_cap' => 'Size',
+          'listing_year' => 'Listed',
+          'investment_focus' => 'Focus',
+          'calculated_mer' => 'Cost'
+        }.each do |db_column, display_name| %>
+          <th class="<%= 'sorted' if @sort_column == db_column %>">
+            <%= sort_lics_index_table(db_column, display_name, @sort_column, @sort_direction) %>
+          </th>
+        <% end %>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% lics.each do |lic| %>
+        <tr>
+          <td class="lics-index-table-hover-effect">
+              <%= link_to lic.name, listed_investment_company_path(lic), class: "lics-index-table-lic-name", data: { turbo_frame: "_top" } %>
+          </td>
+          <td class="center"><%= lic.ticker %></td>
+          <td class="center"><%= format_market_cap(lic.market_cap) %></td>
+          <td class="center"><%= lic.listing_year %></td>
+          <td class="<%= @device_type == 'desktop' ? '' : 'center' %>">
+            <% if @device_type == 'desktop' %>
+              <%= lic.investment_focus %>
+            <% else %>
+              <% case lic.investment_focus %>
+                <% when 'Australian Equities' %>
+                  <%= 'Aus Equities' %>
+                <% when 'Global Infrastructure' %>
+                  <%= 'Global Infra' %>
+                <% else %>
+                  <%= lic.investment_focus %>
+              <% end %>
+            <% end %>
+          </td>
+          <td class="center lics-index-table-lic-cost"><%= sprintf("%.2f", lic.calculated_mer) %> %</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
