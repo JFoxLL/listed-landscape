@@ -28,19 +28,43 @@
 }
 
 
-/* Table */
-.performance-index-table {
-    width: 100%;
-    border-collapse: collapse;
+/* Table structure */
+.performance-index-table-container {
     margin-top: 20px;
     margin-bottom: 40px;
-    overflow-x: auto;
-    display: block;
+    overflow: auto;
+    width: 100%;
+    @include desktop {
+        height: 600px;
+    }
+    @include mobile {
+        height: 500px;
+    }
+}
+
+.performance-index-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+
+    thead {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background-color: #fcfaf9;
+    }
+
+    th:first-child, td:first-child{
+        position: sticky;
+        left: 0;
+        z-index: 1;
+        background-color: #fcfaf9;
+    }
 }
 
 /* Table Headers */
 .performance-index-table th {
-    border: 1px solid lightgrey;
+    border: 0.5px solid lightgrey;
     padding: 6px;
     font-family: Georgia, serif;
     color: #005454;
@@ -71,7 +95,7 @@
 
 /* Table Values */
 .performance-index-table td {
-    border: 1px solid lightgrey;
+    border: 0.5px solid lightgrey;
     padding: 6px;
     font-family: Georgia, serif;
     color: #585858;
@@ -107,19 +131,13 @@
 .performance-index-table td.center {
     text-align: center;
 }
-
+/* 
 .performance-index-table-lic-name-column {
     @include desktop {
         min-width: 330px
     }
-    @include mobile {
-        position: sticky;
-        left: 0;
-        background-color: #fcfaf9;
-        border: 1px solid lightgrey;
-        padding: 6px;
-    }
 }
+*/
 
 .performance-index-table-data-column {
     @include desktop {
@@ -143,6 +161,39 @@
 .neutral-performance {
     background-color: transparent;
 }
-  
+
+/* Table specific borders */
+.performance-index-table {
+    /* Left hand column */
+    th:first-child,
+    td:first-child {
+        border-left: 1px solid #005454;
+    }
+    /* Right hand column */
+    th:last-child,
+    td:last-child {
+        border-right: 1px solid #005454;
+    }
+    /* Top row */
+    tr:first-child th {
+        border-top: 1px solid #005454;
+    }
+    /* Bottom row */
+    tr:last-child td {
+        border-bottom: 1px solid #005454;
+    }
+    /* Bottom header row */
+    tr:last-child th {
+        border-bottom: 1px solid #005454;
+    }
+    /* Left-hand side of NTA columns */
+    th:nth-child(4),
+    td:nth-child(4),
+    th:nth-child(8),
+    td:nth-child(8) {
+        border-left: 1px solid #005454;
+    }
+}
+
 
 /* Investment focus filter styling is on the lics_index.scss file */
