@@ -60,6 +60,10 @@
         z-index: 1;
         background-color: #fcfaf9;
     }
+
+    tr:last-child th {
+        background-color: #f3eee8;
+    }
 }
 
 /* Table Headers */
