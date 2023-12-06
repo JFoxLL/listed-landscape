@@ -1,1 +1,33 @@
+<!-- SEO details -->
+<% content_for :title do %>
+  Dividend Yields of Australian LICs
+<% end %>
 
+<% content_for :description do %>
+  [<%= Time.now.strftime("%b %Y") %> Updated!] Current & Historical Dividend Yields of Australian Listed Investment Companies (LICs) | Listed Landscape.
+<% end %>
+
+<% content_for :keywords do %>
+  Listed Investment Companies, LICs, Dividends, Dividend Yields, Listed Landscape
+<% end %>
+
+
+<!-- Page Header -->
+<div class="dividend-yield-index-page-header">
+    <h1>Dividend Yields</h1>
+</div>
+<div class="dividend-yield-index-page-details">
+    <p>Historical Dividend Yields for the 30 largest LICs listed on the ASX.</p>
+    <p>Click the LIC Name to view more information on their dividend history.
+</div>
+
+
+
+<!-- Dividend Yields Index Table Filter -->
+
+
+
+<!-- Dividend Yields Index table -->
+<%= turbo_frame_tag 'dividend_yields_index_table' do %>
+  <%= render partial: 'dividend_yields/dividend_yields_index_table', locals: { lics: @lics } %>
+<% end %>
