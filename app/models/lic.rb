@@ -661,11 +661,11 @@ class Lic < ApplicationRecord
 
     #---#
     # The following methods are using in the 'Dividend Yields' index view
-
+    def dividend_yield_calculation(year, div_type)
 
 
     #---#
-    
+
     private
 
     def set_slug
