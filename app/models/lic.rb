@@ -657,9 +657,15 @@ class Lic < ApplicationRecord
             return "#{cagr_calculation_dividend_reinvested.round(0)}%"
         end
     end
-
     #---#
 
+    #---#
+    # The following methods are using in the 'Dividend Yields' index view
+
+
+
+    #---#
+    
     private
 
     def set_slug
