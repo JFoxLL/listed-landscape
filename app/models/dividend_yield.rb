@@ -1,0 +1,2 @@
+class DividendYield < ApplicationRecord
+end
