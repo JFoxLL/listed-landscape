@@ -139,10 +139,10 @@
 
 .dividend-yields-index-table-data-column {
     @include desktop {
-        min-width: 48px;
+        min-width: 46px;
     }
     @include mobile {
-        min-width: 30px;
+        min-width: 32px;
     }
 }
 
@@ -174,8 +174,8 @@
     /* Left-hand side of NTA columns */
     th:nth-child(3),
     td:nth-child(3),
-    th:nth-child(7),
-    td:nth-child(7) {
+    th:nth-child(8),
+    td:nth-child(8) {
         border-left: 1px solid #005454;
     }
 }
