@@ -1,9 +1,9 @@
 @import 'devices';
 
-/* Styling for the Performance index action view template */
+/* Styling for the Dividend Yields index action view template */
 
 /* Page Information */
-.performance-index-page-header h1 {
+.dividend-yields-index-page-header h1 {
     color: #005454;
     font-family: 'Georgia', serif;
     @include desktop {
@@ -14,7 +14,7 @@
     }
 }
 
-.performance-index-page-details p {
+.dividend-yields-index-page-details p {
     color: #585858;
     font-family: 'Georgia', serif;
     @include desktop {
@@ -29,7 +29,7 @@
 
 
 /* Table structure */
-.performance-index-table-container {
+.dividend-yields-index-table-container {
     margin-top: 20px;
     margin-bottom: 40px;
     overflow: auto;
@@ -42,7 +42,7 @@
     }
 }
 
-.performance-index-table {
+.dividend-yields-index-table {
     border-collapse: separate;
     border-spacing: 0;
     width: 100%;
@@ -67,7 +67,7 @@
 }
 
 /* Table Headers */
-.performance-index-table th {
+.dividend-yields-index-table th {
     border: 0.5px solid lightgrey;
     padding: 6px;
     font-family: Georgia, serif;
@@ -79,26 +79,26 @@
     }
 }
 
-.performance-index-table th a {
+.dividend-yields-index-table th a {
     text-decoration: none;
     color: inherit;
 }
 
-.performance-index-table th a:hover {
+.dividend-yields-index-table th a:hover {
     text-decoration: underline;
 }
 
-.performance-index-table th:hover {
+.dividend-yields-index-table th:hover {
     background-color: #f0f0f0;
 }
 
-.performance-index-table th.sorted {
+.dividend-yields-index-table th.sorted {
     text-decoration: underline;
   }
 
 
 /* Table Values */
-.performance-index-table td {
+.dividend-yields-index-table td {
     border: 0.5px solid lightgrey;
     padding: 6px;
     font-family: Georgia, serif;
@@ -110,33 +110,34 @@
     }
 }
 
-.performance-index-table thead tr th[colspan="3"] {
+.dividend-yields-index-table thead tr th[colspan="3"] {
     background-color: #fcfaf9;
     color: #005454;
 }
 
-.performance-index-table-lic-name {
+.dividend-yields-index-table-lic-name {
     text-decoration: none;
     color: inherit;
 }
 
-.performance-index-table-lic-name:hover {
+.dividend-yields-index-table-lic-name:hover {
     text-decoration: underline;
 }
 
-.performance-index-table td:hover{
+.dividend-yields-index-table td:hover{
     background-color: #f0f0f0;
 } 
 
-.performance-index-table-link:hover {
+.dividend-yields-index-table-link:hover {
     text-decoration: underline;  
 }
 
-.performance-index-table td.center {
+.dividend-yields-index-table td.center {
     text-align: center;
 }
 
-.performance-index-table-data-column {
+
+.dividend-yields-index-table-data-column {
     @include desktop {
         min-width: 48px;
     }
@@ -146,21 +147,8 @@
 }
 
 
-/* Colour-coded cell shading based on performance (see Performances helper) */
-.negative-performance {
-    background-color: rgba(222, 151, 121, 0.2);
-}
-
-.strong-performance {
-    background-color: rgba(129, 148, 98, 0.2);
-}
-
-.neutral-performance {
-    background-color: transparent;
-}
-
 /* Table specific borders */
-.performance-index-table {
+.dividend-yields-index-table {
     /* Left hand column */
     th:first-child,
     td:first-child {
@@ -184,10 +172,10 @@
         border-bottom: 1px solid #005454;
     }
     /* Left-hand side of NTA columns */
-    th:nth-child(4),
-    td:nth-child(4),
-    th:nth-child(8),
-    td:nth-child(8) {
+    th:nth-child(3),
+    td:nth-child(3),
+    th:nth-child(7),
+    td:nth-child(7) {
         border-left: 1px solid #005454;
     }
 }
