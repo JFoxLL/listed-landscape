@@ -4,20 +4,22 @@
     <thead>
       <tr>
         <th colspan="2" style="border: none; background-color: transparent;"></th>
-        <th colspan="4" style="border-left: 1px solid #005454; background-color: #f3eee8;">Net Dividend Yield</th>
-        <th colspan="4" style="border-left: 1px solid #005454; background-color: #f3eee8;">Gross Dividend Yield</th>
+        <th colspan="5" style="border-left: 1px solid #005454; background-color: #f3eee8;">Net Dividend Yield</th>
+        <th colspan="5" style="border-left: 1px solid #005454; background-color: #f3eee8;">Gross Dividend Yield</th>
       </tr>
       <tr>
         <th class="dividend-yields-index-table-lic-name-column"  style="border-top: 1px solid #005454;">Name</th>
         <th style="border-top: 1px solid #005454;">Size</th>
-        <th>2020</th>
-        <th>2021</th>
-        <th>2022</th>
-        <th>2023</th>
-        <th>2020</th>
-        <th>2021</th>
-        <th>2022</th>
-        <th>2023</th>
+        <th>19</th>
+        <th>20</th>
+        <th>21</th>
+        <th>22</th>
+        <th>23</th>
+        <th>19</th>
+        <th>20</th>
+        <th>21</th>
+        <th>22</th>
+        <th>23</th>
       </tr>
     </thead>
     <tbody>
@@ -27,13 +29,14 @@
             <% if @device_type == 'desktop' %>
               <%= link_to truncate(lic.name, length: 40), "#{listed_investment_company_path(lic)}#dividends", class: "dividend-yields-index-table-lic-name", target: "_blank" %>
             <% else %>
-              <%= link_to truncate(lic.name, length: 30), "#{listed_investment_company_path(lic)}#dividends", class: "dividend-yield-index-table-lic-name", target: "_blank" %>
+              <%= link_to truncate(lic.name, length: 30), "#{listed_investment_company_path(lic)}#dividends", class: "dividend-yields-index-table-lic-name", target: "_blank" %>
             <% end %>
           </td>
           <td class="center">
             <%= format_market_cap(lic.market_cap) %>
           </td>
           <% cache [lic, 'dividend_yields_index_table_row_cache'] do %>
+            <!-- Start of Net Div Yield Columns -->
             <td class="center dividend-yields-index-table-data-column">
               <%=  %>
             </td>
@@ -43,6 +46,13 @@
             <td class="center dividend-yields-index-table-data-column">
               <%=  %>
             </td>
+            <td class="center dividend-yields-index-table-data-column">
+              <%=  %>
+            </td>
+            <td class="center dividend-yields-index-table-data-column">
+              <%=  %>
+            </td>
+            <!-- Start of Gross Div Yield Columns -->
             <td class="center dividend-yields-index-table-data-column">
               <%=  %>
             </td>
