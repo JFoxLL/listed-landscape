@@ -660,10 +660,27 @@ class Lic < ApplicationRecord
     #---#
 
     #---#
-    # The following methods are using in the 'Dividend Yields' index view
-    def dividend_yield_calculation(year, div_type)
+    # The following method is used in the 'Dividend Yields' index view
+    def dividend_yield_calculation(year, tax_type)
+        check_opening_share_price_present = SharePriceSummary.exists?(lic_id: id, year: year)
+        return "-" unless check_opening_share_price_present
+        
+        check_final_dividend_present = DividendHistory.exists?(lic_id: id, year: year, dividend_phase: 'Final')
+        return "-" unless check_final_dividend_present
 
+        dividend_amounts = DividendHistory.where(lic_id: id, year: year)
+                                            .sum(tax_type)
+                                            .to_f
 
+        opening_share_price = SharePriceSummary.where(lic_id: id, year: year)
+                                                .pluck(:sp_opening)
+                                                .first
+                                                .to_f
+        
+        dividend_yield = (dividend_amounts / opening_share_price) * 100
+
+        return "#{dividend_yield.round(1)}%"
+    end
     #---#
 
     private
