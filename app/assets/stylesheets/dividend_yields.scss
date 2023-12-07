@@ -110,6 +110,11 @@
     }
 }
 
+.dividend-yields-index-table td:nth-child(7),
+.dividend-yields-index-table td:nth-child(12) {
+    background-color: #f3eee8;
+}
+
 .dividend-yields-index-table thead tr th[colspan="3"] {
     background-color: #fcfaf9;
     color: #005454;

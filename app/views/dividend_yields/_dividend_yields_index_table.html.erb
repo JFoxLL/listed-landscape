@@ -38,35 +38,35 @@
           <% cache [lic, 'dividend_yields_index_table_row_cache'] do %>
             <!-- Start of Net Div Yield Columns -->
             <td class="center dividend-yields-index-table-data-column">
-              <%=  %>
+              <%= lic.dividend_yield_calculation(2019, :cash_amount) %>
             </td>
             <td class="center dividend-yields-index-table-data-column">
-              <%=  %>
+              <%= lic.dividend_yield_calculation(2020, :cash_amount) %>
             </td>
             <td class="center dividend-yields-index-table-data-column">
-              <%=  %>
+              <%= lic.dividend_yield_calculation(2021, :cash_amount) %>
             </td>
             <td class="center dividend-yields-index-table-data-column">
-              <%=  %>
+              <%= lic.dividend_yield_calculation(2022, :cash_amount) %>
             </td>
             <td class="center dividend-yields-index-table-data-column">
-              <%=  %>
+              <%= lic.dividend_yield_calculation(2023, :cash_amount) %>
             </td>
             <!-- Start of Gross Div Yield Columns -->
             <td class="center dividend-yields-index-table-data-column">
-              <%=  %>
+              <%= lic.dividend_yield_calculation(2019, :grossed_up_amount) %>
             </td>
             <td class="center dividend-yields-index-table-data-column">
-              <%=  %>
+              <%= lic.dividend_yield_calculation(2020, :grossed_up_amount) %>
             </td>
             <td class="center dividend-yields-index-table-data-column">
-              <%=  %>
+              <%= lic.dividend_yield_calculation(2021, :grossed_up_amount) %>
             </td>
             <td class="center dividend-yields-index-table-data-column">
-              <%=  %>
+              <%= lic.dividend_yield_calculation(2022, :grossed_up_amount) %>
             </td>
             <td class="center dividend-yields-index-table-data-column">
-              <%=  %>
+              <%= lic.dividend_yield_calculation(2023, :grossed_up_amount) %>
             </td>
           <% end %>
         </tr>

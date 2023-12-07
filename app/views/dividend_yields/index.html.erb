@@ -31,3 +31,10 @@
 <%= turbo_frame_tag 'dividend_yields_index_table' do %>
   <%= render partial: 'dividend_yields/dividend_yields_index_table', locals: { lics: @lics } %>
 <% end %>
+
+<div class="dividend-yield-index-page-details">
+    <p>* The 'start of financial year' share price is used when calculating the yield.</p>
+    <p>* Net Dividend Yield: The cash dividends received, but not including franking credits.</p>
+    <p>* Gross Dividend Yield: The cash dividends received, with franking credits included.</p>
+    <p>* Some LICs end their financial year at the end of the calendar year. This is why the most recent year may still be blank.</p>
+</div>
