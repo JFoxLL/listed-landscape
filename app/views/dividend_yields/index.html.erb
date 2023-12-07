@@ -24,7 +24,12 @@
 
 
 <!-- Dividend Yields Index Table Filter -->
-
+<%= form_tag dividend_yields_path, method: :get, class: "lics-index-table-investment-focus-filter", data: { turbo_frame: "dividend_yields_index_table" } do %>
+  <%= hidden_field_tag :sort_by, params[:sort_by] %>
+  <%= hidden_field_tag :sort_order, params[:sort_order] %>
+  <%= select_tag :investment_focus, options_for_select(@investment_focus_options, params[:investment_focus]), prompt: 'All' %>
+  <%= submit_tag 'Filter', name: nil %>
+<% end %>
 
 
 <!-- Dividend Yields Index table -->

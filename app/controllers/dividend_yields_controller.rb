@@ -1,7 +1,7 @@
 class DividendYieldsController < ApplicationController
 
   def index
-    # @investment_focus_options = Lic.group(:investment_focus).order('count_id desc').count('id').keys
+    @investment_focus_options = Lic.group(:investment_focus).order('count_id desc').count('id').keys
 
     if params[:investment_focus].present?
         @lics = Lic.where(investment_focus: params[:investment_focus]).order(market_cap: :desc)
