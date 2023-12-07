@@ -10,6 +10,7 @@ SitemapGenerator::Sitemap.create do
 
   add share_price_vs_nta_path, :priority => 0.5, :changefreq => 'monthly'
   add performance_path, :priority => 0.5, :changefreq => 'monthly'
+  add dividend_yields_path, :priority => 0.5, :changefreq => 'monthly'
 
 end
 
