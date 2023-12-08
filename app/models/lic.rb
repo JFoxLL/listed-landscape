@@ -76,7 +76,7 @@ class Lic < ApplicationRecord
         return chart_data
     end
 
-    # Used to determin which 'Size (Net Assets)' chart to render
+    # Used to determine which 'Size (Net Assets)' chart to render
     def max_size
         max_size = SizeNetAsset.where(lic_id: id)
                                         .pluck(:size_net_assets)
@@ -318,10 +318,30 @@ class Lic < ApplicationRecord
         return chart_data
     end
 
+    # This method sets the date range of the subequent Div chart methods
+    def dividend_charts_date_range(lic_id)
+        chart_max_display_years = 10
+
+        latest_full_year = DividendHistory.where(lic_id: lic_id, dividend_phase: 'Final')
+                                            .order(year: :desc)
+                                            .pluck(:year)
+                                            .first
+
+        earliest_div_records_year = DividendHistory.where(lic_id: lic_id)
+                                                    .order(year: :asc)
+                                                    .pluck(:year)
+                                                    .first
+
+        chart_start_year = [(latest_full_year - (chart_max_display_years - 1)), earliest_div_records_year].max
+
+        return chart_start_year, latest_full_year
+    end
+
     def chart_dividend_history_annualised
-        chart_data = []
+        chart_start_year, latest_full_year = dividend_charts_date_range(id)
 
         total_div_amount_data_hash = DividendHistory.where(lic_id: id)
+                                                    .where(year: chart_start_year..latest_full_year)
                                                     .order(:year)
                                                     .group(:year)
                                                     .sum(:cash_amount)
@@ -330,31 +350,31 @@ class Lic < ApplicationRecord
         total_div_amount = {
             name: "Total Annual Cash Dividends",
             data: total_div_amount_data_hash
-        }                
+        }
 
+        chart_data = []
         chart_data << total_div_amount
 
         return chart_data
     end
 
     def chart_dividend_history_franking
-        chart_data = []
-
-        #---#
+        chart_start_year, latest_full_year = dividend_charts_date_range(id)
+        
         total_div_cash_amount_data_hash = DividendHistory.where(lic_id: id)
+                                                            .where(year: chart_start_year..latest_full_year)
                                                             .order(:year)
                                                             .group(:year)
                                                             .sum(:cash_amount)
                                                             .transform_values { |value| value.round(2) }
         
         total_div_credit_amount_data_hash = DividendHistory.where(lic_id: id)
+                                                                .where(year: chart_start_year..latest_full_year)
                                                                 .order(:year)
                                                                 .group(:year)
                                                                 .sum(:franking_credit_amount)
                                                                 .transform_values { |value| value.round(2) }
-        #---#
 
-        #---#
         total_div_cash_amount = {
             name: "Total Annual Cash Dividends",
             data: total_div_cash_amount_data_hash
@@ -364,40 +384,38 @@ class Lic < ApplicationRecord
             name: "Franking Credits",
             data: total_div_credit_amount_data_hash
         }
-        #---#
 
-        #---#
+        chart_data = []
         chart_data << total_div_credit_amount
         chart_data << total_div_cash_amount
-        #---#
 
         return chart_data
     end
 
     def chart_dividend_history_split
-        chart_data = []
+        chart_start_year, latest_full_year = dividend_charts_date_range(id)
 
-        #---#
         interim_div_amount_data_hash = DividendHistory.where(lic_id: id, dividend_phase: 'Interim')
+                                                        .where(year: chart_start_year..latest_full_year)
                                                         .order(:year)
                                                         .group(:year)
                                                         .sum(:cash_amount)
                                                         .transform_values { |value| value.round(2) }
 
         final_div_amount_data_hash = DividendHistory.where(lic_id: id, dividend_phase: 'Final')
+                                                        .where(year: chart_start_year..latest_full_year)
                                                         .order(:year)
                                                         .group(:year)
                                                         .sum(:cash_amount)
                                                         .transform_values { |value| value.round(2) }
 
         special_div_amount_data_hash = DividendHistory.where(lic_id: id, dividend_phase: 'Special')
+                                                        .where(year: chart_start_year..latest_full_year)
                                                         .order(:year)
                                                         .group(:year)
                                                         .sum(:cash_amount)
                                                         .transform_values { |value| value.round(2) }
-        #---#
 
-        #---#
         interim_div_amount = {
             name: "Interim Dividend(s)",
             data: interim_div_amount_data_hash
@@ -412,40 +430,38 @@ class Lic < ApplicationRecord
             name: "Special Dividend(s)",
             data: special_div_amount_data_hash
         }
-        #---#
 
-        #---#
+        chart_data = []
         chart_data << special_div_amount
         chart_data << final_div_amount
         chart_data << interim_div_amount
-        #---#
 
         return chart_data                                              
     end
 
     def chart_dividend_yield
-        chart_data = []
-
-        #---#
+        chart_start_year, latest_full_year = dividend_charts_date_range(id)
+        
         div_amount_net_data_hash = DividendHistory.where(lic_id: id)
-                                                        .order(:year)
-                                                        .group(:year)
-                                                        .sum(:cash_amount)
+                                                    .where(year: chart_start_year..latest_full_year)
+                                                    .order(:year)
+                                                    .group(:year)
+                                                    .sum(:cash_amount)
         
         div_amount_gross_data_hash = DividendHistory.where(lic_id: id)
-                                                        .order(:year)
-                                                        .group(:year)
-                                                        .sum(:grossed_up_amount)
+                                                    .where(year: chart_start_year..latest_full_year)
+                                                    .order(:year)
+                                                    .group(:year)
+                                                    .sum(:grossed_up_amount)
 
         sp_opening_data_hash = SharePriceSummary.where(lic_id: id)
-                                                        .order(:year)
-                                                        .pluck(:year, :sp_opening)
-                                                        .to_h
-        #---#
+                                                .where(year: chart_start_year..latest_full_year)
+                                                .order(:year)
+                                                .pluck(:year, :sp_opening)
+                                                .to_h
         
         #---#
         div_yield_net_data_hash = {}
-        
         div_amount_net_data_hash.each do |year, div_amount|
             div_yield_net_calc = ((div_amount / sp_opening_data_hash[year]) * 100).round(1)
             year_str = year.to_s
@@ -460,7 +476,6 @@ class Lic < ApplicationRecord
 
         #---#
         div_yield_gross_data_hash = {}
-
         div_amount_gross_data_hash.each do |year, div_amount|
             div_yield_gross_calc = ((div_amount / sp_opening_data_hash[year]) * 100).round(1)
             year_str = year.to_s
@@ -473,10 +488,9 @@ class Lic < ApplicationRecord
         }
         #---#
 
-        #---#
+        chart_data = []
         chart_data << div_yield_net
         chart_data << div_yield_gross
-        #---#
 
         return chart_data
     end
