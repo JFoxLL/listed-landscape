@@ -45,10 +45,31 @@ class Lic < ApplicationRecord
         investment_managers.sort_by(&:kp_year_joined)
     end
 
+    # This method sets the date range for some of the subsequent
+    def standard_charts_date_range(lic_id)
+        chart_max_display_years = 10
+
+        # Just using the 'Number of Shareholers' metric as a proxy for an annual report data update
+        latest_year = NumberShareholder.where(lic_id: lic_id)
+                                        .order(year: :desc)
+                                        .pluck(:year)
+                                        .first
+
+        earliest_records_year = NumberShareholder.where(lic_id: lic_id)
+                                                    .order(year: :asc)
+                                                    .pluck(:year)
+                                                    .first
+
+        chart_start_year = [(latest_year - (chart_max_display_years - 1)), earliest_records_year].max
+        
+        return chart_start_year, latest_year
+    end
+
     def chart_number_shareholders
-        chart_data = []
+        chart_start_year, latest_year = standard_charts_date_range(id)
 
         num_shareholders_data_hash = NumberShareholder.where(lic_id: id)
+                                                        .where(year: chart_start_year..latest_year)
                                                         .order(:year)
                                                         .pluck(:year, :number_shareholders)
 
@@ -71,12 +92,13 @@ class Lic < ApplicationRecord
             data: num_shareholders_data_hash_formatted
         }
 
+        chart_data = []
         chart_data << num_shareholders
 
         return chart_data
     end
 
-    # Used to determine which 'Size (Net Assets)' chart to render
+    # THis method is used to determine which 'Size (Net Assets)' chart to render
     def max_size
         max_size = SizeNetAsset.where(lic_id: id)
                                         .pluck(:size_net_assets)
@@ -85,13 +107,14 @@ class Lic < ApplicationRecord
     end
 
     def chart_size_net_assets_b
-        chart_data = []
-
-        size_data_hash = SizeNetAsset.where(lic_id: id)
-                                                .order(:year)
-                                                .pluck(:year, :size_net_assets)
-                                                .to_h
+        chart_start_year, latest_year = standard_charts_date_range(id)
         
+        size_data_hash = SizeNetAsset.where(lic_id: id)
+                                        .where(year: chart_start_year..latest_year)
+                                        .order(:year)
+                                        .pluck(:year, :size_net_assets)
+                                        .to_h
+
         size_data_hash_formatted = {}
 
         size_data_hash.each do |year, size|
@@ -104,7 +127,8 @@ class Lic < ApplicationRecord
             name: "Size (Net Assets)",
             data: size_data_hash_formatted,
         }
-
+        
+        chart_data = []
         chart_data << size
 
         return chart_data
@@ -318,7 +342,8 @@ class Lic < ApplicationRecord
         return chart_data
     end
 
-    # This method sets the date range of the subequent Div chart methods
+    # This method sets the date range of the subequent Divident related chart methods
+    # There is a difference in this date range setting (to the standard) due to the interim/ final dividend scenario
     def dividend_charts_date_range(lic_id)
         chart_max_display_years = 10
 
@@ -496,15 +521,17 @@ class Lic < ApplicationRecord
     end
 
     def chart_dividend_comparison
-        chart_data = []
-
+        chart_start_year, latest_year = standard_charts_date_range(id)
+        
         #---#
         div_income_data_hash = DividendComparison.where(lic_id: id)
+                                                    .where(year: chart_start_year..latest_year)
                                                     .order(:year)
                                                     .pluck(:year, :total_income)
                                                     .to_h
 
         div_paid_data_hash = DividendComparison.where(lic_id: id)
+                                                .where(year: chart_start_year..latest_year)
                                                 .order(:year)
                                                 .pluck(:year, :dividends_paid)
                                                 .to_h
@@ -537,6 +564,7 @@ class Lic < ApplicationRecord
         #---#
 
         #---#
+        chart_data = []
         chart_data << div_income
         chart_data << div_paid
         #---#
