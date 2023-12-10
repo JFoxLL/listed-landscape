@@ -9,7 +9,7 @@
 </div>
 
 <!-- LICs Index Table Filter -->
-<%= form_tag listed_investment_companies_path, method: :get, class: "lics-index-table-investment-focus-filter", data: { turbo_frame: "lics_index_table" } do %>
+<%= form_tag root_path, method: :get, class: "lics-index-table-investment-focus-filter", data: { turbo_frame: "lics_index_table" } do %>
   <%= hidden_field_tag :sort_by, params[:sort_by] %>
   <%= hidden_field_tag :sort_order, params[:sort_order] %>
   <%= select_tag :investment_focus, options_for_select(@investment_focus_options, params[:investment_focus]), prompt: 'All' %>
