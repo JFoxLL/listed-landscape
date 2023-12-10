@@ -553,12 +553,12 @@ class Lic < ApplicationRecord
 
         #---#
         div_income = {
-            name: "Dividend Income from Investment Portfolio (& Interest)",
+            name: "Dividend & Interest Income from Portfolio",
             data: div_income_data_hash_formatted
         }
 
         div_paid = {
-            name: "Dividends Paid to Shareholders (Cash & DRP)",
+            name: "Dividends Paid out to Shareholders",
             data: div_paid_data_hash_formatted
         }
         #---#
