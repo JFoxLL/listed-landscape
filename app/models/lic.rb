@@ -558,7 +558,7 @@ class Lic < ApplicationRecord
         }
 
         div_paid = {
-            name: "Dividends Paid out to Shareholders",
+            name: "Dividends Paid to Shareholders",
             data: div_paid_data_hash_formatted
         }
         #---#
