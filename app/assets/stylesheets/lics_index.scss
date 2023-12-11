@@ -6,11 +6,16 @@
 .lics-index-page-header h1 {
     color: #005454;
     font-family: 'Georgia', serif;
+    text-decoration: underline;
     @include desktop {
-        font-size: 36px
+        font-size: 40px;
+        padding-top: 40px;
+        padding-bottom: 10px;
     }
     @include mobile {
-        font-size: 24px;
+        font-size: 26px;
+        padding-top: 30px;
+        padding-bottom: 10px;
     }
 }
 
@@ -30,15 +35,16 @@
 
 /* Table structure */
 .lics-index-table-container {
-    margin-top: 20px;
-    margin-bottom: 40px;
+    margin-top: 30px;
     overflow: auto;
     width: 100%;
     @include desktop {
-        height: 600px;
+        height: 75vh;
+        margin-bottom: 100px;
     }
     @include mobile {
-        height: 500px;
+        height: 60vh;
+        margin-bottom: 80px;
     }
 }
 
@@ -46,7 +52,6 @@
     border-collapse: separate;
     border-spacing: 0;
     width: 100%;
-
     thead {
         position: sticky;
         top: 0;
@@ -54,8 +59,6 @@
         background-color: #f3eee8;
     }
 }
-
-
 
 
 /* Table Headers */
@@ -175,7 +178,6 @@ form {
     color: #fcfaf9;
     font-family: Georgia, serif;
     border-radius: 5px;
-    
     border: none;
     cursor: pointer;
     @include desktop {
@@ -190,3 +192,91 @@ form {
 .lics-index-table-investment-focus-filter input[type="submit"]:hover {
     background-color: #004040;
 }
+
+
+/* About LL Text */
+.about-ll-section {
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    width: 100vw;
+    background-color: #f3eee8;
+    border-top: 2px solid #005454;
+    padding: 10px 0;
+}
+
+.about-ll-container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+.about-ll-header {
+    color: #005454;
+    font-family: 'Georgia', serif;
+    font-weight: 300;
+    text-align: center;
+    width: 100%;
+    @include desktop {
+        font-size: 1.5em;
+        padding-top: 10px;
+    }
+    @include mobile {
+        font-size: 1.25em;
+    }
+}
+
+.about-ll-columns {
+    display: flex;
+    flex-wrap: wrap;
+    @include desktop {
+        justify-content: space-between;
+    }
+    @include mobile {
+        display: block;
+    }
+}
+
+.about-ll-left-column, .about-ll-right-column {
+    flex: 1;
+    margin: 10px;
+}
+
+.about-ll-item {
+    margin-bottom: 20px;
+}
+
+.about-ll-question {
+    color: #005454;
+    font-family: 'Georgia', serif;
+    line-height: 1.5;
+    font-weight: 500;
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+
+.about-ll-answer {
+    color: #585858;
+    font-family: 'Georgia', serif;
+    display: none;
+    line-height: 1.5;
+    font-size: 14px;
+    @include desktop {
+        padding-left: 7px;
+    }
+    @include mobile {
+        padding-left: 17px;
+
+    }
+}
+
+.about-ll-toggle-icon {
+    cursor: pointer;
+}
+
+

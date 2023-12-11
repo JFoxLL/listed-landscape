@@ -1,6 +1,20 @@
+<!-- SEO details -->
+<% content_for :title do %>
+  <%= "Listed Landscape | Australian LICs" %>
+<% end %>
+
+<% content_for :description do %>
+  <%= "[#{Time.now.strftime('%b %Y')} updated] Exploring Australian Listed Investment Companies (LICs). Performance, Portfolio Holdings, Dividend History, Profit Reserves, Fees .." %>
+<% end %>
+
+<% content_for :keywords do %>
+  <%= "Listed Landscape, Listed Investment Companies, LICs" %>
+<% end %>
+
+
 <!-- Page Header -->
 <div class="lics-index-page-header">
-  <h1>Listed Investment Companies in Australia</h1>
+  <h1>Exploring Australian <% if @device_type == 'mobile' %><br><% end %> Listed Investment Companies</h1>
 </div>
 <div class="lics-index-page-details">
   <p>The table below shows the 30 largest LICs listed on the ASX.</p>
@@ -20,4 +34,5 @@
 <%= turbo_frame_tag 'lics_index_table' do %>
   <%= render partial: 'lics_index_table', locals: { lics: @lics } %>
 <% end %>
+
 

@@ -1,0 +1,25 @@
+<!-- Show Page Common Questions -->
+<div class="common-questions-section" data-controller="common-questions">
+  <div class="common-questions-container">
+    <h2 class="common-questions-header">Some Common Questions about <%= @lic.ticker %></h2>
+    
+    <% @common_questions.each do |q| %>
+      <% (1..4).each do |i| %>
+        <div class="common-questions-column">
+          <div class="common-questions-item">
+            <button class="common-questions-question" data-action="common-questions#toggle" data-common-questions-target="question">
+              <%= q.send("q#{i}_q") %>
+              <span class="common-questions-toggle-icon">+</span>
+            </button>
+            <div class="common-questions-answer" data-common-questions-target="answer">
+              <%= q.send("q#{i}_a").html_safe %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
+
