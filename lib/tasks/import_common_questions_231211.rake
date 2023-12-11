@@ -1,6 +1,6 @@
 namespace :db do
     desc "Import common questions data from CSV file"
-    task import_common_questions_231109: :environment do
+    task import_common_questions_231211: :environment do
       require 'csv'
   
       # Step to remove all existing records
@@ -8,7 +8,7 @@ namespace :db do
       CommonQuestion.destroy_all
       puts "All existing records removed successfully!"
   
-      filepath = Rails.root.join('db', 'import_data', 'common_questions_231109.csv')
+      filepath = Rails.root.join('db', 'import_data', 'common_questions_231211.csv')
   
       puts "Importing Common Questions data..."
   
