@@ -75,7 +75,7 @@ p, ul, li {
 
 /* Header */
 .header {
-    background-color: #fcfaf9;
+    background-color: #f3eee8;
     border-bottom: 1px solid #005454;
 }
 
@@ -113,7 +113,6 @@ p, ul, li {
     @include mobile {
         display: none;
         position: absolute;
-        background-color: #fcfaf9;
         right: 0;
         top: 60px;
         width: 100%;
@@ -158,7 +157,7 @@ p, ul, li {
     @include mobile {
       display: none;
       position: absolute;
-      background-color: #fcfaf9;
+      background-color: #f3eee8;
       right: 0;
       top: 60px;
       width: 100%;
