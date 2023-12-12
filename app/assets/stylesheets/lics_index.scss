@@ -34,6 +34,7 @@
 
 
 /* Table structure */
+/* 
 .lics-index-table-container {
     margin-top: 30px;
     overflow: auto;
@@ -47,8 +48,11 @@
         margin-bottom: 80px;
     }
 }
+*/
 
 .lics-index-table {
+    margin-top: 30px;
+    margin-bottom: 100px;
     border-collapse: separate;
     border-spacing: 0;
     width: 100%;
@@ -207,7 +211,12 @@ form {
 .about-ll-container {
     max-width: 1000px;
     margin: auto;
-    padding: 20px;
+    @include desktop {
+        padding: 20px;
+    }
+    @include mobile {
+        padding: 5px;
+    }
 }
 
 .about-ll-header {
@@ -218,7 +227,6 @@ form {
     width: 100%;
     @include desktop {
         font-size: 1.5em;
-        padding-top: 10px;
     }
     @include mobile {
         font-size: 1.25em;
@@ -242,7 +250,7 @@ form {
 }
 
 .about-ll-item {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .about-ll-question {
@@ -250,7 +258,6 @@ form {
     font-family: 'Georgia', serif;
     line-height: 1.5;
     font-weight: 500;
-    font-size: 16px;
     background-color: transparent;
     border: none;
     text-align: left;
@@ -258,6 +265,12 @@ form {
     cursor: pointer;
     display: flex;
     justify-content: space-between;
+    @include desktop {
+        font-size: 16px;
+    }
+    @include mobile {
+        font-size: 14px;
+    }
 }
 
 .about-ll-answer {
@@ -265,13 +278,13 @@ form {
     font-family: 'Georgia', serif;
     display: none;
     line-height: 1.5;
-    font-size: 14px;
     @include desktop {
         padding-left: 7px;
+        font-size: 16px;
     }
     @include mobile {
         padding-left: 17px;
-
+        font-size: 14px;
     }
 }
 
