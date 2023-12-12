@@ -359,16 +359,16 @@ tr {
 
 /* Charts */
 .chart-style-template {
-  background-color: #f3eee8;
-  border-radius: 20px;
-  border: 1px solid #005454;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-  @include desktop {
-    padding: 20px;
-  }
-  @include mobile {
-    padding: 20px 0px 15px 0px;
-  }
+    background-color: #f3eee8;
+    border-radius: 20px;
+    border: 1px solid #005454;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    @include desktop {
+        padding: 20px;
+    }
+    @include mobile {
+        padding: 20px 0px 15px 0px;
+    }
 }
 
 .chart-share-price-vs-nta {
@@ -378,53 +378,54 @@ tr {
 }
 
 #chart-filter-options {
-  padding-bottom: 10px;
-  
-  @include desktop {
-    display: flex;
-    justify-content: flex-start;
-  }
-  
-  .chart-filter-option {
+    padding-bottom: 10px;
+    
     @include desktop {
-      padding-right: 20px;
+        display: flex;
+        justify-content: flex-start;
     }
-    @include mobile {
-      padding-bottom: 10px;
+    
+    .chart-filter-option {
+        @include desktop {
+        padding-right: 20px;
+        }
+        @include mobile {
+        padding-bottom: 10px;
+        }
     }
-  }
 }
 
 .chart-filter-label,
 .chart-filter-select {
-  font-family: Georgia, serif;
-  font-size: 14px;
-  color: #585858;
-  margin-right: 10px;
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #585858;
+    margin-right: 10px;
 }
 
 .chart-filter-select {
-  padding: 2px;
-  border: 1px solid #585858;
-  border-radius: 5px;
+    background-color: #f3eee8;
+    padding: 2px;
+    border: 1px solid #585858;
+    border-radius: 5px;
 }
 
 .chart-button {
-  background-color: #005454;
-  color: #fcfaf9;
-  font-family: 'Georgia', serif;
-  border-radius: 5px;
-  padding: 5px 20px;
-  border: none;
-  cursor: pointer;
-  
-  @include mobile {
+    background-color: #005454;
+    color: #fcfaf9;
+    font-family: 'Georgia', serif;
+    border-radius: 5px;
+    padding: 5px 20px;
+    border: none;
+    cursor: pointer;
+
+    @include mobile {
     padding: 10px 30px;
-  }
-}
+    }
+    }
 
 .chart-button:hover {
-  background-color: #004040;
+    background-color: #004040;
 }
 
 
