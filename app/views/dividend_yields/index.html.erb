@@ -16,9 +16,9 @@
 <div class="dividend-yield-index-page-header">
     <h1>Dividend Yields</h1>
 </div>
-<div class="dividend-yield-index-page-details">
-    <p>Historical Dividend Yields for the 30 largest LICs listed on the ASX.</p>
-    <p>Click the LIC Name to view more information on their dividend history.
+<div class="dividend-yields-index-page-details">
+    <p>Historical Dividend Yields for the 30 largest LICs on the ASX.</p>
+    <p>Click the Name to view more information on this metric.
 </div>
 
 
@@ -37,9 +37,10 @@
   <%= render partial: 'dividend_yields/dividend_yields_index_table', locals: { lics: @lics } %>
 <% end %>
 
-<div class="dividend-yield-index-page-details">
-    <p>* The 'start of financial year' share price is used when calculating the yield.</p>
-    <p>* Net Dividend Yield: The cash dividends received, but not including franking credits.</p>
-    <p>* Gross Dividend Yield: The cash dividends received, with franking credits included.</p>
+<div class="dividend-yields-index-page-details">
+    <p>* The start-of-year share price is used when calculating yield.</p>
+    <p>* Net Dividend Yield: doesn't include franking credits.</p>
+    <p>* Gross Dividend Yield: does include franking credits.</p>
     <p>* Some LICs end their financial year at the end of the calendar year. This is why the most recent year may still be blank.</p>
+    <p><br></p>
 </div>
