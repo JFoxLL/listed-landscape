@@ -9,6 +9,7 @@ class Lic < ApplicationRecord
     has_many :common_questions
     has_many :annual_reports
     has_many :dividend_comparisons
+    has_many :expenses
 
     before_save :set_slug
 
