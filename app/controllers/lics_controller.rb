@@ -38,6 +38,8 @@ class LicsController < ApplicationController
     # Dividend History Chart
     @dividend_history_view_type = params[:dividend_history_view] || "annualised"
 
+    # Costs Incurred Chart
+    @costs_incurred_view_type = params[:costs_incurred_view] || "total"
 
     # Share Price vs NTA Chart
     @selected_tax_type = params[:tax_type].presence || 'pre_tax'
@@ -62,6 +64,10 @@ class LicsController < ApplicationController
         if params[:dividend_history_view]
           render turbo_stream: turbo_stream.update("dividend_history") do
             render partial: "lics/chart_dividend_history_#{@dividend_history_view_type}"
+          end
+        elsif params[:costs_incurred_view]
+          render turbo_stream: turbo_stream.update("costs_incurred") do
+            render partial: "lics/chart_costs_incurred_#{@costs_incurred_view_type}"
           end
         elsif params[:time_duration] || params[:tax_type]
           render turbo_stream: turbo_stream.update("chart_share_price_vs_nta") do
