@@ -205,9 +205,7 @@
                 data: { turbo_frame: "dividend_history" }
             %>
         </div>
-
         <%= button_tag "Update Chart", class: "chart-button", data: { turbo_frame: "dividend_history" } %>
-
     <% end %>
 
     <%= turbo_frame_tag "dividend_history" do %>
@@ -234,12 +232,27 @@
   <h2 id="costs">Costs</h2>
 
     <h3>Total Costs Incurred</h3>
-      <div class="chart-style-template">
-        <%= column_chart @lic.chart_costs_incurred_total, **costs_incurred_total_chart_styling %>
-      </div>
-      <div class="chart-style-template">
-        <%= column_chart @lic.chart_costs_incurred_split, stacked: true, **costs_incurred_split_chart_styling %>
-      </div>
+    <!-- Filtering the Costs Incurred chart -->
+      <%= form_tag listed_investment_company_path(id: @lic.slug), method: :get, data: { turbo_frame: "costs_incurred" }, id: "chart-filter-options" do %>
+
+        <div class="chart-filter-option">
+          <label for="costs_incurred_view" class="chart-filter-label">Costs Incurred View:</label>
+            <%= select_tag "costs_incurred_view", options_for_select([
+                ["Total Costs", "total"],
+                ["Show Cost Types", "split"],
+                ],
+                selected: "total"
+                ), 
+                class: "chart-filter-select",
+                data: { turbo_frame: "costs_incurred" }
+            %>
+        </div>
+        <%= button_tag "Update Chart", class: "chart-button", data: { turbo_frame: "costs_incurred" } %>
+    <% end %>
+
+    <%= turbo_frame_tag "costs_incurred" do %>
+      <%= render partial: "lics/chart_costs_incurred_#{@costs_incurred_view_type}" %>
+    <% end %>
 
 </section>
 
