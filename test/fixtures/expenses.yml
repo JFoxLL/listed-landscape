@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lic_ticker: MyString
+  lic_name: MyString
+  year: 1
+  expense: MyString
+  expense_category: MyString
+  expense_amount: 1
+  lic_id: 1
+
+two:
+  lic_ticker: MyString
+  lic_name: MyString
+  year: 1
+  expense: MyString
+  expense_category: MyString
+  expense_amount: 1
+  lic_id: 1
