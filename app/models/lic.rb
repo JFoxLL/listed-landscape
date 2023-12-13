@@ -572,6 +572,41 @@ class Lic < ApplicationRecord
 
         return chart_data
     end
+
+    def chart_costs_incurred_total
+        chart_start_year, latest_year = standard_charts_date_range(id)
+
+        expenses_total_data_hash = Expense.where(lic_id: id)
+                                            .where(year: chart_start_year..latest_year)
+                                            .order(:year)
+                                            .group(:year)
+                                            .sum(:expense_amount)
+
+        expenses_total_data_hash_formatted = {}
+        expenses_total_data_hash.each do |year, value|
+            if value > 10_000_000
+                value_formatted = (value / 1_000_000.0).round(0)
+            else
+                value_formatted = (value / 1_000_000.0).round(1)
+            end
+            expenses_total_data_hash_formatted[year] = value_formatted
+        end
+
+        expenses_total = {
+            name: "Total Costs Incurred",
+            data: expenses_total_data_hash_formatted
+        }
+
+        chart_data = []
+        chart_data << expenses_total
+
+        return chart_data
+    end
+
+    def chart_total_costs_incurred_split
+        chart_start_year, latest_year = standard_charts_date_range(id)
+
+    end
   
     def chart_share_price_vs_nta(time_duration_in_years, tax_type)
         records = fetch_records(time_duration_in_years)

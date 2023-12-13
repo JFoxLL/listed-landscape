@@ -180,7 +180,6 @@
 
 </section>
 
-
 <!-- Separator -->
 <%= render partial: 'show_page_separator' %>
 
@@ -223,6 +222,24 @@
     <h3>Dividend Comparison</h3>
       <div class="chart-style-template">
         <%= column_chart @lic.chart_dividend_comparison, **dividend_comparison_chart_styling %>
+      </div>
+
+</section>
+
+<!-- Separator -->
+<%= render partial: 'show_page_separator' %>
+
+<!-- Costs -->
+<section>
+  <h2 id="costs">Costs</h2>
+
+    <h3>Cost Indicator</h3>
+    <p>Chart coming shortly</p>
+
+    <h3>Total Costs Incurred</h3>
+      <div class="chart-style-template">
+        <%= column_chart @lic.chart_costs_incurred_total, **costs_incurred_total_chart_styling %>
+
       </div>
 
 </section>
