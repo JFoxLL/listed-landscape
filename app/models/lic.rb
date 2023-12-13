@@ -10,6 +10,7 @@ class Lic < ApplicationRecord
     has_many :annual_reports
     has_many :dividend_comparisons
     has_many :expenses
+    has_many :number_shares
 
     before_save :set_slug
 
