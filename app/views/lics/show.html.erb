@@ -236,9 +236,9 @@
       <%= form_tag listed_investment_company_path(id: @lic.slug), method: :get, data: { turbo_frame: "costs_incurred" }, id: "chart-filter-options" do %>
 
         <div class="chart-filter-option">
-          <label for="costs_incurred_view" class="chart-filter-label">Costs Incurred View:</label>
+          <label for="costs_incurred_view" class="chart-filter-label">Costs View:</label>
             <%= select_tag "costs_incurred_view", options_for_select([
-                ["Total Costs", "total"],
+                ["Show Total Costs", "total"],
                 ["Show Cost Types", "split"],
                 ],
                 selected: "total"
