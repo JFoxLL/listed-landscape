@@ -489,7 +489,7 @@ module LicsHelper
               enabled: true,
               format: '${point.y}',
               align: 'center',
-              y: -10,
+              y: 0,
               zIndex: 5,
               style: {color: '#f3eee8', fontSize: '12px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
             }
@@ -784,7 +784,7 @@ module LicsHelper
         tooltip: {
           enabled: true,
           headerFormat: '<b>{point.key}:</b><br>',
-          pointFormat: '{point.y}K'
+          pointFormat: '${point.y}M'
         },
         xAxis: {
           labels: {
@@ -847,6 +847,83 @@ module LicsHelper
                     y: -30,
                     zIndex: 5,
                     style: {color: '#d4541b', fontSize: '8px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
+                  }
+                }
+              }
+            }
+          }]
+        },
+      }
+    }
+  end
+
+  def costs_incurred_split_chart_styling
+    {
+      prefix: "$",
+      suffix: "M",
+      colors: ["#819462", "#005454", "#d4541b"],
+      height: "400px", 
+      library: {
+        chart: {backgroundColor: '#f3eee8'},
+        tooltip: {
+          enabled: true,
+          headerFormat: '<b>{point.key}:</b><br>',
+          pointFormat: '{point.y}M'
+        },
+        xAxis: {
+          labels: {
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          },
+          gridLineColor: '#A9A9A9',
+          lineColor: '#005454'
+        },
+        yAxis: {
+          labels: {
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          },
+          gridLineColor: '#A9A9A9'
+        },
+        legend: {
+          enabled: true,
+          align: 'center',
+          verticalAlign: 'top',
+          itemStyle: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+        },
+        plotOptions: {
+          series: {
+            dataLabels: {
+              enabled: true,
+              format: '{point.y}M',
+              align: 'center',
+              y: 0,
+              zIndex: 5,
+              style: {color: '#f3eee8', fontSize: '12px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+              maxWidth: 767
+            },
+            chartOptions: {
+              tooltip: {
+                enabled: true
+              },
+              xAxis: {
+                labels: {
+                  style: {fontSize: '10px'}
+                }
+              },
+              yAxis: {
+                labels: {
+                  style: {fontSize: '10px'}
+                }
+              },
+              plotOptions: {
+                series: {
+                  dataLabels: {
+                    enabled: false,
                   }
                 }
               }

@@ -581,16 +581,9 @@ class Lic < ApplicationRecord
                                             .order(:year)
                                             .group(:year)
                                             .sum(:expense_amount)
-
-        expenses_total_data_hash_formatted = {}
-        expenses_total_data_hash.each do |year, value|
-            if value > 10_000_000
-                value_formatted = (value / 1_000_000.0).round(0)
-            else
-                value_formatted = (value / 1_000_000.0).round(1)
-            end
-            expenses_total_data_hash_formatted[year] = value_formatted
-        end
+        
+        # Expense values formatted by a private method
+        expenses_total_data_hash_formatted = format_expense_values(expenses_total_data_hash)
 
         expenses_total = {
             name: "Total Costs Incurred",
@@ -603,9 +596,59 @@ class Lic < ApplicationRecord
         return chart_data
     end
 
-    def chart_total_costs_incurred_split
+    def chart_costs_incurred_split
         chart_start_year, latest_year = standard_charts_date_range(id)
 
+        expenses_management_fees_data_hash = Expense.where(lic_id: id, expense_category: 'External Management Fees')
+                                                    .where(year: chart_start_year..latest_year)
+                                                    .order(:year)
+                                                    .group(:year)
+                                                    .sum(:expense_amount)
+
+        expenses_performance_fees_data_hash = Expense.where(lic_id: id, expense_category: 'External Performance Fees')
+                                                        .where(year: chart_start_year..latest_year)
+                                                        .order(:year)
+                                                        .group(:year)
+                                                        .sum(:expense_amount)
+
+        expenses_other_data_hash = Expense.where(lic_id: id, expense_category: 'Other Expenses')
+                                            .where(year: chart_start_year..latest_year)
+                                            .order(:year)
+                                            .group(:year)
+                                            .sum(:expense_amount)
+
+        # Formatting expense values using a private method
+        expenses_management_fees_data_hash = format_expense_values(expenses_management_fees_data_hash)
+        expenses_performance_fees_data_hash = format_expense_values(expenses_performance_fees_data_hash)
+        expenses_other_data_hash = format_expense_values(expenses_other_data_hash)
+
+        other_expenses_series_name =    if self.management_structure == 'Internally Managed'
+                                            'Internal Management Costs'
+                                        else
+                                            'Other Operational Costs'
+                                        end
+
+        expenses_management_fees = {
+            name: 'External Management Fees',
+            data: expenses_management_fees_data_hash
+        }
+
+        expenses_performance_fees = {
+            name: 'External Performance Fees',
+            data: expenses_performance_fees_data_hash
+        }
+
+        expenses_other = {
+            name: other_expenses_series_name,
+            data: expenses_other_data_hash
+        }
+
+        chart_data = []
+        chart_data << expenses_performance_fees
+        chart_data << expenses_management_fees
+        chart_data << expenses_other
+                                                    
+        return chart_data
     end
   
     def chart_share_price_vs_nta(time_duration_in_years, tax_type)
@@ -778,4 +821,16 @@ class Lic < ApplicationRecord
         return records
     end
 
+    def format_expense_values(expenses_hash)
+        expenses_formatted_hash = {}
+        expenses_hash.each do |year, value|
+            formatted_value =   if value > 10_000_000
+                                    (value / 1_000_000.0).round(0)
+                                else
+                                    (value / 1_000_000.0).round(1)
+                                end
+            expenses_formatted_hash[year] = formatted_value
+        end
+        return expenses_formatted_hash
+    end
 end
