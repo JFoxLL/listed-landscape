@@ -231,6 +231,11 @@
 <section>
   <h2 id="costs">Costs</h2>
 
+    <h3>Cost Indicator</h3>
+    <div class="chart-style-template">
+      <%= column_chart @lic.chart_cost_indicator_total, **cost_indicator_total_chart_styling %>
+    </div>
+
     <h3>Total Costs Incurred</h3>
     <!-- Filtering the Costs Incurred chart -->
       <%= form_tag listed_investment_company_path(id: @lic.slug), method: :get, data: { turbo_frame: "costs_incurred" }, id: "chart-filter-options" do %>
