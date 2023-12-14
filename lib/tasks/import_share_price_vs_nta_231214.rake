@@ -1,6 +1,6 @@
 namespace :db do
     desc 'Import Share Price Vs NTA data from CSV'
-    task import_share_price_vs_nta_231212: :environment do
+    task import_share_price_vs_nta_231214: :environment do
       require 'csv'
   
       # Step to remove all existing records
@@ -9,7 +9,7 @@ namespace :db do
       puts "All existing records removed successfully!"
   
       # Update the file name here
-      csv_file_path = 'db/import_data/share_price_vs_nta_231212.csv'
+      csv_file_path = 'db/import_data/share_price_vs_nta_231214.csv'
   
       puts "Importing Share Price Vs NTA data..."
   
@@ -28,6 +28,7 @@ namespace :db do
             post_tax_nta: row['post_tax_nta'],
             sp_vs_pre_tax_nta: row['sp_vs_pre_tax_nta'],
             sp_vs_post_tax_nta: row['sp_vs_post_tax_nta'],
+            year: row['year'],
             lic: lic
           )
         else
