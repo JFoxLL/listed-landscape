@@ -574,6 +574,27 @@ class Lic < ApplicationRecord
         return chart_data
     end
 
+    def chart_cost_indicator_total
+        chart_start_year, latest_year = standard_charts_date_range(id)
+
+        # Collecting cost values, for the numerator of the calculation
+        expenses_total_data_hash = Expense.where(lic_id: id)
+                                            .where(year: chart_start_year..latest_year)
+                                            .order(:year)
+                                            .group(:year)
+                                            .sum(:expense_amount)
+
+        # Collecting the 'average' Pre-Tax NTA values (prior to multiplying them by the num_shares)
+        average_pre_tax_nta_per_share_data_hash = SharePriceVsNta.where(lic_id: id)
+                                                    .where(year: chart_start_year..latest_year)
+                                                    .order(:year)
+                                                    .group(:year)
+                                                    .average(:pre_tax_nta)
+
+
+        return average_pre_tax_nta_per_share_data_hash
+    end
+
     def chart_costs_incurred_total
         chart_start_year, latest_year = standard_charts_date_range(id)
 
