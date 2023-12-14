@@ -1,6 +1,6 @@
 namespace :db do
     desc "Import expense data from CSV file"
-    task import_expenses_231215: :environment do
+    task import_expenses_231216: :environment do
       require 'csv'
   
       # Removing all existing records
@@ -9,7 +9,7 @@ namespace :db do
       puts "All existing records removed successfully!"
   
       # Inserting new records from csv file into db table  
-      filepath = Rails.root.join('db', 'import_data', 'expenses_231215.csv')
+      filepath = Rails.root.join('db', 'import_data', 'expenses_231216.csv')
   
       puts "Importing Expense data from csv file"
   
