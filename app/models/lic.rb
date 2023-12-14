@@ -325,11 +325,11 @@ class Lic < ApplicationRecord
             data: share_price_only_investment_value_data_hash_monthly
         }
         dividends_net_reinvested_investment_performance = {
-            name: "Plus Dividends: #{cagr_dividends_net_reinvested.round(1)}% p.a",
+            name: "With Divs Reinvested: #{cagr_dividends_net_reinvested.round(1)}% p.a",
             data: dividends_net_reinvested_investment_value_data_hash_monthly
         }
         dividends_gross_reinvested_investment_performance = {
-            name: "Plus Franking Credits: #{cagr_dividends_gross_reinvested.round(1)}% p.a",
+            name: "With Divs & Franking Reinvested: #{cagr_dividends_gross_reinvested.round(1)}% p.a",
             data: dividends_gross_reinvested_investment_value_data_hash_monthly
         }
         #---#

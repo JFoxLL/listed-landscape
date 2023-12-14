@@ -287,7 +287,7 @@ module LicsHelper
     {
       prefix: "$",
       suffix: "K",
-      colors: ["#d4541b", "#005454", "#de9779"],
+      colors: ["#d4541b", "#005454", "#819462"],
       height: "400px", 
       library: {
         chart: {backgroundColor: '#f3eee8'},
@@ -453,7 +453,7 @@ module LicsHelper
   def dividend_history_split_chart_styling
     {
       prefix: "$",
-      colors: ["#9f2700", "#d4541b", "#de9779"],
+      colors: ["#819462", "#005454", "#d4541b"],
       height: "400px",
       library: {
         chart: {
