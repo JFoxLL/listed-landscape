@@ -232,15 +232,28 @@
   <h2 id="costs">Costs</h2>
 
     <h3>Cost Indicator</h3>
-    <div class="chart-style-template">
-      <%= column_chart @lic.chart_cost_indicator_excluding_performance_fees, **cost_indicator_total_chart_styling %>
-    </div>
-    <div class="chart-style-template">
-      <%= column_chart @lic.chart_cost_indicator_total, **cost_indicator_total_chart_styling %>
-    </div>
-    <div class="chart-style-template">
-      <%= column_chart @lic.chart_cost_indicator_split, stacked: true, **cost_indicator_split_chart_styling %>
-    </div>
+    <!-- Filtering the Cost Indicator chart -->
+      <%= form_tag listed_investment_company_path(id: @lic.slug), method: :get, data: { turbo_frame: "cost_indicator" }, id: "chart-filter-options" do %>
+
+        <div class="chart-filter-option">
+          <label for="cost_indicator_view" class="chart-filter-label">Cost Indicator View:</label>
+            <%= select_tag "cost_indicator_view", options_for_select([
+                ["Excluding Performance Fees", "excluding_performance_fees"],
+                ["Including Performance Fees", "total"],
+                ["Show Cost Types", "split"],
+                ],
+                selected: "excluding_performance_fees"
+                ), 
+                class: "chart-filter-select",
+                data: { turbo_frame: "cost_indicator" }
+            %>
+        </div>
+        <%= button_tag "Update Chart", class: "chart-button", data: { turbo_frame: "cost_indicator" } %>
+    <% end %>
+
+    <%= turbo_frame_tag "cost_indicator" do %>
+      <%= render partial: "lics/chart_cost_indicator_#{@cost_indicator_view_type}" %>
+    <% end %>
 
 
     <h3>Total Costs Incurred</h3>
@@ -248,7 +261,7 @@
       <%= form_tag listed_investment_company_path(id: @lic.slug), method: :get, data: { turbo_frame: "costs_incurred" }, id: "chart-filter-options" do %>
 
         <div class="chart-filter-option">
-          <label for="costs_incurred_view" class="chart-filter-label">Costs View:</label>
+          <label for="costs_incurred_view" class="chart-filter-label">Costs Incurred View:</label>
             <%= select_tag "costs_incurred_view", options_for_select([
                 ["Show Total Costs", "total"],
                 ["Show Cost Types", "split"],
