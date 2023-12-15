@@ -574,6 +574,57 @@ class Lic < ApplicationRecord
         return chart_data
     end
 
+    def chart_cost_indicator_excluding_performance_fees
+        chart_start_year, latest_year = standard_charts_date_range(id)
+
+        # Collecting cost values, for the numerator of the calculation
+        expenses_excl_perf_fees_data_hash = Expense.where(lic_id: id, expense_category: ['External Management Fees', 'Other Expenses'])
+                                                    .where(year: chart_start_year..latest_year)
+                                                    .order(:year)
+                                                    .group(:year)
+                                                    .sum(:expense_amount)
+
+        # Collecting the 'average' Pre-Tax NTA values (prior to multiplying them by the num_shares)
+        average_pre_tax_nta_per_share_data_hash = SharePriceVsNta.where(lic_id: id)
+                                                    .where(year: chart_start_year..latest_year)
+                                                    .order(:year)
+                                                    .group(:year)
+                                                    .average(:pre_tax_nta)
+
+        # Collecting the weighted average number of shares (in order to multiply be the avg pre-tax NTA per share)
+        number_shares_data_hash = NumberShare.where(lic_id: id)
+                                                .where(year: chart_start_year..latest_year)
+                                                .order(:year)
+                                                .pluck(:year, :number_shares)
+                                                .to_h
+                                                
+        # Creating the Average Pre-Tax NTA data hash
+        average_pre_tax_nta_data_hash = {}
+        average_pre_tax_nta_per_share_data_hash.each do |year, avg_pre_tax_nta_per_share|
+            if number_shares_data_hash.has_key?(year)
+                average_pre_tax_nta_data_hash[year] = (avg_pre_tax_nta_per_share * number_shares_data_hash[year]).to_f
+            end
+        end
+
+        # Creating the Cost Indicator data hash
+        cost_indicator_excl_perf_fees_data_hash = {}
+        average_pre_tax_nta_data_hash.each do |year, avg_pre_tax_nta|
+            if expenses_excl_perf_fees_data_hash.has_key?(year)
+                cost_indicator_excl_perf_fees_data_hash[year] = ((expenses_excl_perf_fees_data_hash[year] / avg_pre_tax_nta) * 100.0).to_f.round(2) 
+            end
+        end
+
+        cost_indicator_excl_perf_fees = {
+            name: "Cost Indicator (exlcuding Performance Fees)",
+            data: cost_indicator_excl_perf_fees_data_hash
+        }
+
+        chart_data = []
+        chart_data << cost_indicator_excl_perf_fees
+
+        return chart_data
+    end
+
     def chart_cost_indicator_total
         chart_start_year, latest_year = standard_charts_date_range(id)
 
@@ -615,13 +666,116 @@ class Lic < ApplicationRecord
         end
 
         cost_indicator = {
-            name: "Cost Indicator (Total)",
+            name: "Cost Indicator (including Performance Fees)",
             data: cost_indicator_data_hash
         }
 
         chart_data = []
         chart_data << cost_indicator
 
+        return chart_data
+    end
+
+    def chart_cost_indicator_split
+        chart_start_year, latest_year = standard_charts_date_range(id)
+
+        #---#
+        # Collecting cost values, for the numerator of the calculations
+        expenses_management_fees_data_hash = Expense.where(lic_id: id, expense_category: 'External Management Fees')
+                                                    .where(year: chart_start_year..latest_year)
+                                                    .order(:year)
+                                                    .group(:year)
+                                                    .sum(:expense_amount)
+
+        expenses_performance_fees_data_hash = Expense.where(lic_id: id, expense_category: 'External Performance Fees')
+                                                        .where(year: chart_start_year..latest_year)
+                                                        .order(:year)
+                                                        .group(:year)
+                                                        .sum(:expense_amount)
+
+        expenses_other_data_hash = Expense.where(lic_id: id, expense_category: 'Other Expenses')
+                                            .where(year: chart_start_year..latest_year)
+                                            .order(:year)
+                                            .group(:year)
+                                            .sum(:expense_amount)
+        #---#
+
+        #---#
+        # Collecting the 'average' Pre-Tax NTA values (prior to multiplying them by the num_shares)
+        average_pre_tax_nta_per_share_data_hash = SharePriceVsNta.where(lic_id: id)
+                                                                    .where(year: chart_start_year..latest_year)
+                                                                    .order(:year)
+                                                                    .group(:year)
+                                                                    .average(:pre_tax_nta)
+
+        # Collecting the weighted average number of shares (in order to multiply be the avg pre-tax NTA per share)
+        number_shares_data_hash = NumberShare.where(lic_id: id)
+                                                .where(year: chart_start_year..latest_year)
+                                                .order(:year)
+                                                .pluck(:year, :number_shares)
+                                                .to_h
+        
+        # Creating the Average Pre-Tax NTA data hash
+        average_pre_tax_nta_data_hash = {}
+        average_pre_tax_nta_per_share_data_hash.each do |year, avg_pre_tax_nta_per_share|
+            if number_shares_data_hash.has_key?(year)
+            average_pre_tax_nta_data_hash[year] = (avg_pre_tax_nta_per_share * number_shares_data_hash[year]).to_f
+            end
+        end
+        #---#
+
+        #---#
+        # Creating the Cost Indicator data hashes
+        cost_indicator_management_fees_data_hash = {}
+        average_pre_tax_nta_data_hash.each do |year, avg_pre_tax_nta|
+            if expenses_management_fees_data_hash.has_key?(year)
+                cost_indicator_management_fees_data_hash[year] = ((expenses_management_fees_data_hash[year] / avg_pre_tax_nta) * 100.0).to_f.round(2) 
+            end
+        end 
+
+        cost_indicator_performance_fees_data_hash = {}
+        average_pre_tax_nta_data_hash.each do |year, avg_pre_tax_nta|
+            if expenses_performance_fees_data_hash.has_key?(year)
+                cost_indicator_performance_fees_data_hash[year] = ((expenses_performance_fees_data_hash[year] / avg_pre_tax_nta) * 100.0).to_f.round(2) 
+            end
+        end 
+
+        cost_indicator_other_data_hash = {}
+        average_pre_tax_nta_data_hash.each do |year, avg_pre_tax_nta|
+            if expenses_other_data_hash.has_key?(year)
+                cost_indicator_other_data_hash[year] = ((expenses_other_data_hash[year] / avg_pre_tax_nta) * 100.0).to_f.round(2) 
+            end
+        end 
+        #---#
+
+        #---#
+        # Compiling the chart data
+        other_expenses_series_name =    if self.management_structure == 'Internally Managed'
+                                            'Internal Management Costs'
+                                        else
+                                            'Other Operational Costs'
+                                        end
+
+        cost_indicator_management_fees = {
+            name: 'External Management Fees',
+            data: cost_indicator_management_fees_data_hash
+        }
+
+        cost_indicator_performance_fees = {
+            name: 'External Performance Fees',
+            data: cost_indicator_performance_fees_data_hash
+        }
+
+        cost_indicator_other = {
+            name: other_expenses_series_name,
+            data: cost_indicator_other_data_hash
+        }
+
+        chart_data = []
+        chart_data << cost_indicator_performance_fees
+        chart_data << cost_indicator_management_fees
+        chart_data << cost_indicator_other
+        
         return chart_data
     end
 
@@ -855,6 +1009,7 @@ class Lic < ApplicationRecord
         return "#{dividend_yield.round(1)}%"
     end
     #---#
+
 
     private
 
