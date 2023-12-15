@@ -233,8 +233,15 @@
 
     <h3>Cost Indicator</h3>
     <div class="chart-style-template">
+      <%= column_chart @lic.chart_cost_indicator_excluding_performance_fees, **cost_indicator_total_chart_styling %>
+    </div>
+    <div class="chart-style-template">
       <%= column_chart @lic.chart_cost_indicator_total, **cost_indicator_total_chart_styling %>
     </div>
+    <div class="chart-style-template">
+      <%= column_chart @lic.chart_cost_indicator_split, stacked: true, **cost_indicator_split_chart_styling %>
+    </div>
+
 
     <h3>Total Costs Incurred</h3>
     <!-- Filtering the Costs Incurred chart -->
