@@ -567,7 +567,7 @@ module LicsHelper
               enabled: true,
               format: '${point.y}',
               align: 'center',
-              y: -10,
+              y: 0,
               zIndex: 5,
               style: {color: '#f3eee8', fontSize: '12px', fontFamily: 'Georgia', fontWeight: '500', textOutline: 'none'},
             }
