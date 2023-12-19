@@ -85,9 +85,7 @@
             <% if @device_type == 'mobile' %>
               <br>
             <% end %>
-            <% if @lic.performance_fee == 'No Performance Fee' %>
-              (total)
-            <% else%>
+            <% unless @lic.performance_fee == 'No Performance Fee' %>
               (excluding Performance Fees)
             <% end %>
           </td>
