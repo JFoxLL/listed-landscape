@@ -18,6 +18,34 @@ class Lic < ApplicationRecord
         slug
     end
 
+    # Used in both the Lics index table, and overview section of Lics show page
+    def cost_indicator_most_recent_year
+        chart_start_year, latest_year = standard_charts_date_range(id)
+
+        expenses = Expense.where(lic_id: id, expense_category: ['External Management Fees', 'Other Expenses'])
+                            .where(year: latest_year)
+                            .group(:year)
+                            .sum(:expense_amount)
+                            .first[1]
+
+        average_pre_tax_nta_per_share = SharePriceVsNta.where(lic_id: id)
+                                                        .where(year: latest_year)
+                                                        .group(:year)
+                                                        .average(:pre_tax_nta)
+                                                        .first[1]
+
+        number_shares = NumberShare.where(lic_id: id)
+                                    .where(year: latest_year)
+                                    .pluck(:number_shares)
+                                    .first
+
+        average_pre_tax_nta = average_pre_tax_nta_per_share * number_shares
+        
+        cost_indicator = ((expenses / average_pre_tax_nta) * 100.0).to_f   
+        
+        return sprintf("%.2f", cost_indicator)
+    end
+
     def annual_report_links
         ar_records = annual_reports.order(year: :desc).limit(10).pluck(:year, :annual_report_filename).to_h
 
@@ -100,7 +128,7 @@ class Lic < ApplicationRecord
         return chart_data
     end
 
-    # THis method is used to determine which 'Size (Net Assets)' chart to render
+    # This method is used to determine which 'Size (Net Assets)' chart to render
     def max_size
         max_size = SizeNetAsset.where(lic_id: id)
                                         .pluck(:size_net_assets)
