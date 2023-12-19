@@ -79,13 +79,17 @@
           <td class="value"><%= @lic.performance_fee %></td>
         </tr>
         <tr>
-          <td class="label">Calculated Cost (FY23)</td>
+          <td class="label">Cost Indicator (FY23)</td>
           <td class="value">
-            <%= sprintf("%.2f", @lic.calculated_mer) %>%
+            <%= @lic.cost_indicator_most_recent_year %>%
             <% if @device_type == 'mobile' %>
               <br>
             <% end %>
-            (excluding Performance Fees)
+            <% if @lic.performance_fee == 'No Performance Fee' %>
+              (total)
+            <% else%>
+              (excluding Performance Fees)
+            <% end %>
           </td>
         </tr>
         <tr class="mobile-hide">
