@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_14_001924) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_19_052515) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -153,7 +153,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_14_001924) do
     t.string "management_structure"
     t.string "investment_manager"
     t.string "management_fee"
-    t.decimal "calculated_mer"
     t.string "performance_fee"
     t.text "objective"
     t.string "logo_filename"
