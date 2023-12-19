@@ -400,7 +400,7 @@ module LicsHelper
           series: {
             dataLabels: {
               enabled: true,
-              format: '${point.y}',
+              format: '${point.y:.2f}',
               align: 'center',
               verticalAlign: 'top',
               y: -30,
@@ -418,7 +418,7 @@ module LicsHelper
               tooltip: {
                 enabled: true,
                 headerFormat: '<b>{point.key}:</b><br>',
-                pointFormat: '${point.y}'
+                pointFormat: '${point.y:.2f}'
               },
               xAxis: {
                 labels: {
@@ -450,10 +450,10 @@ module LicsHelper
     }
   end
 
-  def dividend_history_split_chart_styling
+  def dividend_history_franking_chart_styling
     {
       prefix: "$",
-      colors: ["#819462", "#005454", "#d4541b"],
+      colors: ["#005454", "#d4541b"],
       height: "400px",
       library: {
         chart: {
@@ -462,7 +462,7 @@ module LicsHelper
         tooltip: {
           enabled: true,
           headerFormat: '<b>{point.key}:</b><br>',
-          pointFormat: '${point.y}'
+          pointFormat: '${point.y:.2f}'
         },
         xAxis: {
           labels: {
@@ -487,7 +487,7 @@ module LicsHelper
           series: {
             dataLabels: {
               enabled: true,
-              format: '${point.y}',
+              format: '${point.y:.2f}',
               align: 'center',
               y: 0,
               zIndex: 5,
@@ -528,10 +528,10 @@ module LicsHelper
     }
   end
 
-  def dividend_history_franking_chart_styling
+  def dividend_history_split_chart_styling
     {
       prefix: "$",
-      colors: ["#005454", "#d4541b"],
+      colors: ["#819462", "#005454", "#d4541b"],
       height: "400px",
       library: {
         chart: {
@@ -540,7 +540,7 @@ module LicsHelper
         tooltip: {
           enabled: true,
           headerFormat: '<b>{point.key}:</b><br>',
-          pointFormat: '${point.y}'
+          pointFormat: '${point.y:.2f}'
         },
         xAxis: {
           labels: {
@@ -565,7 +565,7 @@ module LicsHelper
           series: {
             dataLabels: {
               enabled: true,
-              format: '${point.y}',
+              format: '${point.y:.2f}',
               align: 'center',
               y: 0,
               zIndex: 5,
@@ -783,7 +783,7 @@ module LicsHelper
         tooltip: {
           enabled: true,
           headerFormat: '<b>{point.key}:</b><br>',
-          pointFormat: '{point.y}%'
+          pointFormat: '{point.y:.2f}%'
         },
         xAxis: {
           labels: {
@@ -808,7 +808,7 @@ module LicsHelper
           series: {
             dataLabels: {
               enabled: true,
-              format: '{point.y}%',
+              format: '{point.y:.2f}%',
               align: 'center',
               verticalAlign: 'top',
               y: -30,
@@ -840,7 +840,7 @@ module LicsHelper
                 series: {
                   dataLabels: {
                     enabled: true,
-                    format: '{point.y}%',
+                    format: '{point.y:.2f}%',
                     align: 'center',
                     verticalAlign: 'top',
                     y: -30,
@@ -866,7 +866,7 @@ module LicsHelper
         tooltip: {
           enabled: true,
           headerFormat: '<b>{point.key}:</b><br>',
-          pointFormat: '{point.y}%'
+          pointFormat: '{point.y:.2f}%'
         },
         xAxis: {
           labels: {
@@ -891,7 +891,7 @@ module LicsHelper
           series: {
             dataLabels: {
               enabled: true,
-              format: '{point.y}%',
+              format: '{point.y:.2f}%',
               align: 'center',
               y: 0,
               zIndex: 5,
