@@ -382,7 +382,12 @@ module LicsHelper
             style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
           },
           gridLineColor: '#A9A9A9',
-          lineColor: '#005454'
+          lineColor: '#005454',
+          title: {
+            text: 'Dividend amounts shown are on a per-share basis',
+            margin: 20,
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          }
         },
         yAxis: {
           labels: {
@@ -422,6 +427,9 @@ module LicsHelper
               },
               xAxis: {
                 labels: {
+                  style: {fontSize: '10px'}
+                },
+                title: {
                   style: {fontSize: '10px'}
                 }
               },
@@ -469,7 +477,12 @@ module LicsHelper
           style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
           },
           gridLineColor: '#A9A9A9',
-          lineColor: '#005454'
+          lineColor: '#005454',
+          title: {
+            text: 'Dividend amounts shown are on a per-share basis',
+            margin: 20,
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          }
         },
         yAxis: {
           min: 0,
@@ -506,6 +519,9 @@ module LicsHelper
               },
               xAxis: {
                 labels: {
+                  style: {fontSize: '10px'}
+                },
+                title: {
                   style: {fontSize: '10px'}
                 }
               },
@@ -547,7 +563,12 @@ module LicsHelper
           style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
           },
           gridLineColor: '#A9A9A9',
-          lineColor: '#005454'
+          lineColor: '#005454',
+          title: {
+            text: 'Dividend amounts shown are on a per-share basis',
+            margin: 20,
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          }
         },
         yAxis: {
           min: 0,
@@ -584,6 +605,9 @@ module LicsHelper
               },
               xAxis: {
                 labels: {
+                  style: {fontSize: '10px'}
+                },
+                title: {
                   style: {fontSize: '10px'}
                 }
               },
@@ -790,7 +814,12 @@ module LicsHelper
             style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
           },
           gridLineColor: '#A9A9A9',
-          lineColor: '#005454'
+          lineColor: '#005454',
+          title: {
+            text: 'Cost Indicator = Operational Expenses / Averaged Pre-Tax Net Assets',
+            margin: 20,
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          }
         },
         yAxis: {
           labels: {
@@ -828,6 +857,9 @@ module LicsHelper
               },
               xAxis: {
                 labels: {
+                  style: {fontSize: '10px'}
+                },
+                title: {
                   style: {fontSize: '10px'}
                 }
               },
@@ -873,7 +905,12 @@ module LicsHelper
             style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
           },
           gridLineColor: '#A9A9A9',
-          lineColor: '#005454'
+          lineColor: '#005454',
+          title: {
+            text: 'Cost Indicator = Expense Type / Averaged Pre-Tax Net Assets',
+            margin: 20,
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          }
         },
         yAxis: {
           labels: {
@@ -910,6 +947,9 @@ module LicsHelper
               },
               xAxis: {
                 labels: {
+                  style: {fontSize: '10px'}
+                },
+                title: {
                   style: {fontSize: '10px'}
                 }
               },
@@ -950,7 +990,12 @@ module LicsHelper
             style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
           },
           gridLineColor: '#A9A9A9',
-          lineColor: '#005454'
+          lineColor: '#005454',
+          title: {
+            text: 'Operational Expenses = All Expenses, excluding Income Tax & Financing Costs',
+            margin: 20,
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          }
         },
         yAxis: {
           labels: {
@@ -988,6 +1033,9 @@ module LicsHelper
               },
               xAxis: {
                 labels: {
+                  style: {fontSize: '10px'}
+                },
+                title: {
                   style: {fontSize: '10px'}
                 }
               },
@@ -1071,6 +1119,9 @@ module LicsHelper
               },
               xAxis: {
                 labels: {
+                  style: {fontSize: '10px'}
+                },
+                title: {
                   style: {fontSize: '10px'}
                 }
               },

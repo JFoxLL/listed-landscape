@@ -779,9 +779,9 @@ class Lic < ApplicationRecord
         #---#
         # Compiling the chart data
         other_expenses_series_name =    if self.management_structure == 'Internally Managed'
-                                            'Internal Management Costs'
+                                            'Internal Management & Operational Expenses'
                                         else
-                                            'Other Operational Costs'
+                                            'Other Operational Expenses'
                                         end
 
         cost_indicator_management_fees = {
@@ -820,7 +820,7 @@ class Lic < ApplicationRecord
         expenses_total_data_hash_formatted = format_expense_values(expenses_total_data_hash)
 
         expenses_total = {
-            name: "Total Costs Incurred",
+            name: "Total Operational Expenses",
             data: expenses_total_data_hash_formatted
         }
 
@@ -857,9 +857,9 @@ class Lic < ApplicationRecord
         expenses_other_data_hash = format_expense_values(expenses_other_data_hash)
 
         other_expenses_series_name =    if self.management_structure == 'Internally Managed'
-                                            'Internal Management Costs'
+                                            'Internal Management & Operational Expenses'
                                         else
-                                            'Other Operational Costs'
+                                            'Other Operational Expenses'
                                         end
 
         expenses_management_fees = {
