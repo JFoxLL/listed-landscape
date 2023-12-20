@@ -258,15 +258,15 @@
     <% end %>
 
 
-    <h3>Total Costs Incurred</h3>
+    <h3>Operational Expenses</h3>
     <!-- Filtering the Costs Incurred chart -->
       <%= form_tag listed_investment_company_path(id: @lic.slug), method: :get, data: { turbo_frame: "costs_incurred" }, id: "chart-filter-options" do %>
 
         <div class="chart-filter-option">
-          <label for="costs_incurred_view" class="chart-filter-label">Costs Incurred View:</label>
+          <label for="costs_incurred_view" class="chart-filter-label">Operational Expenses View:</label>
             <%= select_tag "costs_incurred_view", options_for_select([
-                ["Show Total Costs", "total"],
-                ["Show Cost Types", "split"],
+                ["Total Operational Expenses", "total"],
+                ["Show Types of Expenses", "split"],
                 ],
                 selected: "total"
                 ), 
