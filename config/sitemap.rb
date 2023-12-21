@@ -5,12 +5,12 @@ SitemapGenerator::Sitemap.compress = false
 SitemapGenerator::Sitemap.create do
 
   Lic.find_each do |lic|
-    add listed_investment_company_path(lic), :priority => 0.7, :changefreq => 'monthly'
+    add listed_investment_company_path(lic), :priority => 0.7, :changefreq => 'weekly'
   end
 
-  add share_price_vs_nta_path, :priority => 0.5, :changefreq => 'monthly'
-  add performance_path, :priority => 0.5, :changefreq => 'monthly'
-  add dividend_yields_path, :priority => 0.5, :changefreq => 'monthly'
+  add share_price_vs_nta_path, :priority => 0.5, :changefreq => 'weekly'
+  add performance_path, :priority => 0.5, :changefreq => 'weekly'
+  add dividend_yields_path, :priority => 0.5, :changefreq => 'weekly'
 
 end
 
