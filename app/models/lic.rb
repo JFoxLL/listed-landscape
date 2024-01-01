@@ -643,7 +643,7 @@ class Lic < ApplicationRecord
         end
 
         cost_indicator_excl_perf_fees = {
-            name: "Cost Indicator (exlcuding Performance Fees)",
+            name: "Cost Indicator (excluding Performance Fees)",
             data: cost_indicator_excl_perf_fees_data_hash
         }
 
