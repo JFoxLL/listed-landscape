@@ -153,7 +153,7 @@
       <%= line_chart @lic.chart_number_shareholders, **number_shareholders_chart_styling %> 
     </div>
 
-    <h3>Size (Net Assets)</h3>
+    <h3>Portfolio Size</h3>
     <div class="chart-style-template">
       <% if @lic.max_size > 1_000_000_000 %>
         <%= line_chart @lic.chart_size_net_assets_b, **size_net_assets_b_chart_styling %>

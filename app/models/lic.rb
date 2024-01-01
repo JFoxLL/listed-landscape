@@ -154,7 +154,7 @@ class Lic < ApplicationRecord
         end
 
         size = {
-            name: "Size (Net Assets)",
+            name: "Portfolio Size",
             data: size_data_hash_formatted,
         }
         
@@ -181,7 +181,7 @@ class Lic < ApplicationRecord
         end
 
         size = {
-            name: "Size (Net Assets)",
+            name: "Portfolio Size",
             data: size_data_hash_formatted,
         }
 
