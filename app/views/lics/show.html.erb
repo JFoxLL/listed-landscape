@@ -81,7 +81,7 @@
         <tr>
           <td class="label">Cost Indicator (FY23)</td>
           <td class="value">
-            <%= @lic.cost_indicator_most_recent_year %>%
+            <%= sprintf("%.2f", @lic.calculated_mer) %>%
             <% if @device_type == 'mobile' %>
               <br>
             <% end %>
