@@ -38,7 +38,7 @@
             <% end %>
           <% end %>
         </td>
-        <td class="center lics-index-table-lic-cost"><%= lic.cost_indicator_most_recent_year %>%</td>
+        <td class="center lics-index-table-lic-cost"><%= sprintf("%.2f", lic.calculated_mer) %>%</td>
       </tr>
     <% end %>
   </tbody>
