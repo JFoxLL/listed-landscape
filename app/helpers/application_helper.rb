@@ -1,4 +1,9 @@
 module ApplicationHelper
+    def canonical_url
+        uri = URI(request.original_url)
+        uri.query = nil
+        uri.to_s
+    end
 
     def sort_lics_index_table(column, title = nil, current_sort_column, current_sort_direction)
         title ||= column.titleize
@@ -11,5 +16,4 @@ module ApplicationHelper
         
         link_to title, link_params, class: css_class, data: { turbo_frame: "lics_index_table" }
     end
-    
 end
