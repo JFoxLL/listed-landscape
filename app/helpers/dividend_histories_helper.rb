@@ -1,0 +1,2 @@
+module DividendHistoriesHelper
+end

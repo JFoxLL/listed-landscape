@@ -1,0 +1,16 @@
+<!-- SEO details -->
+<% content_for :title do %>
+  Dividend History | <%= @lic.name %> (ASX:<%= @lic.ticker %>)
+<% end %>
+
+<% content_for :description do %>
+  [<%= Time.now.strftime("%b %Y") %> Updated] Dividend History (and corresponding yields) for <%= @lic.name %> (ASX: <%= @lic.ticker %>).
+<% end %>
+
+<% content_for :keywords do %>
+  <%= @lic.name %>, <%= @lic.ticker %>, Dividend History, Dividend Yield
+<% end %>
+
+
+<!-- Page Header -->
+<h1>Dividend History - <%= @lic.name %> (<%= @lic.ticker %>)</h1>
