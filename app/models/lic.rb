@@ -1,16 +1,18 @@
 class Lic < ApplicationRecord
-    has_many :number_shareholders
-    has_many :size_net_assets
-    has_many :share_price_vs_nta, class_name: 'SharePriceVsNta'
-    has_many :key_people
-    has_many :dividend_histories
-    has_many :share_price_summaries
-    has_many :share_price_histories
-    has_many :common_questions
     has_many :annual_reports
+    has_many :common_questions
     has_many :dividend_comparisons
+    has_many :dividend_histories
     has_many :expenses
+    has_many :key_people
+    has_many :number_shareholders
     has_many :number_shares
+    has_many :performances
+    has_many :portfolio_holdings
+    has_many :share_price_histories
+    has_many :share_price_summaries
+    has_many :share_price_vs_nta, class_name: 'SharePriceVsNta'
+    has_many :size_net_assets
 
     before_save :set_slug
 

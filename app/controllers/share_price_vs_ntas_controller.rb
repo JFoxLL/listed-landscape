@@ -17,4 +17,8 @@ class SharePriceVsNtasController < ApplicationController
         end
     end
 
+    def show
+        @lic = Lic.find_by!(slug: params[:id])
+    end
+
 end

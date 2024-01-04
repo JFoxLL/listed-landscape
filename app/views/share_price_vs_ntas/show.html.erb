@@ -1,0 +1,16 @@
+<!-- SEO details -->
+<% content_for :title do %>
+  NTA | <%= @lic.name %> (ASX:<%= @lic.ticker %>)
+<% end %>
+
+<% content_for :description do %>
+  [<%= Time.now.strftime("%b %Y") %> Updated] Net Tangible Assets (NTA) for <%= @lic.name %> (ASX: <%= @lic.ticker %>). Including Comparison to Share Price, to Determine Premium/ Discount.
+<% end %>
+
+<% content_for :keywords do %>
+  <%= @lic.name %>, <%= @lic.ticker %>, NTA, Net Tangible Assets
+<% end %>
+
+
+<!-- Page Header -->
+<h1>NTA - <%= @lic.name %> (<%= @lic.ticker %>)</h1>

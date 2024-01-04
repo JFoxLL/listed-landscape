@@ -15,8 +15,10 @@ class PerformancesController < ApplicationController
         render turbo_stream: turbo_stream.update('performances_index_table', partial: 'performances_index_table', locals: { lics: @lics })
       end
     end
+  end
 
-
+  def show
+    @lic = Lic.find_by!(slug: params[:id])
   end
 
 end

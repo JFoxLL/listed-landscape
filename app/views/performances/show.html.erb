@@ -1,0 +1,16 @@
+<!-- SEO details -->
+<% content_for :title do %>
+  Performance | <%= @lic.name %> (ASX:<%= @lic.ticker %>)
+<% end %>
+
+<% content_for :description do %>
+  [<%= Time.now.strftime("%b %Y") %> Updated] Historical Share Price Performance for <%= @lic.name %> (ASX: <%= @lic.ticker %>). See 1/3/5/10yr Performance, with Dividends and Franking Reinvested.
+<% end %>
+
+<% content_for :keywords do %>
+  <%= @lic.name %>, <%= @lic.ticker %>, Performance
+<% end %>
+
+
+<!-- Page Header -->
+<h1>Performance - <%= @lic.name %> (<%= @lic.ticker %>)</h1>
