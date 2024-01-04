@@ -6,6 +6,13 @@ SitemapGenerator::Sitemap.create do
 
   Lic.find_each do |lic|
     add listed_investment_company_path(lic), :priority => 0.7, :changefreq => 'weekly'
+
+    add lics_dividend_histories_path(lic), :priority => 0.8, :changefreq => 'weekly'
+    add lics_share_price_vs_ntas_path(lic), :priority => 0.8, :changefreq => 'weekly'
+    add lics_portfolio_holdings_path(lic), :priority => 0.8, :changefreq => 'weekly'
+    add lics_performances_path(lic), :priority => 0.8, :changefreq => 'weekly'
+    add lics_expenses_path(lic), :priority => 0.8, :changefreq => 'weekly'
+    add lics_annual_reports_path(lic), :priority => 0.8, :changefreq => 'weekly'
   end
 
   add share_price_vs_nta_path, :priority => 0.5, :changefreq => 'weekly'
