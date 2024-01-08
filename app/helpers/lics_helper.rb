@@ -816,7 +816,7 @@ module LicsHelper
           gridLineColor: '#A9A9A9',
           lineColor: '#005454',
           title: {
-            text: 'Cost Indicator = Operational Expenses / Averaged Pre-Tax Net Assets',
+            text: 'Cost Indicator (%) = Included Costs / Avg Pre-Tax Net Assets',
             margin: 20,
             style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
           }
@@ -907,7 +907,7 @@ module LicsHelper
           gridLineColor: '#A9A9A9',
           lineColor: '#005454',
           title: {
-            text: 'Cost Indicator = Expense Type / Averaged Pre-Tax Net Assets',
+            text: 'Cost Indicator (%) = Included Costs / Avg Pre-Tax Net Assets',
             margin: 20,
             style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
           }
@@ -992,7 +992,7 @@ module LicsHelper
           gridLineColor: '#A9A9A9',
           lineColor: '#005454',
           title: {
-            text: 'Operational Expenses = All Expenses, excluding Income Tax & Financing Costs',
+            text: 'Costs = All Costs, excluding Income Tax, Interest & Brokerage.<br>(as defined in the Corporations Act 2021)',
             margin: 20,
             style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
           }
@@ -1082,7 +1082,12 @@ module LicsHelper
             style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
           },
           gridLineColor: '#A9A9A9',
-          lineColor: '#005454'
+          lineColor: '#005454',
+          title: {
+            text: 'Costs = All Costs, excluding Income Tax, Interest & Brokerage.<br>(as defined in the Corporations Act 2021)',
+            margin: 20,
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          }
         },
         yAxis: {
           labels: {

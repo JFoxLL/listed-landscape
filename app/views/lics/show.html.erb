@@ -233,7 +233,7 @@
 <section>
   <h2 id="costs">Costs</h2>
 
-    <h3>Cost Indicator</h3>
+    <h3>Cost Indicator (%)</h3>
     <!-- Filtering the Cost Indicator chart -->
       <%= form_tag listed_investment_company_path(id: @lic.slug), method: :get, data: { turbo_frame: "cost_indicator" }, id: "chart-filter-options" do %>
 
@@ -242,7 +242,7 @@
             <%= select_tag "cost_indicator_view", options_for_select([
                 ["Excluding Performance Fees", "excluding_performance_fees"],
                 ["Including Performance Fees", "total"],
-                ["Show Cost Types", "split"],
+                ["Show Cost Indicator Types", "split"],
                 ],
                 selected: "excluding_performance_fees"
                 ), 
@@ -258,15 +258,15 @@
     <% end %>
 
 
-    <h3>Operational Expenses</h3>
+    <h3>Actual Costs</h3>
     <!-- Filtering the Costs Incurred chart -->
       <%= form_tag listed_investment_company_path(id: @lic.slug), method: :get, data: { turbo_frame: "costs_incurred" }, id: "chart-filter-options" do %>
 
         <div class="chart-filter-option">
-          <label for="costs_incurred_view" class="chart-filter-label">Operational Expenses View:</label>
+          <label for="costs_incurred_view" class="chart-filter-label">Actual Costs View:</label>
             <%= select_tag "costs_incurred_view", options_for_select([
-                ["Total Operational Expenses", "total"],
-                ["Show Types of Expenses", "split"],
+                ["Total Costs", "total"],
+                ["Show Cost Types", "split"],
                 ],
                 selected: "total"
                 ), 

@@ -645,7 +645,7 @@ class Lic < ApplicationRecord
         end
 
         cost_indicator_excl_perf_fees = {
-            name: "Cost Indicator (excluding Performance Fees)",
+            name: "Cost Indicator - Excluding Performance Fees",
             data: cost_indicator_excl_perf_fees_data_hash
         }
 
@@ -659,7 +659,7 @@ class Lic < ApplicationRecord
         chart_start_year, latest_year = standard_charts_date_range(id)
 
         # Collecting cost values, for the numerator of the calculation
-        expenses_total_data_hash = Expense.where(lic_id: id)
+        expenses_total_data_hash = Expense.where(lic_id: id, expense_category: ['External Management Fees', 'External Performance Fees', 'Other Expenses'])
                                             .where(year: chart_start_year..latest_year)
                                             .order(:year)
                                             .group(:year)
@@ -696,7 +696,7 @@ class Lic < ApplicationRecord
         end
 
         cost_indicator = {
-            name: "Cost Indicator (including Performance Fees)",
+            name: "Cost Indicator - Including Performance Fees",
             data: cost_indicator_data_hash
         }
 
@@ -781,9 +781,9 @@ class Lic < ApplicationRecord
         #---#
         # Compiling the chart data
         other_expenses_series_name =    if self.management_structure == 'Internally Managed'
-                                            'Internal Management & Operational Expenses'
+                                            'Internal Management & Operational Costs'
                                         else
-                                            'Other Operational Expenses'
+                                            'Other Operational Costs'
                                         end
 
         cost_indicator_management_fees = {
@@ -812,7 +812,7 @@ class Lic < ApplicationRecord
     def chart_costs_incurred_total
         chart_start_year, latest_year = standard_charts_date_range(id)
 
-        expenses_total_data_hash = Expense.where(lic_id: id)
+        expenses_total_data_hash = Expense.where(lic_id: id, expense_category: ['External Management Fees', 'External Performance Fees', 'Other Expenses'])
                                             .where(year: chart_start_year..latest_year)
                                             .order(:year)
                                             .group(:year)
@@ -822,7 +822,7 @@ class Lic < ApplicationRecord
         expenses_total_data_hash_formatted = format_expense_values(expenses_total_data_hash)
 
         expenses_total = {
-            name: "Total Operational Expenses",
+            name: "Total Costs",
             data: expenses_total_data_hash_formatted
         }
 
@@ -859,9 +859,9 @@ class Lic < ApplicationRecord
         expenses_other_data_hash = format_expense_values(expenses_other_data_hash)
 
         other_expenses_series_name =    if self.management_structure == 'Internally Managed'
-                                            'Internal Management & Operational Expenses'
+                                            'Internal Management & Operational Costs'
                                         else
-                                            'Other Operational Expenses'
+                                            'Other Operational Costs'
                                         end
 
         expenses_management_fees = {
