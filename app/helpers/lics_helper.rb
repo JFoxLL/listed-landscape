@@ -307,7 +307,12 @@ module LicsHelper
             style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
           },
           gridLineColor: '#A9A9A9',
-          lineColor: '#005454'
+          lineColor: '#005454',
+          title: {
+            text: 'You can hover on the lines to view the value at that time',
+            margin: 20,
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          },
         },
         yAxis: {
           min: 5,
@@ -346,7 +351,10 @@ module LicsHelper
               xAxis: {
                 labels: {
                   style: {fontSize: '10px'}
-                }
+                },
+                title: {
+                  style: {fontSize: '10px'}
+                },
               },
               yAxis: {
                 labels: {
