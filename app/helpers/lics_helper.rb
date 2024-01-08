@@ -650,7 +650,12 @@ module LicsHelper
           },
           gridLineColor: '#A9A9A9',
           lineColor: '#005454',
-          tickInterval: 1
+          tickInterval: 1,
+          title: {
+            text: 'The start-of-year share price is used when calculating the yield',
+            margin: 20,
+            style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
+          }
         },
         yAxis: {
           min: 0,
@@ -685,6 +690,9 @@ module LicsHelper
             chartOptions: {
               xAxis: {
                 labels: {
+                  style: {fontSize: '10px'}
+                },
+                title: {
                   style: {fontSize: '10px'}
                 }
               },
