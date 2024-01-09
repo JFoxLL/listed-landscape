@@ -13,4 +13,34 @@
 
 
 <!-- Page Header -->
-<h1>Dividend History - <%= @lic.name %> (<%= @lic.ticker %>)</h1>
+<div class="seo-pages-header">
+  <h1><%= @lic.ticker %> - Dividend History</h1>
+</div>
+<div class="seo-pages-page-details">
+  <p>Dividend History information for <%= @lic.name %> (ASX: <%= @lic.ticker %>)</p>
+</div>
+
+<h3>Chart of Dividend History</h3>
+  <!-- Filtering the Dividend History Chart -->
+  <%= render partial: "shared/chart_dividend_history_form" %>
+
+  <!-- Rendering the Dividend History Chart -->
+  <%= turbo_frame_tag "dividend_history" do %>
+    <%= render partial: "shared/chart_dividend_history_#{@dividend_history_view_type}" %>
+  <% end %>
+
+<!-- Separator -->
+<%= render partial: 'shared/show_page_separator' %>
+
+<h3>Corresponding Dividend Yields</h3>
+  <div class="chart-style-template">
+    <%= line_chart @lic.chart_dividend_yield, **dividend_yield_chart_styling %>
+  </div>
+
+<!-- Separator -->
+<%= render partial: 'shared/show_page_separator' %>
+
+<h3>Historical Dividend Payments</h3>
+
+
+

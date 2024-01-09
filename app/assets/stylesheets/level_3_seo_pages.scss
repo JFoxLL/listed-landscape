@@ -1,0 +1,32 @@
+@import 'devices';
+
+/* Styling for the Level 3 SEO Show Pages */
+
+.seo-pages-header h1 {
+    color: #005454;
+    font-family: 'Georgia', serif;
+    text-decoration: underline;
+    @include desktop {
+        font-size: 40px;
+        padding-top: 40px;
+        padding-bottom: 5px;
+    }
+    @include mobile {
+        font-size: 30px;
+        padding-top: 30px;
+        padding-bottom: 5px;
+    }
+}
+
+.seo-pages-page-details p {
+    color: #585858;
+    font-family: 'Georgia', serif;
+    padding-bottom: 30px;
+    @include desktop {
+        font-size: 16px;
+    }
+    @include mobile {
+        font-size: 14px;
+        padding-top: 0px;
+    }
+}

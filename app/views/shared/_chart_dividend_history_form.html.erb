@@ -1,0 +1,18 @@
+<%= form_tag listed_investment_company_path(id: @lic.slug), method: :get, data: { turbo_frame: "dividend_history" }, id: "chart-filter-options" do %>
+
+    <div class="chart-filter-option">
+        <label for="dividend_history_view" class="chart-filter-label">Dividend History View:</label>
+        <%= select_tag "dividend_history_view", options_for_select([
+            ["Total Annual Cash Dividends", "annualised"],
+            ["Total including Franking Credits", "franking"],
+            ["Show Dividend Types", "split"]
+            ],
+            selected: "annualised"
+            ), 
+            class: "chart-filter-select",
+            data: { turbo_frame: "dividend_history" }
+        %>
+    </div>
+    
+    <%= button_tag "Update Chart", class: "chart-button", data: { turbo_frame: "dividend_history" } %>
+<% end %>

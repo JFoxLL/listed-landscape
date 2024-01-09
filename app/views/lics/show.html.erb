@@ -110,7 +110,7 @@
 </section>
 
 <!-- Separator -->
-<%= render partial: 'show_page_separator' %>
+<%= render partial: 'shared/show_page_separator' %>
 
 <!-- Key People  -->
 <section>
@@ -142,7 +142,7 @@
 </section>
 
 <!-- Separator -->
-<%= render partial: 'show_page_separator' %>
+<%= render partial: 'shared/show_page_separator' %>
 
 <!-- Shareholders & Portfolio Size -->
 <section>
@@ -164,7 +164,7 @@
 </section>
 
 <!-- Separator -->
-<%= render partial: 'show_page_separator' %>
+<%= render partial: 'shared/show_page_separator' %>
 
 <!-- Performance -->
 <section>
@@ -183,36 +183,20 @@
 </section>
 
 <!-- Separator -->
-<%= render partial: 'show_page_separator' %>
+<%= render partial: 'shared/show_page_separator' %>
 
 <!-- Dividends -->
 <section>
   <h2 id="dividends">Dividends</h2>
 
     <h3>Dividend History</h3>
+      <!-- Filtering the Dividend History Chart -->
+      <%= render partial: "shared/chart_dividend_history_form" %>
 
-      <!-- Filtering the Dividend History chart -->
-      <%= form_tag listed_investment_company_path(id: @lic.slug), method: :get, data: { turbo_frame: "dividend_history" }, id: "chart-filter-options" do %>
-
-        <div class="chart-filter-option">
-          <label for="dividend_history_view" class="chart-filter-label">Dividend History View:</label>
-            <%= select_tag "dividend_history_view", options_for_select([
-                ["Total Annual Cash Dividends", "annualised"],
-                ["Total including Franking Credits", "franking"],
-                ["Show Dividend Types", "split"]
-                ],
-                selected: "annualised"
-                ), 
-                class: "chart-filter-select",
-                data: { turbo_frame: "dividend_history" }
-            %>
-        </div>
-        <%= button_tag "Update Chart", class: "chart-button", data: { turbo_frame: "dividend_history" } %>
-    <% end %>
-
-    <%= turbo_frame_tag "dividend_history" do %>
-      <%= render partial: "lics/chart_dividend_history_#{@dividend_history_view_type}" %>
-    <% end %>
+      <!-- Rendering the Dividend History Chart -->
+      <%= turbo_frame_tag "dividend_history" do %>
+        <%= render partial: "shared/chart_dividend_history_#{@dividend_history_view_type}" %>
+      <% end %>
 
     <h3>Corresponding Dividend Yields</h3>
       <div class="chart-style-template">
@@ -227,7 +211,7 @@
 </section>
 
 <!-- Separator -->
-<%= render partial: 'show_page_separator' %>
+<%= render partial: 'shared/show_page_separator' %>
 
 <!-- Costs -->
 <section>
@@ -284,7 +268,7 @@
 </section>
 
 <!-- Separator -->
-<%= render partial: 'show_page_separator' %>
+<%= render partial: 'shared/show_page_separator' %>
 
 <!-- Share Price vs NTA -->
 <section>
@@ -297,7 +281,7 @@
 </section>
 
 <!-- Separator -->
-<%= render partial: 'show_page_separator' %>
+<%= render partial: 'shared/show_page_separator' %>
 
 <!-- Show Page Common Questions -->
 <%= render partial: 'show_page_common_questions' %>
