@@ -40,7 +40,8 @@
 <!-- Separator -->
 <%= render partial: 'shared/show_page_separator' %>
 
-<h3>Historical Dividend Payments</h3>
+<h3>Dividend Payments</h3>
+<%= render partial: 'dividend_histories/historical_dividend_payments_table', locals: { div_payments: @dividend_payments } %>
 
 
 

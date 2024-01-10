@@ -142,58 +142,58 @@
     @include mobile {
         padding: 5px 10px;
     }
-}
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-tr {
-    border-bottom: 1px dotted #007575
-}
-
-.label {
-    color: #005454;
-    vertical-align: top;
-    @include desktop {
-        width: 30%;
-        padding: 12px 16px;
-        font-size: 18px;
-        font-weight: 500;
+    table {
+        width: 100%;
+        border-collapse: collapse;
     }
+
+    tr {
+        border-bottom: 1px dotted #007575
+    }
+
+    .label {
+        color: #005454;
+        vertical-align: top;
+        @include desktop {
+            width: 30%;
+            padding: 12px 16px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        @include mobile {
+            width: 40%;
+            padding: 10px 5px 10px 0px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+    }
+
+    .value {
+        color: #585858;
+        text-align: left;
+        vertical-align: top;
+        @include desktop {
+            padding: 12px 16px;
+            font-size: 18px;
+        }
+        @include mobile {
+            padding: 10px 0px;
+            font-size: 14px;
+        }
+    }
+
+    .last-row {
+        border-bottom: none;
+    }
+    
     @include mobile {
-        width: 40%;
-        padding: 10px 5px 10px 0px;
-        font-size: 14px;
-        font-weight: 500;
-    }
-}
-
-.value {
-    color: #585858;
-    text-align: left;
-    vertical-align: top;
-    @include desktop {
-        padding: 12px 16px;
-        font-size: 18px;
-    }
-    @include mobile {
-        padding: 10px 0px;
-        font-size: 14px;
-    }
-}
-
-.last-row {
-    border-bottom: none;
-}
-
-@include mobile {
-    .last-row .label {
-        padding: 10px 0px 0px 0px !important;
-    } 
-    .last-row .value {
-        padding: 5px 0px 10px 0px !important;
+        .last-row .label {
+            padding: 10px 0px 0px 0px !important;
+        } 
+        .last-row .value {
+            padding: 5px 0px 10px 0px !important;
+        }
     }
 }
 

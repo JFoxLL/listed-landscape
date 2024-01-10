@@ -1040,6 +1040,17 @@ class Lic < ApplicationRecord
     end
     #---#
 
+    #---#
+    # The following method is used in the Dividend History L3 SEO page
+    def dividend_payments_ordered
+        div_payments = DividendHistory.where(lic_id: id)
+                                        .select(:payment_date, :dividend_phase, :cash_amount, :franking_level)
+                                        .order(payment_date: :desc)
+        
+        return div_payments
+    end
+    #---#
+
 
     private
 

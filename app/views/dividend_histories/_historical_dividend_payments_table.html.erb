@@ -1,0 +1,26 @@
+<table class="seo-pages-tables">
+    <thead>
+        <tr>
+            <th>Payment Date</th>
+            <th>Dividend Type</th>
+            <th>Dividend Amount</th>
+            <th>Franking Level</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% div_payments.each do |div| %>
+            <tr>
+                <td><%= div.payment_date.strftime("%d %b, %Y") %></td>
+                <td><%= div.dividend_phase %></td>
+                <td>
+                    <% if div.cash_amount > 0.099 %>
+                        <%= number_to_currency(div.cash_amount) %>
+                    <% else %>
+                        $<%= div.cash_amount.round(4) %>
+                    <% end %>
+                </td>
+                <td><%= (div.franking_level * 100).round %>%</td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
