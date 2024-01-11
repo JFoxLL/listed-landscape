@@ -20,6 +20,14 @@
   <p>Dividend History information for <%= @lic.name %> (ASX: <%= @lic.ticker %>)</p>
 </div>
 
+<h3>Dividend History</h3>
+<%= turbo_frame_tag "dividend_payments_table" do %>
+  <%= render partial: "shared/dividend_payments_table_#{@dividend_payments_view_type}", locals: { lic: @lic } %>
+<% end %>
+
+<!-- Separator -->
+<%= render partial: 'shared/show_page_separator' %>
+
 <h3>Chart of Dividend History</h3>
   <!-- Filtering the Dividend History Chart -->
   <%= render partial: "shared/chart_dividend_history_form" %>
@@ -36,12 +44,6 @@
   <div class="chart-style-template">
     <%= line_chart @lic.chart_dividend_yield, **dividend_yield_chart_styling %>
   </div>
-
-<!-- Separator -->
-<%= render partial: 'shared/show_page_separator' %>
-
-<h3>Dividend Payments</h3>
-<%= render partial: 'dividend_histories/historical_dividend_payments_table', locals: { div_payments: @dividend_payments } %>
 
 <!-- Separator -->
 <%= render partial: 'shared/show_page_separator' %>

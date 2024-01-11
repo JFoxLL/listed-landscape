@@ -32,44 +32,6 @@
 }
 
 
-/* Tables */
-.seo-pages-tables {
-    margin-top: 30px;
-    margin-bottom: 30px;
-    width: 100%;
-    border-collapse: collapse;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-    thead {
-        background-color: #f3eee8;
-    }
-
-    th {
-        width: 25%;
-        border: 0.5px solid lightgrey;
-        padding: 6px;
-        font-family: Georgia, serif;
-        color: #005454;
-        @include mobile {
-            font-size: 10px;
-            border: 1px solid lightgrey;
-        }
-    }
-
-    td {
-        width: 25%;
-        border: 0.5px solid lightgrey;
-        padding: 6px;
-        font-family: Georgia, serif;
-        color: #585858;
-        text-align: center;
-        @include mobile {
-            font-size: 10px;
-            border: 1px solid lightgrey;
-        }
-    }
-}
-
-
 /* SEO Text */
 .seo-pages-seo-text-section {
     margin-left: calc(-50vw + 50%);

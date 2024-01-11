@@ -1,0 +1,16 @@
+<%= render partial: 'shared/dividend_payments_table', locals: { div_payments: @dividend_payments_full } %>
+
+<% if current_page?(lics_dividend_histories_path(lic, dividend_payments_view_type: "full")) %>
+    <%= link_to "Show fewer rows", 
+        lics_dividend_histories_path(lic, dividend_payments_view_type: "limited"), 
+        data: { turbo_frame: "dividend_payments" }, 
+        class: "dividend-payments-table-size-link" 
+    %>
+<% else %>
+    <%= link_to "Show fewer rows", 
+        listed_investment_company_path(lic, dividend_payments_view_type: "limited"), 
+        data: { turbo_frame: "dividend_payments" }, 
+        class: "dividend-payments-table-size-link" 
+    %>
+<% end %>
+
