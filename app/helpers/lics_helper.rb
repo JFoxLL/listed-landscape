@@ -450,7 +450,7 @@ module LicsHelper
                 series: {
                   dataLabels: {
                     enabled: true,
-                    format: '${point.y}',
+                    format: '${point.y:.2f}',
                     align: 'center',
                     verticalAlign: 'top',
                     y: -30,
