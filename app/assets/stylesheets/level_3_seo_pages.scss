@@ -35,7 +35,7 @@
 /* Tables */
 .seo-pages-tables {
     margin-top: 30px;
-    margin-bottom: 100px;
+    margin-bottom: 30px;
     width: 100%;
     border-collapse: collapse;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
@@ -68,4 +68,100 @@
         }
     }
 }
+
+
+/* SEO Text */
+.seo-pages-seo-text-section {
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    width: 100vw;
+    background-color: #f3eee8;
+    border-top: 2px solid #005454;
+    padding: 10px 0;
+}
+
+.seo-pages-seo-text-container {
+    max-width: 1000px;
+    margin: auto;
+    @include desktop {
+        padding: 20px;
+    }
+    @include mobile {
+        padding: 5px;
+    }
+}
+
+.seo-pages-seo-text-header {
+    color: #005454;
+    font-family: 'Georgia', serif;
+    font-weight: 300;
+    text-align: center;
+    width: 100%;
+    @include desktop {
+        font-size: 1.5em;
+    }
+    @include mobile {
+        font-size: 1.25em;
+    }
+}
+
+.seo-pages-seo-text-columns {
+    display: flex;
+    flex-wrap: wrap;
+    @include desktop {
+        justify-content: space-between;
+    }
+    @include mobile {
+        display: block;
+    }
+}
+
+.seo-pages-seo-text-left-column, .seo-pages-seo-text-right-column {
+    flex: 1;
+    margin: 10px;
+}
+
+.seo-pages-seo-text-item {
+    margin-bottom: 15px;
+}
+
+.seo-pages-seo-text-question {
+    color: #005454;
+    font-family: 'Georgia', serif;
+    line-height: 1.5;
+    font-weight: 500;
+    background-color: transparent;
+    border: none;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    @include desktop {
+        font-size: 16px;
+    }
+    @include mobile {
+        font-size: 14px;
+    }
+}
+
+.seo-pages-seo-text-answer {
+    color: #585858;
+    font-family: 'Georgia', serif;
+    display: none;
+    line-height: 1.5;
+    @include desktop {
+        padding-left: 7px;
+        font-size: 16px;
+    }
+    @include mobile {
+        padding-left: 17px;
+        font-size: 14px;
+    }
+}
+
+.seo-pages-seo-text-toggle-icon {
+    cursor: pointer;
+}
+
 
