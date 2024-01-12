@@ -1,6 +1,6 @@
 <div class="seo-pages-seo-text-section" data-controller="seo-pages-seo-text">
     <div class="seo-pages-seo-text-container">
-        <h2 class="seo-pages-seo-text-header">Heading</h2>
+        <h2 class="seo-pages-seo-text-header">FAQs about <%= @lic.ticker %>'s Dividend History</h2>
 
         <div class="seo-pages-seo-text-columns">
 
@@ -8,11 +8,15 @@
             <div class="seo-pages-seo-text-left-column">
                 <div class="seo-pages-seo-text-item">
                     <button class="seo-pages-seo-text-question" data-action="seo-pages-seo-text#toggle" data-seo-pages-seo-text-target="question">
-                        Question
+                        Metrics to consider when researching <%= @lic.ticker %>’s Dividend History.
                         <span class="seo-pages-seo-text-toggle-icon"> +</span>
                     </button>
                     <div class="seo-pages-seo-text-answer" data-seo-pages-seo-text-target="answer">
-                        <p>Answer</p>
+                        <p>There are a few key metrics to research and understand when looking into the Dividend History of a Listed Investment Company. These include:</p>
+                            <ul>
+                                <li><u>Reliability & Consistency of Payment Amounts:</u> One key benefit of the Listed Investment Company structure is that, due to the fund being a company structure, it can retain profits from one year to the next, thereby being able to provide investors a smooth and reliable dividend stream. This is attractive to investors who live off the income from their investment portfolio (retirees for example). Therefore, a well managed LIC will have a smooth, and ideally growing, dividend income stream. This can be assessed by viewing the ‘Chart of Dividend History’ chart near the top of this page.</li>
+                                <li><u>Dividend Yield:</u> Looking at the Dividend Cash Amounts in isolation can be a bit meaningless, without understanding what this translates to in yield terms. If the investor is living off their investment portfolio (and therefore the dividends from their equities portion of their portfolio), the investor will want to understand what sort of yield their investment is generating. There is a chart on this page titled ‘Corresponding Dividend Yields’ that displays the Dividend History in yield terms for <%= @lic.name %>.</li>
+                                <li><u>Are the Dividend Fully Franked?:</u> Fully Franked Dividends are an attractive income source for Australian retirees, as they are tax effective, and also can result in tax credit cash in some situations. It’s therefore important to assess the level of franking (displayed as a percentage) of the Dividends. The table at the top of this page titled ‘Dividend History’ has a column that displays this level of franking for <%= @lic.name %>’s dividends.
                     </div>
                 </div>
              </div>
@@ -21,11 +25,13 @@
             <div class="seo-pages-seo-text-right-column">
                 <div class="seo-pages-seo-text-item">
                     <button class="seo-pages-seo-text-question" data-action="seo-pages-seo-text#toggle" data-seo-pages-seo-text-target="question">
-                        Question
+                        What is <%= @lic.ticker %>’s Dividend Yield?
                         <span class="seo-pages-seo-text-toggle-icon"> +</span>
                     </button>
                     <div class="seo-pages-seo-text-answer" data-seo-pages-seo-text-target="answer">
-                        <p>Answer</p>
+                        <p>The Dividend Yield of a Listed Investment Company is an important consideration to consider and research, as LIC’s are often used in an investors portfolio as a reliable income stream from the equities portion of their overall portfolio. It’s therefore important to research <%= @lic.name %>’s Dividend History for the Yield.</p>
+                        <p>The Dividend Yield will change year to year, based on the levels of Dividends paid, and also the share price in that particular year. There is a table higher up on this page titled ‘Corresponding Dividend Yield’, that displays the historical dividend yield for <%= @lic.name %>. Looking at the average of the last 3-5 years will give a good guide to the level of Dividend Yield the Directors of the LIC are aiming to provide.</p>
+                        <p>The table on this page <%= link_to "(link)", dividend_yields_path, target: :_blank %> also shows the last 5 years Dividend Yields (Net & Gross) for the top 30 Listed Investment Companies in Australia. It’s important to keep in mind though that a higher yield doesn’t necessarily mean better. A higher dividend yield will result in sacrificed capital growth (as the dividends being paid out are not being reinvested back into the portfolio).</p>
                     </div>
                 </div>
              </div>
