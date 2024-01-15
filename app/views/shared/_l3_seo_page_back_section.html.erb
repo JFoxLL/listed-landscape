@@ -1,0 +1,14 @@
+<!-- Section to go back to Lic Show Page -->
+
+<div class="l3-seo-page-back-section">
+  <div class="l3-seo-page-back-section-container">
+    <div class="l3-seo-page-back-section-content-box">
+      <h3>Want to see more about <%= @lic.ticker %>?</h2>
+      <p>See more about <%= @lic.name %> (ASX: <%= @lic.ticker %>).</p>
+      <p>Dividends, Performance, Portfolio Holdings, Fee Structure, Share Price vs NTA, and more ...
+      <div class="l3-seo-page-back-section-button-container">
+        <%= link_to "See More", listed_investment_company_path(@lic), class: 'l3-seo-page-back-section-button' %>
+      </div>
+    </div>
+  </div>
+</div>

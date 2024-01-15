@@ -11,6 +11,19 @@
   <%= @lic.name %>, <%= @lic.ticker %>, Portfolio Holdings
 <% end %>
 
+<!-- Back to Lic Show Page Button -->
+<%= render partial: "shared/l3_seo_page_back_button" %>
 
 <!-- Page Header -->
-<h1>Portfolio Holdings - <%= @lic.name %> (<%= @lic.ticker %>)</h1>
+<div class="seo-pages-header">
+  <h1><%= @lic.ticker %> - Portfolio Holdings</h1>
+</div>
+<div class="seo-pages-page-details">
+  <p>Portfolio Holdings information for <%= @lic.name %> (ASX: <%= @lic.ticker %>)</p>
+</div>
+
+<!-- Separator -->
+<%= render partial: 'shared/l3_seo_page_separator' %>
+
+<!-- Back to Lic Show Page Section -->
+<%= render partial: 'shared/l3_seo_page_back_section' %>

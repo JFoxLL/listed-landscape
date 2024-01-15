@@ -11,6 +11,8 @@
   <%= @lic.name %>, <%= @lic.ticker %>, Dividend History, Dividend Yield
 <% end %>
 
+<!-- Back to Lic Show Page Button -->
+<%= render partial: "shared/l3_seo_page_back_button" %>
 
 <!-- Page Header -->
 <div class="seo-pages-header">
@@ -26,7 +28,7 @@
 <% end %>
 
 <!-- Separator -->
-<%= render partial: 'shared/show_page_separator' %>
+<%= render partial: 'shared/l3_seo_page_separator' %>
 
 <h3>Chart of Dividend History</h3>
   <!-- Filtering the Dividend History Chart -->
@@ -38,16 +40,17 @@
   <% end %>
 
 <!-- Separator -->
-<%= render partial: 'shared/show_page_separator' %>
+<%= render partial: 'shared/l3_seo_page_separator' %>
 
 <h3>Corresponding Dividend Yields</h3>
   <div class="chart-style-template">
     <%= line_chart @lic.chart_dividend_yield, **dividend_yield_chart_styling %>
   </div>
 
-<!-- Separator -->
-<%= render partial: 'shared/show_page_separator' %>
+<!-- Back to Lic Show Page Section -->
+<%= render partial: 'shared/l3_seo_page_back_section' %>
 
+<!-- SEO Text Section -->
 <%= render partial: 'dividend_histories/show_page_seo_text' %>
 
 

@@ -11,6 +11,16 @@
   <%= @lic.name %>, <%= @lic.ticker %>, Performance
 <% end %>
 
+<!-- Back to Lic Show Page Button -->
+<%= render partial: "shared/l3_seo_page_back_button" %>
 
 <!-- Page Header -->
-<h1>Performance - <%= @lic.name %> (<%= @lic.ticker %>)</h1>
+<div class="seo-pages-header">
+  <h1><%= @lic.ticker %> - Performance</h1>
+</div>
+<div class="seo-pages-page-details">
+  <p>Historical Performance information for <%= @lic.name %> (ASX: <%= @lic.ticker %>)</p>
+</div>
+
+<!-- Back to Lic Show Page Section -->
+<%= render partial: 'shared/l3_seo_page_separator' %>
