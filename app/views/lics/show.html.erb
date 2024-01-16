@@ -250,8 +250,8 @@
   <h2 id="share-price-nta">Share Price vs NTA</h2>
 
     <%= turbo_frame_tag "chart_share_price_vs_nta" do %>
-      <%= render partial: "lics/chart_share_price_vs_nta", locals: { lic: @lic, selected_time_duration: @selected_time_duration, selected_tax_type: @selected_tax_type } %>
-  <% end %>
+      <%= render partial: "shared/chart_share_price_vs_nta", locals: { lic: @lic, selected_time_duration: @selected_time_duration, selected_tax_type: @selected_tax_type } %>
+    <% end %>
 
 </section>
 

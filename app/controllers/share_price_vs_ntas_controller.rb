@@ -19,6 +19,23 @@ class SharePriceVsNtasController < ApplicationController
 
     def show
         @lic = Lic.find_by!(slug: params[:id])
+
+        # Share Price vs NTA Chart
+        @selected_tax_type = params[:tax_type].presence || 'pre_tax'
+
+        if @device_type == 'mobile'
+          @selected_time_duration = params[:time_duration].presence&.to_i || 3
+        else
+          @selected_time_duration = params[:time_duration].presence&.to_i || 10
+        end
+    
+        @chart_data = @lic.chart_share_price_vs_nta(@selected_time_duration, @selected_tax_type)
+
+        
+        respond_to do |format|
+            format.html
+            format.turbo_stream
+        end
     end
 
 end

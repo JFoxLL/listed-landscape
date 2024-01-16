@@ -1,10 +1,10 @@
 <!-- SEO details -->
 <% content_for :title do %>
-  NTA | <%= @lic.name %> (ASX:<%= @lic.ticker %>)
+  Share Price vs NTA | <%= @lic.name %> (ASX:<%= @lic.ticker %>)
 <% end %>
 
 <% content_for :description do %>
-  [<%= Time.now.strftime("%b %Y") %> Updated] Net Tangible Assets (NTA) for <%= @lic.name %> (ASX: <%= @lic.ticker %>). Including Comparison to Share Price, to Determine Premium/ Discount.
+  [<%= Time.now.strftime("%b %Y") %> Updated] Share Price vs Net Tangible Assets (NTA) for <%= @lic.name %> (ASX: <%= @lic.ticker %>). View the Premium or Discount over time.
 <% end %>
 
 <% content_for :keywords do %>
@@ -16,14 +16,19 @@
 
 <!-- Page Header -->
 <div class="seo-pages-header">
-  <h1><%= @lic.ticker %> - Net Tangible Assets (NTA)</h1>
+  <h1><%= @lic.ticker %> - Share Price vs NTA</h1>
 </div>
 <div class="seo-pages-page-details">
-  <p>Net Tangible Asset (NTA) information for <%= @lic.name %> (ASX: <%= @lic.ticker %>)</p>
+  <p>Chart of the Historical Share Price vs Net Tangible Assets (NTA) for <%= @lic.name %> (ASX: <%= @lic.ticker %>)</p>
 </div>
 
-<!-- Separator -->
-<%= render partial: 'shared/l3_seo_page_separator' %>
+<h3>Historical Share Price vs NTA<h3>
+  <%= turbo_frame_tag "chart_share_price_vs_nta" do %>
+    <%= render partial: "shared/chart_share_price_vs_nta", locals: { lic: @lic, selected_time_duration: @selected_time_duration, selected_tax_type: @selected_tax_type } %>
+  <% end %>
 
 <!-- Back to Lic Show Page Section -->
 <%= render partial: 'shared/l3_seo_page_back_section' %>
+
+<!-- SEO Text Section -->
+<%= render partial: 'share_price_vs_ntas/show_page_seo_text' %>
