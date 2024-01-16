@@ -1,0 +1,17 @@
+<%= form_tag listed_investment_company_path(id: @lic.slug), method: :get, data: { turbo_frame: "costs_incurred" }, id: "chart-filter-options" do %>
+    
+    <div class="chart-filter-option">
+        <label for="costs_incurred_view" class="chart-filter-label">Actual Costs View:</label>
+        <%= select_tag "costs_incurred_view", options_for_select([
+            ["Total Costs", "total"],
+            ["Show Cost Types", "split"],
+            ],
+            selected: "total"
+            ), 
+            class: "chart-filter-select",
+            data: { turbo_frame: "costs_incurred" }
+        %>
+    </div>
+
+    <%= button_tag "Update Chart", class: "chart-button", data: { turbo_frame: "costs_incurred" } %>
+<% end %>

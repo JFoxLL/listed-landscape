@@ -23,9 +23,9 @@
 </div>
 
 <h3>Dividend History</h3>
-<%= turbo_frame_tag "dividend_payments_table" do %>
-  <%= render partial: "shared/dividend_payments_table_#{@dividend_payments_view_type}", locals: { lic: @lic } %>
-<% end %>
+  <%= turbo_frame_tag "dividend_payments_table" do %>
+    <%= render partial: "shared/dividend_payments_table_#{@dividend_payments_view_type}", locals: { lic: @lic } %>
+  <% end %>
 
 <!-- Separator -->
 <%= render partial: 'shared/l3_seo_page_separator' %>

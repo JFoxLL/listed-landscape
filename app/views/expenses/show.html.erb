@@ -22,8 +22,29 @@
   <p>Management Fees & Cost information for <%= @lic.name %> (ASX: <%= @lic.ticker %>)</p>
 </div>
 
+<h3>Cost Indicator (%)</h3>
+  <!-- Filtering the Cost Indicator Chart -->
+  <%= render partial: "shared/chart_cost_indicator_form" %>
+
+  <!-- Rendering the Cost Indicator Chart -->
+  <%= turbo_frame_tag "cost_indicator" do %>
+    <%= render partial: "shared/chart_cost_indicator_#{@cost_indicator_view_type}" %>
+  <% end %>
+
 <!-- Separator -->
 <%= render partial: 'shared/l3_seo_page_separator' %>
 
+<h3>Actual Costs</h3>
+  <!-- Filtering the Costs Incurred Chart -->
+  <%= render partial: "shared/chart_costs_incurred_form" %>
+
+  <!-- Rendering the Costs Incurred Chart -->
+  <%= turbo_frame_tag "costs_incurred" do %>
+    <%= render partial: "shared/chart_costs_incurred_#{@costs_incurred_view_type}" %>
+  <% end %>
+
 <!-- Back to Lic Show Page Section -->
 <%= render partial: 'shared/l3_seo_page_back_section' %>
+
+<!-- SEO Text Section -->
+<%= render partial: 'expenses/show_page_seo_text' %>

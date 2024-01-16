@@ -1,0 +1,18 @@
+<%= form_tag listed_investment_company_path(id: @lic.slug), method: :get, data: { turbo_frame: "cost_indicator" }, id: "chart-filter-options" do %>
+
+    <div class="chart-filter-option">
+        <label for="cost_indicator_view" class="chart-filter-label">Cost Indicator View:</label>
+        <%= select_tag "cost_indicator_view", options_for_select([
+            ["Excluding Performance Fees", "excluding_performance_fees"],
+            ["Including Performance Fees", "total"],
+            ["Show Cost Indicator Types", "split"],
+            ],
+            selected: "excluding_performance_fees"
+            ), 
+            class: "chart-filter-select",
+            data: { turbo_frame: "cost_indicator" }
+        %>
+    </div>
+
+    <%= button_tag "Update Chart", class: "chart-button", data: { turbo_frame: "cost_indicator" } %>
+<% end %>

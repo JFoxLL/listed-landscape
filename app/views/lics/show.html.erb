@@ -190,9 +190,9 @@
   <h2 id="dividends">Dividends</h2>
 
     <h3>Dividend History</h3>
-    <%= turbo_frame_tag "dividend_payments_table" do %>
-      <%= render partial: "shared/dividend_payments_table_#{@dividend_payments_view_type}", locals: { lic: @lic } %>
-    <% end %>
+      <%= turbo_frame_tag "dividend_payments_table" do %>
+        <%= render partial: "shared/dividend_payments_table_#{@dividend_payments_view_type}", locals: { lic: @lic } %>
+      <% end %>
 
     <h3>Chart of Dividend History</h3>
       <!-- Filtering the Dividend History Chart -->
@@ -223,52 +223,22 @@
   <h2 id="costs">Costs</h2>
 
     <h3>Cost Indicator (%)</h3>
-    <!-- Filtering the Cost Indicator chart -->
-      <%= form_tag listed_investment_company_path(id: @lic.slug), method: :get, data: { turbo_frame: "cost_indicator" }, id: "chart-filter-options" do %>
+      <!-- Filtering the Cost Indicator Chart -->
+      <%= render partial: "shared/chart_cost_indicator_form" %>
 
-        <div class="chart-filter-option">
-          <label for="cost_indicator_view" class="chart-filter-label">Cost Indicator View:</label>
-            <%= select_tag "cost_indicator_view", options_for_select([
-                ["Excluding Performance Fees", "excluding_performance_fees"],
-                ["Including Performance Fees", "total"],
-                ["Show Cost Indicator Types", "split"],
-                ],
-                selected: "excluding_performance_fees"
-                ), 
-                class: "chart-filter-select",
-                data: { turbo_frame: "cost_indicator" }
-            %>
-        </div>
-        <%= button_tag "Update Chart", class: "chart-button", data: { turbo_frame: "cost_indicator" } %>
-    <% end %>
-
-    <%= turbo_frame_tag "cost_indicator" do %>
-      <%= render partial: "lics/chart_cost_indicator_#{@cost_indicator_view_type}" %>
-    <% end %>
-
+      <!-- Rendering the Cost Indicator Chart -->
+      <%= turbo_frame_tag "cost_indicator" do %>
+        <%= render partial: "shared/chart_cost_indicator_#{@cost_indicator_view_type}" %>
+      <% end %>
 
     <h3>Actual Costs</h3>
-    <!-- Filtering the Costs Incurred chart -->
-      <%= form_tag listed_investment_company_path(id: @lic.slug), method: :get, data: { turbo_frame: "costs_incurred" }, id: "chart-filter-options" do %>
+      <!-- Filtering the Costs Incurred Chart -->
+      <%= render partial: "shared/chart_costs_incurred_form" %>
 
-        <div class="chart-filter-option">
-          <label for="costs_incurred_view" class="chart-filter-label">Actual Costs View:</label>
-            <%= select_tag "costs_incurred_view", options_for_select([
-                ["Total Costs", "total"],
-                ["Show Cost Types", "split"],
-                ],
-                selected: "total"
-                ), 
-                class: "chart-filter-select",
-                data: { turbo_frame: "costs_incurred" }
-            %>
-        </div>
-        <%= button_tag "Update Chart", class: "chart-button", data: { turbo_frame: "costs_incurred" } %>
-    <% end %>
-
-    <%= turbo_frame_tag "costs_incurred" do %>
-      <%= render partial: "lics/chart_costs_incurred_#{@costs_incurred_view_type}" %>
-    <% end %>
+      <!-- Rendering the Costs Incurred Chart -->
+      <%= turbo_frame_tag "costs_incurred" do %>
+        <%= render partial: "shared/chart_costs_incurred_#{@costs_incurred_view_type}" %>
+      <% end %>
 
 </section>
 
