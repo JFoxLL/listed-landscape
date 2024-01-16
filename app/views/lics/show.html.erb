@@ -171,14 +171,10 @@
   <h2 id="performance">Long Term Performance</h2>
     
     <h3>5yr Performance</h3>
-      <div class="chart-style-template">
-        <%= line_chart @performance_chart_data_5yrs, **performance_chart_styling %>
-      </div>
+      <%= render partial: "shared/chart_performance_5yrs" %>
 
     <h3>10yr Performance (or since inception)</h3>
-      <div class="chart-style-template">
-        <%= line_chart @performance_chart_data_10yrs, **performance_chart_styling %>
-      </div>
+      <%= render partial: "shared/chart_performance_10yrs" %>
 
 </section>
 
