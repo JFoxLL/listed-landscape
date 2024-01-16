@@ -22,5 +22,11 @@
   <p>Historical Annual Reports for <%= @lic.name %> (ASX: <%= @lic.ticker %>)</p>
 </div>
 
+<!-- Annual Report Links Rendering -->
+<%= render partial: 'annual_reports/annual_report_links' %>
+
 <!-- Back to Lic Show Page Section -->
 <%= render partial: 'shared/l3_seo_page_back_section' %>
+
+<!-- SEO Text Section -->
+<%= render partial: 'annual_reports/show_page_seo_text' %>

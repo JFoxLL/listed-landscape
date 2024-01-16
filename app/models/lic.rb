@@ -1051,6 +1051,22 @@ class Lic < ApplicationRecord
     end
     #---#
 
+    #---#
+    # The following method is used in the Annual Reports L3 SEO page
+    def annual_report_links_l3_seo_page
+        ar_records = annual_reports.order(year: :desc).pluck(:year, :annual_report_filename).to_h
+
+        ar_base_url = "https://storage.googleapis.com/listed-landscape-app-storage/lic-annual-reports/"
+
+        ar_urls = {}
+        ar_records.each do |year, filename|
+            ar_full_url = "#{ar_base_url}#{filename}.pdf"
+            ar_urls[year] = ar_full_url
+        end
+
+        return ar_urls
+    end
+
 
     private
 

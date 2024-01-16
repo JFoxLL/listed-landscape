@@ -1,0 +1,5 @@
+<div class="seo-pages-annual-report-links">
+    <% @lic.annual_report_links_l3_seo_page.each do |year, link| %>
+        <%= link_to "#{@lic.ticker} Annual Report - #{year}", link, target: :_blank %><br>
+    <% end %>
+</div>

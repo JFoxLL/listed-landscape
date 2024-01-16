@@ -262,3 +262,23 @@
 }
 
 
+/* Annual Report Links */
+.seo-pages-annual-report-links {
+    text-align: center;
+
+    a {
+        color: #005454;
+        font-family: 'Georgia', serif;
+        font-size: 18px;
+        line-height: 1.5;
+        display: inline-block;
+        margin-bottom: 0.75rem;
+
+        &:hover {
+            color: #134141;
+            font-size: 19px;
+        }
+    }
+}
+
+
