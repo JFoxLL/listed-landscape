@@ -22,6 +22,51 @@
   <p>Management Fees & Cost information for <%= @lic.name %> (ASX: <%= @lic.ticker %>)</p>
 </div>
 
+<h3>Management Fee Structure</h3>
+  <section>
+    <div class="overview">
+      <table>
+        <tbody>
+          <tr>
+            <td class="label">Management Structure</td>
+            <td class="value"><%= @lic.management_structure %></td>
+          </tr>
+          <tr>
+            <td class="label">Investment Manager</td>
+            <td class="value"><%= @lic.investment_manager %></td>
+          </tr>
+          <tr>
+            <td class="label">Management Fee Structure</td>
+            <td class="value"><%= @lic.management_fee %></td>
+          </tr>
+          <tr>
+            <td class="label">Performance Fee Structure</td>
+            <td class="value"><%= @lic.performance_fee %></td>
+          </tr>
+          <tr>
+            <td class="label">Benchmark</td>
+            <td class="value"><%= @lic.benchmark %></td>
+          </tr>
+          <tr class="last-row">
+            <td class="label">Cost Indicator (FY23)</td>
+            <td class="value">
+              <%= sprintf("%.2f", @lic.calculated_mer) %>%
+              <% if @device_type == 'mobile' %>
+                <br>
+              <% end %>
+              <% unless @lic.performance_fee == 'No Performance Fee' %>
+                (excluding Performance Fees)
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+<!-- Separator -->
+<%= render partial: 'shared/l3_seo_page_separator' %>
+
 <h3>Cost Indicator (%)</h3>
   <!-- Filtering the Cost Indicator Chart -->
   <%= render partial: "shared/chart_cost_indicator_form" %>

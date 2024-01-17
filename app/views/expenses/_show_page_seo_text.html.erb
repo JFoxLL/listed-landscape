@@ -1,6 +1,6 @@
 <div class="seo-pages-seo-text-section" data-controller="seo-pages-seo-text">
     <div class="seo-pages-seo-text-container">
-        <h2 class="seo-pages-seo-text-header">Heading</h2>
+        <h2 class="seo-pages-seo-text-header">Common Questions about <%= @lic.ticker %>'s' Management Fees</h2>
 
         <div class="seo-pages-seo-text-columns">
 
@@ -8,11 +8,14 @@
             <div class="seo-pages-seo-text-left-column">
                 <div class="seo-pages-seo-text-item">
                     <button class="seo-pages-seo-text-question" data-action="seo-pages-seo-text#toggle" data-seo-pages-seo-text-target="question">
-                        Question
+                        Where can I find <%= @lic.ticker %>’s Management Fees?
                         <span class="seo-pages-seo-text-toggle-icon"> +</span>
                     </button>
                     <div class="seo-pages-seo-text-answer" data-seo-pages-seo-text-target="answer">
-                        <p>Answer</p>
+                        <p>Researching and understanding the fees and costs of a Listed Investment Company such as <%= @lic.name %> (ASX: <%= @lic.ticker %>), or any type of managed fund, is an important consideration when making an investment decision. The fees can vary widely between as low as 0.1%, up to 2%, and even higher when including the performance fee charged in any given year. If the investor has $10,000 invested in a fund, this is the difference between a cost of $10 or $200 per year.</p>
+                        <p>Fund’s usually show their fees and fee structure transparently on their website, however, in other cases when it’s not as easily found, it can be found in the product disclosure statement or IPO prospectus. It’s important to check all the types of fees the Fund might charge; management fees (both internal or external), performance fees, and also other operational costs that aren’t included in the management fee.</p>
+                        <p>Listed Landscape has extracted all of this fee information for <%= @lic.name %> and has displayed them in the ‘Cost Indicator’ and ‘Actual Costs’ charts at the top of this page. Also, <%= link_to "this page", root_path, target: :_blank %> displays the fees and costs for all of the Listed Investment Companies that Listed Landscape currently covers.</p>
+                        <p>Fees and costs aren’t the only reason to choose one Fund over another. Some Fund’s have skilled management and their long term performance (after subtracting for fees) exceeds the performance of another Fund with a lower Fee structure. However, in general, an investor should be cost conscious when making a Fund selection.</p>
                     </div>
                 </div>
              </div>
@@ -21,11 +24,17 @@
             <div class="seo-pages-seo-text-right-column">
                 <div class="seo-pages-seo-text-item">
                     <button class="seo-pages-seo-text-question" data-action="seo-pages-seo-text#toggle" data-seo-pages-seo-text-target="question">
-                        Question
+                        Important considerations when understanding <%= @lic.ticker %>’s Management Fees.
                         <span class="seo-pages-seo-text-toggle-icon"> +</span>
                     </button>
                     <div class="seo-pages-seo-text-answer" data-seo-pages-seo-text-target="answer">
-                        <p>Answer</p>
+                        <p>When assessing a Fund’s management fee structure, particularly for a Listed Investment Company such as <%= @lic.name %> (as opposed to an ETF), there are some important considerations to keep in mind:</p>
+                            <ul>
+                                <li><u>Is the Fund internally or externally managed?:</u> A Listed Investment Company such as <%= @lic.name %> can either be internally or externally managed. An internally managed LIC will have people employed directly by the LIC (either Directors or Employees) to manage the portfolio and other day-to-day operations. Externally managed LICs on the other hand, have an external manager (and external organisation) that is compensated by the LIC on an agreed upon management fee structure, to manage the investment portfolio, and sometimes the day-to-day operations of the LIC as well. This external management arrangement usually has a set timeframe, such as 5 years.</li>
+                                <li><u>If the LIC is externally managed, what is included in the management fee?:</u> If the LIC is externally managed, it’s important to understand what costs are included and excluded in the quoted management fee. For example, costs like office rent, ASX listing fees, secretarial & admin fees, and others. Some LICs include these types of costs in the quoted management fee, however some do not, and these costs are treated as an expense on the LIC profit and loss statement. Listed Landscape provides an easy way to assess this, by looking at the ‘Cost Indicator - Show Cost Types’ chart near the top of this page.</li>
+                                <li><u>Does the Fund charge a performance fee?:</u> In addition to the management fee that is usually quoted prominently, does the LIC also charge a performance fee, and is this a reasonable amount? There’s not much point investing in an actively managed fund if the performance fee (in excess of a passive index benchmark) is unreasonably high, and therefore sweeps away all of the positive performance above the benchmark.</li>
+                                <li><u>What’s the actual total all-in cost of the Fund?:</u> It’s often hard to understand the total all-in cost of a Fund, as it’s not easily known what costs are included or excluded in the management fee. Listed Landscape has solved this problem by creating a ‘Cost Indicator’ metric, that incorporates all of the fees and costs on the Profit & Loss Statement. This ‘Cost Indicator’ metric can be found on the chart above, and <%= link_to "this page", root_path, target: :_blank %> also shows the ‘Cost indicator’ for all of the Listed Investment Companies that Listed Landscape currently covers.</li>
+                            </ul>
                     </div>
                 </div>
              </div>
