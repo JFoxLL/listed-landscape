@@ -20,9 +20,20 @@ class PerformancesController < ApplicationController
   def show
     @lic = Lic.find_by!(slug: params[:id])
 
-    # Performance Charts
-    @performance_chart_data_5yrs = @lic.chart_performance(5)
-    @performance_chart_data_10yrs = @lic.chart_performance(10)
+    # Performance Chart
+    @performance_chart_time_frame_selected = params[:performance_chart_time_frame].presence&.to_i || 10
+    @performance_chart_data = @lic.chart_performance(@performance_chart_time_frame_selected)
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream do
+        if params[:performance_chart_time_frame]
+          render turbo_stream: turbo_stream.update("chart_performance") do
+            render partial: "shared/chart_performance", locals: { lic: @lic, performance_chart_time_frame_selected: @performance_chart_time_frame_selected }
+          end
+        end
+      end
+    end
   end
 
 end

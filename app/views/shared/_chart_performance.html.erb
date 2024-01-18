@@ -1,0 +1,22 @@
+<!-- Performance Chart Filter -->
+<div class="chart-share-price-vs-nta-filter">
+
+    <%= form_tag(url_for(action: 'show', id: @lic.slug), method: "get", id: "chart-filter-options") do %>
+
+        <div class="chart-filter-option">
+            <label for="performance_chart_time_frame" class="chart-filter-label">Time-Frame:</label>
+            <%= select_tag 'performance_chart_time_frame', 
+                options_for_select([['1 year', 1], ['3 years', 3], ['5 years', 5], ['10 years (or max)', 10]], 
+                @performance_chart_time_frame_selected), 
+                class: "chart-filter-select"
+            %>
+        </div>
+
+        <%= submit_tag "Update Chart", class: "chart-button" %>
+    <% end %>
+</div>
+
+<!-- Performance Chart -->
+<div class="chart-style-template">
+    <%= line_chart @performance_chart_data, **performance_chart_styling %>
+</div>

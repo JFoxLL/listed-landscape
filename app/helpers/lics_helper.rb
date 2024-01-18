@@ -309,7 +309,7 @@ module LicsHelper
           gridLineColor: '#A9A9A9',
           lineColor: '#005454',
           title: {
-            text: 'You can hover on the lines to view the value at that time',
+            text: 'Dividends Reinvested Gross includes the effect of Franking Credits (i.e. is Pre-Tax).<br>(this is the comparable metric to an ETF/ Index fund)',
             margin: 20,
             style: {color: '#585858', fontSize: '14px', fontFamily: 'Georgia'}
           },

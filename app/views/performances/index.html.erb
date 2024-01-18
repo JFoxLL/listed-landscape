@@ -36,3 +36,11 @@
 <%= turbo_frame_tag 'performances_index_table' do %>
   <%= render partial: 'performances/performances_index_table', locals: { lics: @lics } %>
 <% end %>
+
+<!-- Notes below Performance Index Table -->
+<div class="performance-index-page-details">
+    <p>* 'Dividends Reinvested Net' only considers the cash component of and Dividends, not the Franking Credits (i.e. is Post-Tax).</p>
+    <p>* 'Dividends Reinvested Gross' includes the effect of any Franking Credits included with Dividends (i.e. is Pre-Tax).</p>
+    <p>* 'Dividends Reinvested Gross' is the comparabe metric to an ETF/ Index Fund, or other investment quoted Pre-Tax (e.g. a Term Deposit).</p>
+    <p><br></p>
+</div>

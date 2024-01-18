@@ -19,17 +19,13 @@
   <h1><%= @lic.ticker %> - Performance</h1>
 </div>
 <div class="seo-pages-page-details">
-  <p>Historical Performance Charts & Information for <%= @lic.name %> (ASX: <%= @lic.ticker %>)</p>
+  <p>Historical Performance Chart & Information for <%= @lic.name %> (ASX: <%= @lic.ticker %>)</p>
 </div>
 
-<h3>5yr Performance</h3>
-  <%= render partial: "shared/chart_performance_5yrs" %>
-
-<!-- Back to Lic Show Page Section -->
-<%= render partial: 'shared/l3_seo_page_separator' %>
-
-<h3>10yr Performance (or since inception)</h3>
-  <%= render partial: "shared/chart_performance_10yrs" %>
+<h3>Historical Performance</h3>
+  <%= turbo_frame_tag "chart_performance" do %>    
+    <%= render partial: "shared/chart_performance", locals: { lic: @lic, performance_chart_time_frame_selected: @performance_chart_time_frame_selected } %>
+  <% end %>
 
 <!-- Back to Lic Show Page Section -->
 <%= render partial: 'shared/l3_seo_page_back_section' %>
