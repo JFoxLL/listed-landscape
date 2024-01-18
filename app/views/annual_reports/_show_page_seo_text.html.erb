@@ -1,6 +1,6 @@
 <div class="seo-pages-seo-text-section" data-controller="seo-pages-seo-text">
     <div class="seo-pages-seo-text-container">
-        <h2 class="seo-pages-seo-text-header">Heading</h2>
+        <h2 class="seo-pages-seo-text-header">Information about <%= @lic.ticker %>’s Annual Reports</h2>
 
         <div class="seo-pages-seo-text-columns">
 
@@ -8,11 +8,12 @@
             <div class="seo-pages-seo-text-left-column">
                 <div class="seo-pages-seo-text-item">
                     <button class="seo-pages-seo-text-question" data-action="seo-pages-seo-text#toggle" data-seo-pages-seo-text-target="question">
-                        Question
+                        Where can I find the Annual Reports for <%= @lic.name %>?
                         <span class="seo-pages-seo-text-toggle-icon"> +</span>
                     </button>
                     <div class="seo-pages-seo-text-answer" data-seo-pages-seo-text-target="answer">
-                        <p>Answer</p>
+                        <p><%= @lic.name %> (ASX: <%= @lic.ticker %>) will release an Annual Report each year, at the end of their financial year, to the Australian Stock Exchange (ASX). This report will be made public on the ASX website, and usually on <%= @lic.ticker %>’s official website as well.</p>
+                        <p>For historical Annual Reports for <%= @lic.name %>, these can usually be found on the companies official website, or if not, websites like MarketIndex or ListCorp. Listed Landscape has also collated historical <%= @lic.ticker %> Annual Reports, for your easy access. These can be found either higher up on this page, or on the overview page for <%= @lic.name %> (<%= link_to "link here", listed_investment_company_path, target: :_blank %>).</p>
                     </div>
                 </div>
              </div>
@@ -21,11 +22,17 @@
             <div class="seo-pages-seo-text-right-column">
                 <div class="seo-pages-seo-text-item">
                     <button class="seo-pages-seo-text-question" data-action="seo-pages-seo-text#toggle" data-seo-pages-seo-text-target="question">
-                        Question
+                        What are the important sections in <%= @lic.ticker %>’s Annual Reports?
                         <span class="seo-pages-seo-text-toggle-icon"> +</span>
                     </button>
                     <div class="seo-pages-seo-text-answer" data-seo-pages-seo-text-target="answer">
-                        <p>Answer</p>
+                        <p>Annual reports provide a lot of useful information about the people, operation and performance of <%= @lic.name %> (ASX: <%= @lic.ticker %>). The important sections of the Annual Reports include:</p>
+                            <ul>
+                                <li><u>The Chairman's Letter:</u> This provides a high level account of the performance for the year, and the future strategic direction.</li>
+                                <li><u>The Portfolio Manager’s Report:</u> This is more in-depth about the portfolio management, and the managers view on financial markets.</li>
+                                <li><u>Directors Report & Biographies:</u> Provides useful information on the Directors - their experience, compensation, and shareholdings in the LIC. </li>
+                                <li><u>The Financial Statements:</u> The Income Statement, Balance Sheet & Cash Flow Statements. </li>
+                        <p>It’s not critical to read the Annual Reports for <%= @lic.name %> end to end, but rather, just go to certain sections to get a feel for if the LIC is run well, and is in good financial health.</p>
                     </div>
                 </div>
              </div>
