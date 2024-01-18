@@ -1,6 +1,6 @@
 <div class="seo-pages-seo-text-section" data-controller="seo-pages-seo-text">
     <div class="seo-pages-seo-text-container">
-        <h2 class="seo-pages-seo-text-header">Heading</h2>
+        <h2 class="seo-pages-seo-text-header">FAQs about <%= @lic.ticker %>'s Performance</h2>
 
         <div class="seo-pages-seo-text-columns">
 
@@ -8,11 +8,18 @@
             <div class="seo-pages-seo-text-left-column">
                 <div class="seo-pages-seo-text-item">
                     <button class="seo-pages-seo-text-question" data-action="seo-pages-seo-text#toggle" data-seo-pages-seo-text-target="question">
-                        Question
+                        Where can I find performance data for <%= @lic.ticker %>?
                         <span class="seo-pages-seo-text-toggle-icon"> +</span>
                     </button>
                     <div class="seo-pages-seo-text-answer" data-seo-pages-seo-text-target="answer">
-                        <p>Answer</p>
+                        <p>The usual go-to places to find performance data for a LIC such as <%= @lic.name %> include:</p>
+                            <ul>
+                                <li>The LIC’s official website,</li>
+                                <li>Annual reports,</li>
+                                <li>Monthly/ quarterly updates.</li>
+                            </ul>
+                        <p>Unfortunately, there isn’t a standardised industry format to present performance data. Therefore, an investor should go one step-further after finding the performance data to interrogate the data and answer some key questions, which are discussed in the next question. This is critical to accurately compare between LICs, and also between a LIC and different investment options (such as passive ETFs, or other less-risky options such as bonds or term deposits).</p>
+                        <p>Listed Landscape provides a standardised performance format, so that researching investors can easily understand the long-term performance of a LIC such as <%= @lic.name %>, and also compare between LIC on a like-for-like basis (time duration, after-fees, on a pre and post tax basis). This can be seen in the charts at the top of this page, and also on <%= link_to "this page", performance_path, target: :_blank %>, where the performance of LICs can be compared.</p>
                     </div>
                 </div>
              </div>
@@ -21,11 +28,17 @@
             <div class="seo-pages-seo-text-right-column">
                 <div class="seo-pages-seo-text-item">
                     <button class="seo-pages-seo-text-question" data-action="seo-pages-seo-text#toggle" data-seo-pages-seo-text-target="question">
-                        Question
+                        Important considerations when researching <%= @lic.ticker %>’s (or any LICs) performance.
                         <span class="seo-pages-seo-text-toggle-icon"> +</span>
                     </button>
                     <div class="seo-pages-seo-text-answer" data-seo-pages-seo-text-target="answer">
-                        <p>Answer</p>
+                        <p>Investors choose to invest in actively managed equity funds (such as <%= @lic.name %>) to achieve a long term performance that exceeds a return that could be obtained from risk-free or low-risk investment options (such as Government bonds or term deposits), and ideally exceed what can be achieved from passively managed benchmarked index funds. It’s therefore important to assess the historical performance of a LIC to see if this has been achieved (although noting that historical performance doesn’t determine future performance).</p>
+                        <p>There are a few issues and considerations to understand though when conducting this performance research. These include:</p>
+                            <ul>
+                                <li><u>Are the stated performance results before or after the fees/costs incurred by the LIC?:</u> Most LICs do quote performance data on an after-fees/costs basis, however some do not. It’s important to keep this in mind when comparing LICs, on a LIC compared to a different investment option.</li>
+                                <li><u>Are the performance data time-frames displayed by the fund ‘cherry-picked’?:</u> Since there isn’t a mandated standardised format to display performance data, funds can sometimes ‘cherry-pick’ the time duration (e.g., 6 months, 3yrs, 20yrs) that best suits their best performance figures compared to their benchmark. High-integrity, transparent funds will display varied and consistent timeline intervals, such as 1yr, 3yrs, 5yrs and 10yr performance data, and continue to present these even when one of the time-intervals isn’t attractive.</li>
+                                <li><u>Is the performance data in pre-tax or post-tax terms?:</u> A LIC is a company structure (unlike an ETF, which is a Trust structure), and therefore, the company pays company tax before paying out dividends to shareholders. A Trust structure, on the other hand, pays out the distributions (not dividends) before tax, and then the individual pays tax on those distributions. It’s therefore important to understand if the LIC performance data is presented on a pre-tax or post-tax basis. If the LIC performance data is being compared to an ETF index fund, then the pre-tax performance data should be used, for it to be an equal comparison.</li>
+                            </ul>
                     </div>
                 </div>
              </div>
