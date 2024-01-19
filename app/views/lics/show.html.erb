@@ -170,9 +170,13 @@
 <section>
   <h2 id="performance">Performance</h2>
 
-    <%= turbo_frame_tag "chart_performance" do %>    
-      <%= render partial: "shared/chart_performance", locals: { lic: @lic, performance_chart_time_frame_selected: @performance_chart_time_frame_selected } %>
-    <% end %>
+    <h3>Historical Performance</h3>
+      <%= render partial: "shared/performance_table", locals: { lic: @lic } %>
+
+    <h3>Chart of Historical Performance</h3>
+      <%= turbo_frame_tag "chart_performance" do %>    
+        <%= render partial: "shared/chart_performance", locals: { lic: @lic, performance_chart_time_frame_selected: @performance_chart_time_frame_selected } %>
+      <% end %>
 
 </section>
 

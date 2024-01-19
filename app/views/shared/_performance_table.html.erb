@@ -1,0 +1,27 @@
+<table class="performance-table-individual">
+    <thead>
+        <tr>
+            <th></th>
+            <th>1yr </th>
+            <th>3yrs</th>
+            <th>5yrs</th>
+            <th>10yrs</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>With Dividends Reinvested - Net</td>
+            <td><%= lic.performance_cagr_calculation(1, :cash_amount) %></td>
+            <td><%= lic.performance_cagr_calculation(3, :cash_amount) %></td>
+            <td><%= lic.performance_cagr_calculation(5, :cash_amount) %></td>
+            <td><%= lic.performance_cagr_calculation(9.9, :cash_amount) %></td>
+        </tr>
+        <tr>
+            <td>With Dividends Reinvested - Gross</td>
+            <td><%= lic.performance_cagr_calculation(1, :grossed_up_amount) %></td>
+            <td><%= lic.performance_cagr_calculation(3, :grossed_up_amount) %></td>
+            <td><%= lic.performance_cagr_calculation(5, :grossed_up_amount) %></td>
+            <td><%= lic.performance_cagr_calculation(9.9, :grossed_up_amount) %></td>
+        </tr>
+    </tbody>
+</table>
