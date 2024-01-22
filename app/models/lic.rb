@@ -948,7 +948,7 @@ class Lic < ApplicationRecord
     #---#
 
     #---#
-    # The following methods are used in the 'Performance' index view
+    # The following methods are used in the 'Performance' index view, and Performance Tables (on Lic Show page, and Performance SEO page)
     def performance_last_updated
         most_recent_sp_date = share_price_histories.order(date: :desc).pluck(:date).first
     end
@@ -1011,9 +1011,35 @@ class Lic < ApplicationRecord
 
             cagr_calculation_dividend_reinvested = ((end_amount / starting_amount.to_f) ** (1 / years.to_f) - 1) * 100
 
-            return "#{cagr_calculation_dividend_reinvested.round(0)}%"
+            return cagr_calculation_dividend_reinvested.to_f
         end
     end
+
+    def performance_cagr_calculation_rounded_0dp(years, div_type)
+        cagr_calculation = performance_cagr_calculation(years, div_type)
+
+        if cagr_calculation.is_a?(Numeric)
+            return "#{cagr_calculation.round(0)}%"
+        else
+            return "-"
+        end
+    end 
+    
+    def performance_cagr_calculation_rounded_1dp(years, div_type)
+        cagr_calculation = performance_cagr_calculation(years, div_type)
+
+        if cagr_calculation.is_a?(Numeric)
+
+            if cagr_calculation > 20 || cagr_calculation < -10
+                return "#{cagr_calculation.round(0)}%"
+            else
+                return "#{cagr_calculation.round(1)}%"
+            end
+
+        else
+            return "-"
+        end
+    end 
     #---#
 
     #---#

@@ -2,15 +2,18 @@ module PerformancesHelper
 
     def performance_table_colour_shading(value)
 
-        numeric_value = value.delete('%').to_f
+        if value.is_a?(Numeric)
 
-        if numeric_value < 0
-            "negative-performance"
-        elsif numeric_value > 6
-            "strong-performance"
-        else
-            "neutral-performance"
+            if value < 0
+                "negative-performance"
+            elsif value > 6
+                "strong-performance"
+            else
+                "neutral-performance"
+            end
+        
         end
+        
     end
     
 end

@@ -38,28 +38,28 @@
           </td>
           <% cache [lic, 'performance_index_table_row_cache'] do %>
             <td class="center <%= performance_table_colour_shading(lic.performance_cagr_calculation(1, :cash_amount)) %> performance-index-table-data-column">
-              <%= lic.performance_cagr_calculation(1, :cash_amount) %>
+              <%= lic.performance_cagr_calculation_rounded_0dp(1, :cash_amount) %>
             </td>
             <td class="center <%= performance_table_colour_shading(lic.performance_cagr_calculation(3, :cash_amount)) %> performance-index-table-data-column">
-              <%= lic.performance_cagr_calculation(3, :cash_amount) %>
+              <%= lic.performance_cagr_calculation_rounded_0dp(3, :cash_amount) %>
             </td>
             <td class="center <%= performance_table_colour_shading(lic.performance_cagr_calculation(5, :cash_amount)) %> performance-index-table-data-column">
-              <%= lic.performance_cagr_calculation(5, :cash_amount) %>
+              <%= lic.performance_cagr_calculation_rounded_0dp(5, :cash_amount) %>
             </td>
             <td class="center <%= performance_table_colour_shading(lic.performance_cagr_calculation(9.9, :cash_amount)) %> performance-index-table-data-column">
-              <%= lic.performance_cagr_calculation(9.9, :cash_amount) %>
+              <%= lic.performance_cagr_calculation_rounded_0dp(9.9, :cash_amount) %>
             </td>
             <td class="center <%= performance_table_colour_shading(lic.performance_cagr_calculation(1, :grossed_up_amount)) %> performance-index-table-data-column">
-              <%= lic.performance_cagr_calculation(1, :grossed_up_amount) %>
+              <%= lic.performance_cagr_calculation_rounded_0dp(1, :grossed_up_amount) %>
             </td>
             <td class="center <%= performance_table_colour_shading(lic.performance_cagr_calculation(3, :grossed_up_amount)) %> performance-index-table-data-column">
-              <%= lic.performance_cagr_calculation(3, :grossed_up_amount) %>
+              <%= lic.performance_cagr_calculation_rounded_0dp(3, :grossed_up_amount) %>
             </td>
             <td class="center <%= performance_table_colour_shading(lic.performance_cagr_calculation(5, :grossed_up_amount)) %> performance-index-table-data-column">
-              <%= lic.performance_cagr_calculation(5, :grossed_up_amount) %>
+              <%= lic.performance_cagr_calculation_rounded_0dp(5, :grossed_up_amount) %>
             </td>
             <td class="center <%= performance_table_colour_shading(lic.performance_cagr_calculation(9.9, :grossed_up_amount)) %> performance-index-table-data-column">
-              <%= lic.performance_cagr_calculation(9.9, :grossed_up_amount) %>
+              <%= lic.performance_cagr_calculation_rounded_0dp(9.9, :grossed_up_amount) %>
             </td>
           <% end %>
         </tr>

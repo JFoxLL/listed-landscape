@@ -11,17 +11,17 @@
     <tbody>
         <tr>
             <td>With Dividends Reinvested - Net</td>
-            <td><%= lic.performance_cagr_calculation(1, :cash_amount) %></td>
-            <td><%= lic.performance_cagr_calculation(3, :cash_amount) %></td>
-            <td><%= lic.performance_cagr_calculation(5, :cash_amount) %></td>
-            <td><%= lic.performance_cagr_calculation(9.9, :cash_amount) %></td>
+            <td><%= lic.performance_cagr_calculation_rounded_1dp(1, :cash_amount) %></td>
+            <td><%= lic.performance_cagr_calculation_rounded_1dp(3, :cash_amount) %></td>
+            <td><%= lic.performance_cagr_calculation_rounded_1dp(5, :cash_amount) %></td>
+            <td><%= lic.performance_cagr_calculation_rounded_1dp(9.9, :cash_amount) %></td>
         </tr>
         <tr>
             <td>With Dividends Reinvested - Gross</td>
-            <td><%= lic.performance_cagr_calculation(1, :grossed_up_amount) %></td>
-            <td><%= lic.performance_cagr_calculation(3, :grossed_up_amount) %></td>
-            <td><%= lic.performance_cagr_calculation(5, :grossed_up_amount) %></td>
-            <td><%= lic.performance_cagr_calculation(9.9, :grossed_up_amount) %></td>
+            <td><%= lic.performance_cagr_calculation_rounded_1dp(1, :grossed_up_amount) %></td>
+            <td><%= lic.performance_cagr_calculation_rounded_1dp(3, :grossed_up_amount) %></td>
+            <td><%= lic.performance_cagr_calculation_rounded_1dp(5, :grossed_up_amount) %></td>
+            <td><%= lic.performance_cagr_calculation_rounded_1dp(9.9, :grossed_up_amount) %></td>
         </tr>
     </tbody>
 </table>
