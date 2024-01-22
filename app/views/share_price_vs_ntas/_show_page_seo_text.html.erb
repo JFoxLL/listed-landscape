@@ -1,6 +1,6 @@
 <div class="seo-pages-seo-text-section" data-controller="seo-pages-seo-text">
     <div class="seo-pages-seo-text-container">
-        <h2 class="seo-pages-seo-text-header">Heading</h2>
+        <h2 class="seo-pages-seo-text-header">FAQs about <%= @lic.ticker %>'s Share Price vs NTA</h2>
 
         <div class="seo-pages-seo-text-columns">
 
@@ -8,11 +8,26 @@
             <div class="seo-pages-seo-text-left-column">
                 <div class="seo-pages-seo-text-item">
                     <button class="seo-pages-seo-text-question" data-action="seo-pages-seo-text#toggle" data-seo-pages-seo-text-target="question">
-                        Question
+                        What’s the difference between the Share Price and the Net Tangible Assets (NTA)?
                         <span class="seo-pages-seo-text-toggle-icon"> +</span>
                     </button>
                     <div class="seo-pages-seo-text-answer" data-seo-pages-seo-text-target="answer">
-                        <p>Answer</p>
+                        <p>Listed Investment Companies (LICs), like <%= @lic.name %> (ASX: <%= @lic.ticker %>), are publicly traded on the Australian Stock Exchange, and therefore, their shares have a publicly quoted Share Price. If we then multiply the Share Price by the total number of Shares, we get the Market Cap (or total value) of the LIC. The Share Price is what’s used for investors to trade shares between each other, when buying and selling.</p>
+                        <p>Someone new to LICs might think that the Market Cap of the LIC would be equal to the total value of the Investment Portfolio that the LIC holds. That makes sense right? If the LIC owns $1b of assets, then the Market Cap (‘value’) of the LIC should also be $1b?</p>
+                        <p>But that’s not necessarily the case. This is where the Net Tangible Assets (NTA) comes in.</p>
+                        <p>The Net Tangible Assets (NTA) is the actual value of the Investment Portfolio that the LIC owns (plus some other smaller things, like cash). The ‘NTA per share’ is the NTA value dividend by the total number of shares of the LIC, so it can be easily compared to the Share Price.</p>
+                        <p>There is often a difference between the Share Price and the NTA per share. This can be for a range of factors, including:</p>
+                            <ul>
+                                <li>Historical Performance</li>
+                                <li>Reputation</li>
+                                <li>Market & Economic Conditions</li>s
+                                <li>Dividend Reliability & Size</li>
+                                <li>Fee Size & Structure</li>
+                                <li>Marketing & Promotion</li>
+                            </ul>
+                        <p>LICs are required to publish their NTAs (both pre and post tax liabilities) on a monthly basis, and some voluntarily also publish on a weekly or even daily basis. Listed Landscape has created a chart (shown at the top of this page) that visually displays the difference between the Share Price and the Net Tangible Assets for <%= @lic.name %>, for the last 10 years (or since inception). A column that is at +5% on the charts means that the value of the LIC (either in Share Price or Market Cap terms) is trading at a 5% premium to the actual value of the underlying value of the Investment Portfolio.</p>
+                        <p><%= link_to "This page", share_price_vs_nta_path, target: :_blank %> also displays a table for the Share Price vs NTA for all of the LICs that Listed Landscape currently covers.</p>
+                        <p>The next question provides further information on how to think about Premiums or Discounts to NTA.</p>
                     </div>
                 </div>
              </div>
@@ -21,14 +36,21 @@
             <div class="seo-pages-seo-text-right-column">
                 <div class="seo-pages-seo-text-item">
                     <button class="seo-pages-seo-text-question" data-action="seo-pages-seo-text#toggle" data-seo-pages-seo-text-target="question">
-                        Question
+                        What does a ‘Premium’ or ‘Discount’ to NTA mean?
                         <span class="seo-pages-seo-text-toggle-icon"> +</span>
                     </button>
                     <div class="seo-pages-seo-text-answer" data-seo-pages-seo-text-target="answer">
-                        <p>Answer</p>
+                        <p>As discussed in the previous question, a LIC, such as <%= @lic.name %>, might have a Share Price that is different to the Net Tangible Assets (per share) of the Investment Portfolio. The previous question outlined some reasons why this might occur.</p>
+                        <p>Let’s now use an example:</p>
+                        <p>Let’s say that a particular LIC has a Net Tangible Assets of $1b total (and a corresponding share price of $10 per share). </p>
+                        <p>But, let’s now say that the Share Price of that LIC is $9 (and therefore has a market cap of $900m).</p>
+                        <p>We can therefore say that this LIC’s Share Price is trading at a ‘Discount’ to its NTA (and in this example, a 10% discount). </p>
+                        <p>Conversely, if the Share Price is above $10, then we would say that the LIC’s Share Price is trading at a ‘Premium’ to its NTA.</p>
+                        <p>Now, just because a LIC’s Share Price is trading at a discount to NTA doesn’t necessarily mean it’s an automatic buy. An investor needs to consider why it trades at a discount, and also what the historical average Premium or Discount is, of that LIC. It might permanently trade at a 10% discount, so therefore the investor should expect that it maintains at a 10% discount into the future too. </p>
+                        <p>Listed Landscape has created a chart (shown at the top of this page) that investors can use to help conduct this research. The chart shows the monthly Premium or Discounts, and also an Average line for the time-frame selected.</p>
                     </div>
                 </div>
-             </div>
+            </div>
         </div>
     </div>
 </div>
