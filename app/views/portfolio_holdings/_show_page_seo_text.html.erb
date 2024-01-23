@@ -1,6 +1,6 @@
 <div class="seo-pages-seo-text-section" data-controller="seo-pages-seo-text">
     <div class="seo-pages-seo-text-container">
-        <h2 class="seo-pages-seo-text-header">Heading</h2>
+        <h2 class="seo-pages-seo-text-header">FAQ’s about <%= @lic.ticker %>’ Portfolio Holdings</h2>
 
         <div class="seo-pages-seo-text-columns">
 
@@ -8,11 +8,17 @@
             <div class="seo-pages-seo-text-left-column">
                 <div class="seo-pages-seo-text-item">
                     <button class="seo-pages-seo-text-question" data-action="seo-pages-seo-text#toggle" data-seo-pages-seo-text-target="question">
-                        Question
+                        Where can I find <%= @lic.ticker %>’s Portfolio Holdings?
                         <span class="seo-pages-seo-text-toggle-icon"> +</span>
                     </button>
                     <div class="seo-pages-seo-text-answer" data-seo-pages-seo-text-target="answer">
-                        <p>Answer</p>
+                        <p>When researching the Portfolio Holdings for a Listed Investment Company, such as <%= @lic.name %>, the two go-to places to find this information include:</p>
+                            <ul>
+                                <li>Monthly updates to the ASX</li>
+                                <li>Annual Reports</li>
+                            </ul>
+                        <p>The majority of Listed Investment Companies will provide a snapshot of their holdings (e.g. top 10 or top 20 holdings) in their monthly updates. However, some choose not to (usually the more ‘active’ managers), most likely because they view this information as their valuable IP.</p>
+                        <p>If the portfolio holdings aren’t shared in the monthly updates, then it’s likely this information will be shared in historical annual reports (<%= link_to "link here", lics_annual_reports_path, target: :_blank %> for these reports for <%= @lic.name %>). It can be an interesting research exercise to view the change in the Portfolio Holdings over time (e.g. the last 5 or 10 years) to get a feel on how active the manager is (i.e. are the holdings changing a lot from year to year), and whether they were early in identifying successful investments that most LICs now own (CSL as an example). </p>
                     </div>
                 </div>
              </div>
@@ -21,11 +27,17 @@
             <div class="seo-pages-seo-text-right-column">
                 <div class="seo-pages-seo-text-item">
                     <button class="seo-pages-seo-text-question" data-action="seo-pages-seo-text#toggle" data-seo-pages-seo-text-target="question">
-                        Question
+                        Why is researching <%= @lic.ticker %>’s Portfolio Holdings important?
                         <span class="seo-pages-seo-text-toggle-icon"> +</span>
                     </button>
                     <div class="seo-pages-seo-text-answer" data-seo-pages-seo-text-target="answer">
-                        <p>Answer</p>
+                        <p>When investing in a Listed Investment Company, such as <%= @lic.name %>, that LIC itself isn’t operating (i.e. it’s not producing products or services, or has sales and profits). The LICs responsibility is to manage your investment by itself investing into actual operating companies, such as BHP or CBA. Therefore, when researching a LIC, it makes sense to research and understand, and then feel comfortable and confident, with the underlying portfolio holdings, as this is what you are indirectly investing into, when making an investment in the LIC.</p>
+                        <p>Questions to think about when researching the portfolio holdings include:</p>
+                            <ul>
+                                <li><u>What types of companies or assets does the LIC invest in?:</u> Are they large-cap or small-cap, mature companies or growth companies, older industrial style companies or new-age tech? This will be a personal preference for the investor on the types of investment they prefer to own long-term.</li>
+                                <li><u>What geographies does the LIC invest in?:</u> Are they mainly Australian companies, or does the LIC focus globally? Some LICs also focus on a specific global region, such as Asia.</li>
+                                <li><u>How concentrated are the portfolio holdings?:</u> Some LICs are invested in up to 100 holdings, and as a result, the position size of the top 10 positions are in the low single digit percentages. Conversely, some LICs are consented into 15 to 30 holdings, and therefore position sizes of the top holdings are 10% or higher. There’s no right or wrong to this question, it’s a personal preference of risk tolerance and view on concentration vs diversification.</li>
+                            </ul>
                     </div>
                 </div>
              </div>
