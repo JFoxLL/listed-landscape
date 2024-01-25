@@ -1,12 +1,19 @@
-<p>Top <%= lic.portfolio_holdings(2023).size %> Holdings at end of FY <%= lic.portfolio_holdings(2023).first.year %></p>
+<!-- Section Sub-Heading -->
+<h3>
+    <% if lic.portfolio_holdings_ordering_style(2023) == "Weight" %>
+        Top <%= lic.portfolio_holdings(2023).size %> Holdings at end of FY <%= lic.portfolio_holdings(2023).first.year %>
+    <% else %>
+        Sample of Top Holdings at end of FY <%= lic.portfolio_holdings(2023).first.year %> (Alphabetical Order)
+    <% end %>
+</h3>
 
-<table>
+<table class="portfolio-holdings-table">
     <thead>
         <tr>
             <th></th>
             <th>Holding</th>
             <% if lic.portfolio_holdings_ordering_style(2023) == "Weight" %>
-                <th>Weight</th>
+                <th style="text-align: center;">Weight</th>
             <% end %>
             <th>Sector</th>
             <th>Industry</th>
@@ -20,7 +27,7 @@
                 <td><%= i+1 %></td>
                 <td><%= holding.holding_name %></td>
                 <% if lic.portfolio_holdings_ordering_style(2023) == "Weight" %>
-                    <td><%= holding.weight%>%</td>
+                    <td style="text-align: center;"><%= holding.weight%>%</td>
                 <% end %>
                 <td><%= holding.sector %></td>
                 <td><%= holding.industry %></td>
