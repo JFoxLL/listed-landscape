@@ -23,7 +23,9 @@
 </div>
 
 <!-- Portfolio Holdings Table -->
-<%= render partial: 'shared/portfolio_holdings_table', locals: { lic: @lic }  %>
+<%= turbo_frame_tag "portfolio_holdings" do %>
+  <%= render partial: 'shared/portfolio_holdings_table', locals: { lic: @lic, portfolio_holdings_display_year: @portfolio_holdings_display_year } %>
+<% end %>
 
 <!-- Back to Lic Show Page Section -->
 <%= render partial: 'shared/l3_seo_page_back_section' %>

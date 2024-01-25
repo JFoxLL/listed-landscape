@@ -1,18 +1,32 @@
 <!-- Section Sub-Heading -->
 <h3>
-    <% if lic.portfolio_holdings_ordering_style(2023) == "Weight" %>
-        Top <%= lic.portfolio_holdings(2023).size %> Holdings at end of FY <%= lic.portfolio_holdings(2023).first.year %>
+    <% if lic.portfolio_holdings_ordering_style(@portfolio_holdings_display_year) == "Weight" %>
+        Top <%= lic.portfolio_holdings(@portfolio_holdings_display_year).size %> Holdings at end of FY <%= lic.portfolio_holdings(@portfolio_holdings_display_year).first.year %>
     <% else %>
-        Sample of Top Holdings at end of FY <%= lic.portfolio_holdings(2023).first.year %> (Alphabetical Order)
+        Sample of Top Holdings at end of FY <%= lic.portfolio_holdings(@portfolio_holdings_display_year).first.year %> (Alphabetical Order)
     <% end %>
 </h3>
+
+<!-- Table Filter -->
+<div class="chart-share-price-vs-nta-filter">
+    <%= form_tag(url_for(action: 'show', id: @lic.slug), method: "get", id: "chart-filter-options") do %>
+        <div class="chart-filter-option">
+            <label for="portfolio_holdings_display_year" class="chart-filter-label">Year:</label>
+            <%= select_tag 'portfolio_holdings_display_year',
+                options_for_select(@portfolio_holdings_display_year_options.each { |year| [year, year] }, @portfolio_holdings_display_year),
+                class: "chart-filter-select"
+            %>
+        </div>
+        <%= submit_tag "Update Table", class: "chart-button" %>
+    <% end %>
+</div>
 
 <table class="portfolio-holdings-table">
     <thead>
         <tr>
             <th></th>
             <th>Holding</th>
-            <% if lic.portfolio_holdings_ordering_style(2023) == "Weight" %>
+            <% if lic.portfolio_holdings_ordering_style(@portfolio_holdings_display_year) == "Weight" %>
                 <th style="text-align: center;">Weight</th>
             <% end %>
             <th>Sector</th>
@@ -22,11 +36,11 @@
         <tr>
     </thead>
     <tbody>
-        <% lic.portfolio_holdings(2023).each_with_index do |holding, i| %>
+        <% lic.portfolio_holdings(@portfolio_holdings_display_year).each_with_index do |holding, i| %>
             <tr>
                 <td><%= i+1 %></td>
                 <td><%= holding.holding_name %></td>
-                <% if lic.portfolio_holdings_ordering_style(2023) == "Weight" %>
+                <% if lic.portfolio_holdings_ordering_style(@portfolio_holdings_display_year) == "Weight" %>
                     <td style="text-align: center;"><%= holding.weight%>%</td>
                 <% end %>
                 <td><%= holding.sector %></td>

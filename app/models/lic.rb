@@ -200,6 +200,10 @@ class Lic < ApplicationRecord
         return unique_years_array
     end
 
+    def portfolio_holdings_latest_year
+        latest_year = portfolio_holdings_unique_years.first
+    end
+
     def portfolio_holdings_ordering_style(year)
         ordering_style = PortfolioHolding.where(lic_id: id)
                                             .where(year: year)
