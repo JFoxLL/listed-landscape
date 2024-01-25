@@ -22,8 +22,8 @@
   <p>Portfolio Holdings information for <%= @lic.name %> (ASX: <%= @lic.ticker %>)</p>
 </div>
 
-<!-- Separator -->
-<%= render partial: 'shared/l3_seo_page_separator' %>
+<!-- Portfolio Holdings Table -->
+<%= render partial: 'shared/portfolio_holdings_table', locals: { lic: @lic }  %>
 
 <!-- Back to Lic Show Page Section -->
 <%= render partial: 'shared/l3_seo_page_back_section' %>

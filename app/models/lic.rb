@@ -192,6 +192,36 @@ class Lic < ApplicationRecord
         return chart_data
     end
 
+    def portfolio_holdings_unique_years
+        unique_years_array = PortfolioHolding.where(lic_id: id)
+                                                .order(year: :desc)
+                                                .pluck(:year)
+                                                .uniq                                        
+        return unique_years_array
+    end
+
+    def portfolio_holdings_ordering_style(year)
+        ordering_style = PortfolioHolding.where(lic_id: id)
+                                            .where(year: year)
+                                            .pluck(:ordering_method)
+                                            .first
+        return ordering_style
+    end
+
+    def portfolio_holdings(year)
+        portfolio_holdings_unordered = PortfolioHolding.where(lic_id: id)
+                                                        .where(year: year)
+                                                        .where(holding_type: "Holding")
+
+        if portfolio_holdings_ordering_style(year) == "Weight"
+            portfolio_holdings_ordered = portfolio_holdings_unordered.order(weight: :desc)
+        else
+            portfolio_holdings_ordered = portfolio_holdings_unordered.order(:holding_name)
+        end
+
+        return portfolio_holdings_ordered
+    end
+
     def chart_performance(chart_duration_years)
         chart_data = []
 

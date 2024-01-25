@@ -1,0 +1,34 @@
+<p>Top <%= lic.portfolio_holdings(2023).size %> Holdings at end of FY <%= lic.portfolio_holdings(2023).first.year %></p>
+
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Holding</th>
+            <% if lic.portfolio_holdings_ordering_style(2023) == "Weight" %>
+                <th>Weight</th>
+            <% end %>
+            <th>Sector</th>
+            <th>Industry</th>
+            <th>Size</th>
+            <th>HQ</th>
+        <tr>
+    </thead>
+    <tbody>
+        <% lic.portfolio_holdings(2023).each_with_index do |holding, i| %>
+            <tr>
+                <td><%= i+1 %></td>
+                <td><%= holding.holding_name %></td>
+                <% if lic.portfolio_holdings_ordering_style(2023) == "Weight" %>
+                    <td><%= holding.weight%>%</td>
+                <% end %>
+                <td><%= holding.sector %></td>
+                <td><%= holding.industry %></td>
+                <td><%= holding.size %></td>
+                <td><%= holding.headquartered %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+        
+
