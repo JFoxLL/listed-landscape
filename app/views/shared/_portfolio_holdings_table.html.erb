@@ -31,23 +31,33 @@
                 <th style="text-align: center;">Weight</th>
             <% end %>
             <th>Sector</th>
-            <th>Industry</th>
-            <th>Size</th>
-            <th>HQ</th>
+            <% if @device_type == 'desktop' %>
+                <th>Industry</th>
+                <th>Size</th>
+                <th>HQ</th>
+            <% end %>
         <tr>
     </thead>
     <tbody>
         <% lic.portfolio_holdings(@portfolio_holdings_display_year).each_with_index do |holding, i| %>
             <tr>
                 <td><%= i+1 %></td>
-                <td><%= holding.holding_name %></td>
+                <td>
+                    <% if @device_type == 'mobile' %>
+                        <%= truncate(holding.holding_name, length: 25, omission: '') %>
+                    <% else %>
+                        <%= holding.holding_name %>
+                    <% end %>
+                </td>
                 <% if lic.portfolio_holdings_ordering_style(@portfolio_holdings_display_year) == "Weight" %>
                     <td style="text-align: center;"><%= holding.weight%>%</td>
                 <% end %>
                 <td><%= holding.sector %></td>
-                <td><%= holding.industry %></td>
-                <td><%= holding.size %></td>
-                <td><%= holding.headquartered %></td>
+                <% if @device_type == 'desktop' %>
+                    <td><%= holding.industry %></td>
+                    <td><%= holding.size %></td>
+                    <td><%= holding.headquartered %></td>
+                <% end %>
             </tr>
         <% end %>
         <% if lic.portfolio_holdings_cash(@portfolio_holdings_display_year) && lic.portfolio_holdings_ordering_style(@portfolio_holdings_display_year) == "Weight" %>
@@ -56,9 +66,11 @@
                 <td>Cash & Cash Equivalents</td>
                 <td style="text-align: center;"><%= lic.portfolio_holdings_cash(@portfolio_holdings_display_year) %>%</td>
                 <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
+                <% if @device_type == 'desktop' %>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                <% end %>
             </tr>
         <% end %>
     </tbody>
