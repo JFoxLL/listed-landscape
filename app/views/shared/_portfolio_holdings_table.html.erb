@@ -1,4 +1,4 @@
-<!-- Section Sub-Heading -->
+<!-- Portfolio Holdings Section Sub-Heading -->
 <h3>
     <% if lic.portfolio_holdings_ordering_style(@portfolio_holdings_display_year) == "Weight" %>
         Top <%= lic.portfolio_holdings(@portfolio_holdings_display_year).size %> Holdings at end of FY <%= lic.portfolio_holdings(@portfolio_holdings_display_year).first.year %>
@@ -21,6 +21,7 @@
     <% end %>
 </div>
 
+<!-- Portfolio Holdings Table -->
 <table class="portfolio-holdings-table">
     <thead>
         <tr>
@@ -47,6 +48,17 @@
                 <td><%= holding.industry %></td>
                 <td><%= holding.size %></td>
                 <td><%= holding.headquartered %></td>
+            </tr>
+        <% end %>
+        <% if lic.portfolio_holdings_cash(@portfolio_holdings_display_year) && lic.portfolio_holdings_ordering_style(@portfolio_holdings_display_year) == "Weight" %>
+            <tr>
+                <td>-</td>
+                <td>Cash & Cash Equivalents</td>
+                <td style="text-align: center;"><%= lic.portfolio_holdings_cash(@portfolio_holdings_display_year) %>%</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
             </tr>
         <% end %>
     </tbody>

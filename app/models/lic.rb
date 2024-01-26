@@ -226,6 +226,15 @@ class Lic < ApplicationRecord
         return portfolio_holdings_ordered
     end
 
+    def portfolio_holdings_cash(year)
+        portfolio_holdings_cash = PortfolioHolding.where(lic_id: id)
+                                                    .where(year: year)
+                                                    .where(holding_type: "Cash")
+                                                    .pluck(:weight)
+                                                    .first
+        return portfolio_holdings_cash
+    end
+
     def chart_performance(chart_duration_years)
         chart_data = []
 
