@@ -432,9 +432,15 @@
 
 
 /* Portfolio Holdings Table */
-.portfolio-holdings-table {
+.portfolio-holdings-table-container {
     margin-top: 10px;
     margin-bottom: 20px;
+    @include desktop {
+        overflow-x: auto;
+    }
+}
+
+.portfolio-holdings-table {
     width: 100%;
     border-collapse: collapse;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
@@ -460,6 +466,7 @@
         font-family: Georgia, serif;
         color: #585858;
         text-align: left;
+        white-space: nowrap;
         @include mobile {
             font-size: 10px;
             border: 1px solid lightgrey;
