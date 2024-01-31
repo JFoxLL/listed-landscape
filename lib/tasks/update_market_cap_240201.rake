@@ -3,10 +3,10 @@
 
 namespace :db do
     desc "Update market_cap for LICs from updated CSV file"
-    task update_market_cap_240123: :environment do
+    task update_market_cap_240201: :environment do
       require 'csv'
   
-      csv_file_path = Rails.root.join('db', 'import_data', 'lics_summary_240123.csv')
+      csv_file_path = Rails.root.join('db', 'import_data', 'lics_summary_240201.csv')
   
       CSV.foreach(csv_file_path, headers: true) do |row|
         ticker = row['ticker']
