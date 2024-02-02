@@ -1,9 +1,9 @@
 namespace :db do
     desc "Import Share Price Histories from CSV file"
-    task import_share_price_histories_240102: :environment do
+    task import_share_price_histories_240202: :environment do
       require 'csv'
   
-      filepath = Rails.root.join('db', 'import_data', 'share_price_histories_240102.csv')
+      filepath = Rails.root.join('db', 'import_data', 'share_price_histories_240202.csv')
       puts "Importing Share Price History data..."
   
       CSV.foreach(filepath, headers: true) do |row|
