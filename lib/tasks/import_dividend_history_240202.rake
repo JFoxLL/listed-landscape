@@ -1,6 +1,6 @@
 namespace :db do
     desc "Import dividend history data from CSV file"
-    task import_dividend_history_240102: :environment do
+    task import_dividend_history_240202: :environment do
       require 'csv'
   
       # Step to remove all existing records
@@ -8,11 +8,17 @@ namespace :db do
       DividendHistory.destroy_all
       puts "All existing records removed successfully!"
   
-      filepath = Rails.root.join('db', 'import_data', 'dividend_history_240102.csv')
+      filepath = Rails.root.join('db', 'import_data', 'dividend_history_240202.csv')
   
       puts "Importing Dividend History data..."
   
+      first_day_of_current_month = Date.today.beginning_of_month
+  
       CSV.foreach(filepath, headers: true) do |row|
+        # Skip if payment_date is after the first day of the current month
+        # This to not import future dividends that have been declared, but not yet paid
+        next if Date.parse(row['payment_date']) > first_day_of_current_month
+  
         lic = Lic.find_by(ticker: row['lic_ticker'])
   
         if lic
@@ -38,5 +44,5 @@ namespace :db do
       end
       puts "Dividend History data imported successfully!"
     end
-end
+  end
   
