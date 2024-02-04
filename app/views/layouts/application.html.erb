@@ -50,6 +50,18 @@
       }
     </script>
 
+    <!-- Google Analytics -->
+    <% if Rails.env.production? %>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LX73RJ82VC"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-LX73RJ82VC');
+      </script>
+    <% end %>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     
